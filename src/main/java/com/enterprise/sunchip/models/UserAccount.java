@@ -16,6 +16,9 @@ public class UserAccount implements Serializable {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "email")
+    private String email;
+
     @Column(name = "type")
     private String type;
 
@@ -49,5 +52,13 @@ public class UserAccount implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -3,10 +3,12 @@ package com.enterprise.sunchip.controllers;
 import com.enterprise.sunchip.dao.UserAccountRepo;
 import com.enterprise.sunchip.models.UserAccount;
 import com.enterprise.sunchip.services.UserAccountService;
+import com.enterprise.sunchip.shared.LoggedUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,11 +27,38 @@ public class UserController {
     @Autowired
     UserAccountService service;
 
-    @RequestMapping("/CreateUser")
+
+    /**
+     * Takes uer back to the user dash board
+     * Currently being used to map the back button the main page the user logs in to
+     *
+     * @return
+     */
+    @RequestMapping("/UserMain")
+    public ModelAndView goToCreateMainView()
+    {
+        ModelAndView mv = new ModelAndView();
+
+        if (LoggedUser.getUserAccount() == null) {
+            mv.setViewName("Index");
+        } else {
+            mv.setViewName("UserAdmin/Main");
+        }
+
+        return mv;
+    }
+
+    /**
+     *
+     * Takes user to a view where admin new users can be made
+     *
+     * @return
+     */
+    @RequestMapping(value = "/CreateUser", method = RequestMethod.GET)
     public ModelAndView goToCreateView()
     {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("User/CreateUserView");
+        mv.setViewName("UserAdmin/CreateAdmin");
         return mv;
     }
 
@@ -51,15 +80,24 @@ public class UserController {
         useraccount.setType("ADMIN");
         repo.save(useraccount);
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("User/MainUserView");
+        mv.setViewName("UserAdmin/Main");
         return mv;
     }
 
+    /**
+     * Takes user to the ListUserView, where the usernames, passwords and everything is visiable
+     *
+     * @param req
+     * @param res
+     * @return
+     * @throws ServletException
+     * @throws IOException
+     */
     @RequestMapping("/ViewUsers")
     public ModelAndView viewUserAccounts(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         ModelAndView mv = new ModelAndView();
         mv.addObject("accounts", service.findAllUserAccounts());
-        mv.setViewName("User/ListUserView");
+        mv.setViewName("UserAdmin/ListUsers");
         return mv;
     }
 
@@ -84,7 +122,8 @@ public class UserController {
             for (UserAccount user : userAccountArrayList) {
                 if (user.getUsername().contentEquals(name)) {
                     if (user.getPassword().contentEquals(password)) {
-                        mv.setViewName("User/MainUserView");
+                        LoggedUser.setUserAccount(user);
+                        mv.setViewName("UserAdmin/Main");
                         return mv;
                     }
                 }
@@ -95,8 +134,18 @@ public class UserController {
             // user name not given
             // not registered user
         }
-        mv.setViewName("index");
+
+        // during testing, keep this on if you dont have any user's in the db
+        // you wont be able to login otherwise
+//        mv.setViewName("User/MainUserView");
+
+        // actual view the user is taken to, if the user uses incorrect credentials
+        mv.setViewName("Error");
+        mv.addObject("errorMessage", "Incorrect Credentials!");
+        // comment the above two line out, to login without credentials
+
         return mv;
     }
+
 
 }

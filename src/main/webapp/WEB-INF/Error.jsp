@@ -11,6 +11,13 @@
     <title>Title</title>
 </head>
 <body>
-    404!
+    Error
+    <br>
+    ${errorMessage}
+
+    <form action="UserMain" method="post">
+        <input type="submit" value="Go Back">
+    </form>
+
 </body>
 </html>

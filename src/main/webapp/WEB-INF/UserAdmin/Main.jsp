@@ -11,8 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-    <form action="CreateUser" method="post">
-        <input type="submit" value="Create User">
+    <form action="CreateUser" method="get">
+        <input type="submit" value="Create Admin User">
     </form>
 
     <form action="ViewUsers" method="post">
