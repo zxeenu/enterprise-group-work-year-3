@@ -1,11 +1,9 @@
 package DatabaseController.Entities;
 
 import DatabaseController.Common.Security;
+import com.j256.ormlite.dao.CloseableIterator;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
-
-import java.math.BigInteger;
-import java.security.MessageDigest;
 
 @DatabaseTable(tableName = "UserAccounts")
 public class User {
@@ -26,6 +24,16 @@ public class User {
 
     @DatabaseField
     public String Salt;
+
+    @DatabaseField
+    public String RC2FA;
+
+    @DatabaseField(foreignAutoRefresh = true, foreign = true, foreignAutoCreate = true)
+    public Role Role;
+
+    public void setFirstName(String fs) {
+        this.FirstName = fs;
+    }
 
     public User() {
         this.Salt = Security.GenerateRandomHex(16);
@@ -51,5 +59,13 @@ public class User {
         return this.ConfirmUsername(u) & this.ConfirmPassword(p);
     }
 
-
+    public static User ValidateLogin(String username, String password, CloseableIterator c) {
+        while (c.hasNext()) {
+            var cu = (User)c.next() ;
+            if (cu.ConfrimUsernameAndPassword(username, password)) {
+                return cu;
+            }
+        }
+        return null;
+    }
 }
