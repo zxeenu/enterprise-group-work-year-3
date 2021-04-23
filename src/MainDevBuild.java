@@ -1,9 +1,8 @@
-import DatabaseController.DatabaseContext;
-import DatabaseController.Entities.Driver;
-import DatabaseController.Entities.Trip;
-import DatabaseController.Entities.Vehicle;
+import Backend.BackendContext;
+import Database.Entities.User;
 
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class MainDevBuild {
     public static void main(String[] args) throws SQLException {
@@ -11,28 +10,26 @@ public class MainDevBuild {
         System.out.println("Connecting to database...");
 
 
-        var cont = new DatabaseContext("jdbc:sqlserver://localhost:1433;databaseName=BLANKDB;user=sa;password=QuidEst");
+        var context = new BackendContext("jdbc:sqlserver://localhost:1433;databaseName=BLANKDB;user=sa;password=QuidEst");
 
+        User sam = null;
 
+        // Step 1
+        System.out.println("Creating new user");
+        context.User.RegisterNewUser("Sam", "Ramirez", "Arkangel", "OraS1m$1");
 
-        var driver = new Driver();
-        driver.FirstName = "Sam";
-        driver.LastName = "Ramirez";
-        driver.SetUsername("Arkangel");
-        driver.SetPassword("OraS1m$1");
+        // Step 2
+        System.out.println("Assigining RC2FA");
+        sam = context.User.GetByUsernameAndPassword("Arkangel", "OraS1m$1");
+        System.out.println(sam.AssignRC2FA());
+        context.DbContext.Users.update(sam);
 
-        cont.DriverDao.create(driver);
-
-        var trip = new Trip();
-        trip.Driver = driver;
-        cont.TripsDao.create(trip);
-
-        cont.DriverDao.refresh(cont.TripsDao.iterator().first().Driver);
-        System.out.println(cont.TripsDao.iterator().first().Driver.FirstName);
-
-
-
-
+        // Step 3
+        System.out.println("Verifying Rolling code\n");
+        sam = context.User.GetByUsernameAndPassword("Arkangel", "OraS1m$1");
+        var s = new Scanner(System.in);
+        var code = s.nextLine();
+        System.out.println("Code Valid : " + sam.ConfirmTOTP(code));
 
     }
 }

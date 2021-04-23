@@ -42,8 +42,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/tests" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/totp-1.7.1.jar" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15429688" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -52,8 +52,11 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\GitHub\enterprise-group-work-year-3\src\tests" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
   </component>
-  <component name="RunManager" selected="JUnit.Database Tests">
+  <component name="RunManager" selected="Application.DevBuild">
     <configuration name="DevBuild" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="MainDevBuild" />
       <module name="enterprise-group-work-year-3" />
@@ -61,15 +64,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -88,7 +89,8 @@
       <option name="presentableId" value="Default" />
       <updated>1619073302485</updated>
       <workItem from="1619073306144" duration="17372000" />
-      <workItem from="1619100160449" duration="6454000" />
+      <workItem from="1619100160449" duration="7092000" />
+      <workItem from="1619168156877" duration="8139000" />
     </task>
     <servers />
   </component>
@@ -105,6 +107,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
