@@ -65,7 +65,7 @@ public class User {
         return this.ConfirmUsername(u) & this.ConfirmPassword(p);
     }
 
-    public String AssignRC2FA() {
+    public String AssignTOTPSecret() {
         this.TOTPSecret = Common.Security.GenerateTOTPSecret();
         return TOTPSecret;
     }
@@ -86,4 +86,5 @@ public class User {
         }
         return null;
     }
+
 }

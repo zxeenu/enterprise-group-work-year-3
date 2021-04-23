@@ -13,18 +13,18 @@ import org.apache.commons.codec.binary.Hex;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Random;
 
 public class Security {
+
     public static String HashString(String c) {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
             messageDigest.update(c.getBytes());
-            return new BigInteger(messageDigest.digest()).toString(16);
-        } catch (Exception e) {
-
-        }
+            return new BigInteger(1, messageDigest.digest()).toString(16);
+        } catch (NoSuchAlgorithmException e) { }
         return "";
     }
 

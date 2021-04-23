@@ -1,13 +1,13 @@
 package Backend;
 
 import Database.DatabaseContext;
+import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
 
 public class BackendContext {
 
     public DatabaseContext DbContext;
-
     public UserModule User;
 
     public BackendContext(String ConnectionString) {
@@ -24,6 +24,12 @@ public class BackendContext {
         }
     }
 
+    private void DropDatabase() throws SQLException {
+        for (var x : DbContext.GetDAOList()) {
+            TableUtils.dropTable(x, false);
+        }
+        DbContext.CheckAndRebuildDb();
+    }
 
 
 }

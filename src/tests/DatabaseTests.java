@@ -89,20 +89,4 @@ public class DatabaseTests {
         assertEquals("John", context.Trips.iterator().first().Driver.FirstName);
     }
 
-    @Test
-    public void HashingConsistency() {
-        var data = Security.GenerateRandomHex(20);
-        var salt = Security.GenerateRandomHex(5);
-        var result_a = Security.HashString(data + salt);
-        var result_b = Security.HashString(data + salt);
-        assertEquals(result_a, result_b);
-    }
-
-    @Test
-    public void LoginTestClassLevel() {
-        var User = new User();
-        User.SetUsername("ark");
-        User.SetPassword("ark");
-        assertTrue(User.ConfrimUsernameAndPassword("ark", "ark"));
-    }
 }

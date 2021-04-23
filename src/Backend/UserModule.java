@@ -4,11 +4,12 @@ import Database.DatabaseContext;
 import Database.Entities.Role;
 import Database.Entities.User;
 
+import javax.xml.crypto.Data;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class UserModule {
-    public DatabaseContext DbContext;
+    private DatabaseContext DbContext;
 
     public UserModule(DatabaseContext db) {
         this.DbContext = db;
@@ -52,19 +53,30 @@ public class UserModule {
         return rl;
     }
 
-
-
     public User RegisterNewUser(String firstname, String lastname, String username, String password) throws SQLException {
         var newuser = new User();
         newuser.FirstName = firstname;
         newuser.LastName = lastname;
         newuser.SetUsername(username);
         newuser.SetPassword(password);
-        
         DbContext.Users.create(newuser);
         return newuser;
     }
 
+    public ArrayList<User> GetAllUsers() {
+        var rlist = new ArrayList<User>();
+        var iterator = this.DbContext.Users.iterator();
+        while (iterator.hasNext()) {
+            rlist.add(iterator.next());
+        }
+        return rlist;
+    }
 
+    public void UpdateUser(User u) throws SQLException {
+        this.DbContext.Users.update(u);
+    }
 
+    public void DeleteUser(User u) throws SQLException {
+        this.DbContext.Users.delete(u);
+    }
 }
