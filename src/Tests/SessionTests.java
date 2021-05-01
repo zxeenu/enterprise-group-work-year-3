@@ -14,6 +14,14 @@ public class SessionTests {
     }
 
     @Test
+    public void UnsubscribeTest() {
+        ts.Subscribe(tsm);
+        ts.Unsubscribe(tsm);
+        ts.TerminateSession();
+        Assert.assertFalse(tsm.HasSessionTerminated);
+    }
+
+    @Test
     public void SessionTerminatedTest() {
         ts.Subscribe(tsm);
         ts.TerminateSession();
@@ -56,19 +64,19 @@ public class SessionTests {
         }
 
         @Override
-        public void SessionExpired() {
+        public void SessionExpired(Session s) {
             this.HasSessionExpired = true;
             System.out.println("Session expired");
         }
 
         @Override
-        public void SessionExtended() {
+        public void SessionExtended(Session s) {
             this.HasSessionExtended = true;
             System.out.println("Session extended");
         }
 
         @Override
-        public void SessionTerminated() {
+        public void SessionTerminated(Session s) {
             this.HasSessionTerminated = true;
             System.out.println("Session terminated");
         }

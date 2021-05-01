@@ -2,15 +2,31 @@ package Backend;
 
 import Database.DatabaseContext;
 import Database.Entities.Trip;
+import WebUI.Session;
+import WebUI.SessionMonitor;
 import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class BackendContext {
+public class BackendContext implements SessionMonitor{
 
     public DatabaseContext DbContext;
     public TripModule Trip;
     public UserModule User;
+
+    public ArrayList<Session> ActiveSessions;
+
+    @Override
+    public void SessionExpired(Session s) {}
+
+    @Override
+    public void SessionExtended(Session s) {}
+
+    @Override
+    public void SessionTerminated(Session s) {
+        this.ActiveSessions.remove(s);
+    }
 
     public BackendContext(String ConnectionString) {
         this.ConnectToDatabase(ConnectionString);
@@ -41,6 +57,7 @@ public class BackendContext {
         }
         DbContext.CheckAndRebuildDb();
     }
+
 
 
 }

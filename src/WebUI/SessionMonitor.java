@@ -1,7 +1,7 @@
 package WebUI;
 
 public interface SessionMonitor {
-    void SessionExpired();
-    void SessionExtended();
-    void SessionTerminated();
+    void SessionExpired(Session s);
+    void SessionExtended(Session s);
+    void SessionTerminated(Session s);
 }

@@ -19,12 +19,16 @@ public class Session {
         this.KillSessionTask = new TimerTask() {
             @Override
             public void run() {
+                CallExpiredEvent();
                 TerminateSession();
-                for (var x : Subscribers) {
-                    x.SessionExpired();
-                }
             }
         };
+    }
+
+    private void CallExpiredEvent() {
+        for (var x : this.Subscribers) {
+            x.SessionExpired(this);
+        }
     }
 
     public void StartSession() {
@@ -34,14 +38,14 @@ public class Session {
     public void TerminateSession() {
         this.ExpirationTimer.cancel();
         for (var x : this.Subscribers) {
-            x.SessionTerminated();
+            x.SessionTerminated(this);
         }
     }
 
     public void ExtendSession() {
         this.ExpirationTimer.schedule(this.KillSessionTask, ExpirationPeriod);
         for (var x : this.Subscribers) {
-            x.SessionExtended();
+            x.SessionExtended(this);
         }
     }
 
@@ -53,8 +57,6 @@ public class Session {
     public void Unsubscribe(SessionMonitor e) {
         this.Subscribers.remove(e);
     }
-
-
 }
 
 
