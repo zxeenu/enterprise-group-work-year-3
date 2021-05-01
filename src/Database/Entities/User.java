@@ -34,6 +34,12 @@ public class User {
     @DatabaseField
     public String CreditCardNumber;
 
+    @DatabaseField
+//    1. Administrator
+//    2. Driver
+//    3. Customer
+    public int UserClassCode;
+
     @DatabaseField(foreignAutoRefresh = true, foreign = true, foreignAutoCreate = true)
     public Role Role;
 
@@ -65,11 +71,20 @@ public class User {
         return this.ConfirmUsername(u) & this.ConfirmPassword(p);
     }
 
+    /**
+     * Assign a TOTP Secret Key
+     * @return
+     */
     public String AssignTOTPSecret() {
         this.TOTPSecret = Common.Security.GenerateTOTPSecret();
         return TOTPSecret;
     }
 
+    /**
+     * Confirm that the provided TOTP code is valid. If the TOTP is not setup, will return false
+     * @param code Code to match
+     * @return Boolean : Indicates if the code matches
+     */
     public boolean ConfirmTOTP(String code) {
         if (this.TOTPSecret.isBlank()) {
             return false;
@@ -77,6 +92,13 @@ public class User {
         return Common.Security.VerifyTOTPCode(this.TOTPSecret, code);
     }
 
+    /**
+     * Matches a username and password from an iterator
+     * @param username Username to match
+     * @param password Password to match
+     * @param c iterator to use
+     * @return User that matches the provided login. Null if not found
+     */
     public static User ValidateLogin(String username, String password, CloseableIterator c) {
         while (c.hasNext()) {
             var cu = (User)c.next() ;
@@ -85,6 +107,18 @@ public class User {
             }
         }
         return null;
+    }
+
+    /**
+     * Use class enum
+     */
+    public static enum UserType {
+        ADMIN(1),  DRIVER(2), CUSTOMER(3);
+
+        public final int UserCode;
+        UserType(int i) {
+            UserCode = i;
+        }
     }
 
 }

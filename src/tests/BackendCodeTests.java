@@ -2,9 +2,8 @@ package tests;
 
 import Backend.BackendContext;
 import Common.Security;
-import Database.DatabaseContext;
+import Common.Shared;
 import Database.Entities.*;
-import com.j256.ormlite.table.TableUtils;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
@@ -23,11 +22,13 @@ public class BackendCodeTests {
         System.out.println("Running database tests...");
 		this.connectionString = "jdbc:sqlserver://localhost:1433;databaseName=JUNITDB;user=sa;password=QuidEst";
 		this.BEContext = new BackendContext(this.connectionString);
+		Shared.BeContext = this.BEContext;
+		Shared.DbContext = BEContext.DbContext;
     }
 
 
     public User AddDummyUser() throws SQLException {
-        return BEContext.User.RegisterNewUser("John", "Smith", "jsmith", "OraS1m$1");
+        return BEContext.User.RegisterNewUser("John", "Smith", "jsmith", "OraS1m$1", User.UserType.ADMIN);
     }
 
     @Test
