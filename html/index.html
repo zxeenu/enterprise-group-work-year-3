@@ -10,26 +10,29 @@
   <body>
     <div class="container">
       <h1 class="logo">EeZee Ride</h1>
+      <div class="login-box-container">
+        <form action="/login" method="post">
+          <div class="login-box">
+            <input
+              type="text"
+              placeholder="Username"
+              name="username"
+              required
+            />
 
-      <form action="/login" method="post">
-        <div class="login-box">
-          <input type="text" placeholder="Username" name="username" required />
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              required
+            />
 
-          <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            required
-          />
+            <button class="login-submit" type="submit">Login</button>
 
-          <button class="login-submit" type="submit">Login</button>
-          <label>
-            <input type="checkbox" name="remember" />
-            Remember me
-          </label>
-          <span class="forgot"> <a href="#">Forgot password?</a></span>
-        </div>
-      </form>
+            <span class="forgot"> <a href="#">Forgot password?</a></span>
+          </div>
+        </form>
+      </div>
     </div>
   </body>
 </html>
