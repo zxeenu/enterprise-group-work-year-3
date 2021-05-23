@@ -1,0 +1,95 @@
+/* Typography */
+
+@font-face {
+    font-family: "Noto";
+    src: url("../assets/fonts/NotoSans-Regular.ttf");
+}
+
+@font-face{
+    font-family: "Bebasneue";
+    src: url("../assets/fonts/BebasNeue-Regular.ttf");
+}
+
+/* General */
+body {
+    background-color: #393e51;
+    font-family: "Noto";
+}
+
+.container {
+    margin: 40px;
+}
+
+.logo {
+    color: #c9d9e4;
+    font-size: 45px;
+    font-family: "Bebasneue";
+}
+
+/* Input Forms */
+
+form {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Login Box */
+
+.login-box-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10%;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    background-color: #efefef;
+    border: none;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+::placeholder {
+    color: #838383;
+    font-size: 15px;
+}
+
+button {
+    background-color: #7689cd;
+    color: #fffbfb;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 100%;
+    transition: opacity 0.3s;
+    font-size: 15px;
+}
+
+button:hover {
+    transition: opacity 0.3s;
+    opacity: 0.8;
+}
+
+button.login-submit {
+    margin-bottom: 10px;
+}
+
+.login-box {
+    padding: 20px 10px 25px 10px;
+    width: 80%;
+}
+
+span.forgot {
+    float: right;
+    font-size: 12px;
+}
