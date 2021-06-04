@@ -14,7 +14,7 @@ public class Session {
 
 
     public Session() {
-        this.ExpirationPeriod = 30 * 60 * 1000;
+        this.ExpirationPeriod = 5 * 1000;
         this.Subscribers = new ArrayList<>();
         this.KillSessionTask = new TimerTask() {
             @Override
