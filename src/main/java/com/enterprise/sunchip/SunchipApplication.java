@@ -1,4 +1,4 @@
-package com.enterprise.sunchip;
+package main.java.com.enterprise.sunchip;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
