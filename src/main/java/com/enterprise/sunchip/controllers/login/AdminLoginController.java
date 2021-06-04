@@ -24,6 +24,7 @@ public class AdminLoginController {
     private LocalSession localSession;
 
     private static Session userSession = new Session();
+
     private static WebUIManager webesiteUIManager = new WebUIManager();
 
     @RequestMapping(value = "LoginAdmin", method = RequestMethod.GET)
