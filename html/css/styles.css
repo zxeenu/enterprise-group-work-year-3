@@ -223,11 +223,8 @@ form {
   justify-content: center;
 }
 
-.login-box-container-admin {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 80vh;
+.login-box-container.admin {
+  height: 80vh;
 }
 
 input[type="text"],
