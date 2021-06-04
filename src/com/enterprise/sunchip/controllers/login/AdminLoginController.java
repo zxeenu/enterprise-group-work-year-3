@@ -1,5 +1,6 @@
 package com.enterprise.sunchip.controllers.login;
 
+import Common.Shared;
 import Database.Entities.User;
 import WebUI.Session;
 import com.enterprise.sunchip.models.WebUIManager;
@@ -17,8 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 public class AdminLoginController {
 
-    @Autowired
-    private DbService dbService;
+//    @Autowired
+//    private DbService dbService;
 
     @Autowired
     private LocalSession localSession;
@@ -40,7 +41,7 @@ public class AdminLoginController {
     public ModelAndView loginAction(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("pages/error/Error");
-        User currentUser = dbService.BEContext.User.GetByUsernameAndPassword(username, password);
+        User currentUser = Shared.BeContext.User.GetByUsernameAndPassword(username, password);
 
         if (currentUser == null) {
             localSession.storeTokenInLocalCashe(request, "");
