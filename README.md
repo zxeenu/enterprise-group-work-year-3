@@ -1,13 +1,12 @@
 <div>
-  <h6>University of West of England [Villa College]</h6>
-  <h6>BSc (HONS) Computer Science - Jan 2019</h6>
-  <h6>Enterprise Systems Development (UFCF85-30-3)</h6>
-  <h6>Group Assignment</h6>
+  <h6>University of West of England [Villa College]<br>
+      BSc (HONS) Computer Science - Jan 2019<br>
+      Enterprise Systems Development (UFCF85-30-3)<br>
+      Group Assignment</h6>
 </div>
+<img src="https://i.imgur.com/KudlJJy.png">
 
-<h4 align="center">Sunchip</h4>
-<h1 align="center">EEZEE Ride</h1>
-<p align="center">The Taxi App You Need</p>
+<p align="center"><i><b>The Taxi App You <strike>Need</strike> Deserve</b></i></p>
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -145,4 +144,5 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 
 
 <!-- ACKNOWLEDGEMENTS -->
+
 ## Acknowledgements
