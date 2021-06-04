@@ -121,7 +121,7 @@ The Sunchip Team
         <td>System UI/UX design, Testing</td>
     </tr>
     <tr>
-        <td>Hussain</td>
+        <td><a href="https://github.com/Hsain-r">Hussain</a></td>
         <td>Frontend development, Documentation</td>
     </tr>
 </table>
