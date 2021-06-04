@@ -4,8 +4,9 @@
       Enterprise Systems Development (UFCF85-30-3)<br>
       Group Assignment</h6>
 </div>
+<p align="center">
 <img src="https://i.imgur.com/KudlJJy.png">
-
+</p>
 <p align="center"><i><b>The Taxi App You <strike>Need</strike> Deserve</b></i></p>
 
 <!-- TABLE OF CONTENTS -->
