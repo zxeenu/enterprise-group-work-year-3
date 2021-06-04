@@ -11,6 +11,7 @@ import java.util.logging.Level;
 
 public class MainDevBuild {
     public static void main(String[] args) throws SQLException {
+
 //        System.out.println("Starting application...");
 //        System.out.println("Connecting to database...");
 //
