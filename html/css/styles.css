@@ -1,13 +1,13 @@
 /* Color variables */
 :root {
-	--light: #efefef;
-	--bg: #e5e5e5;
-	--dark: #3F3D56;
-	--accent-blue: #6c63ff;
-	--grey: #7689CD;
-	--light-grey: #838383;
-	--lighter-grey: #B2B2B2;
-	--accent-pink: #FF6584;
+  --light: #efefef;
+  --bg: #e5e5e5;
+  --dark: #3f3d56;
+  --accent-blue: #6c63ff;
+  --grey: #7689cd;
+  --light-grey: #838383;
+  --lighter-grey: #b2b2b2;
+  --accent-pink: #ff6584;
 }
 
 /* Typography */
@@ -59,42 +59,43 @@ body {
   background-color: var(--dark);
 }
 
-input[type="radio"]{
-	display:none;
-	width: 50px;
+input[type="radio"] {
+  display: none;
+  width: 50px;
 }
 
-.login-box label{
-	position: relative;
-	justify-content: center;
-	font-size: 14px;
-	width: 90px;
-	border-radius: 3px;
-	border: 1px solid var(--lighter-grey);
-	color: var(--light-grey);
-	padding: 10px 10px;
-	display:flex;
-	flex-direction: row;
-	align-items: center;
-	cursor: pointer;
-	margin: 4px;
-	transition: width 0.1s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
+.login-box label {
+  position: relative;
+  justify-content: center;
+  font-size: 14px;
+  width: 90px;
+  border-radius: 3px;
+  border: 1px solid var(--lighter-grey);
+  color: var(--light-grey);
+  padding: 10px 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  margin: 4px;
+  transition: width 0.1s ease-in-out, border 0.3s ease-in-out,
+    color 0.3s ease-in-out;
 }
 
-input[type="radio"]:hover + label{
-	border: 1px solid var(--accent-blue);
-	color: var(--accent-blue);
-	transition: border 0.3s ease-in-out, color 0.3s ease-in-out;
+input[type="radio"]:hover + label {
+  border: 1px solid var(--accent-blue);
+  color: var(--accent-blue);
+  transition: border 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-input[type="radio"]:checked + label{
-	background-color: var(--accent-pink);
-	border: 1px solid var(--accent-pink);
-	color: white;
-	width: 120px;
-	transition: width 0.1s ease-in-out, background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+input[type="radio"]:checked + label {
+  background-color: var(--accent-pink);
+  border: 1px solid var(--accent-pink);
+  color: white;
+  width: 120px;
+  transition: width 0.1s ease-in-out, background-color 0.1s ease-in-out,
+    color 0.1s ease-in-out;
 }
-
 
 /* Containers */
 
@@ -165,7 +166,6 @@ nav {
   color: var(--accent-blue);
   transition: color 0.1s ease-in-out;
 }
-
 
 .navbar {
   display: flex;
