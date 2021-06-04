@@ -8,6 +8,7 @@
   --light-grey: #838383;
   --lighter-grey: #b2b2b2;
   --accent-pink: #ff6584;
+  --light-blue: #c9d9e3;
 }
 
 /* Typography */
@@ -32,6 +33,20 @@
   color: var(--dark);
   font-size: 100px;
   text-align: center;
+}
+
+.secondary-title {
+  color: var(--light-blue);
+  font-size: 25px;
+  padding-top: 50px;
+}
+.secondary-title p {
+  padding-bottom: 10px;
+}
+
+h1 {
+  color: var(--light-blue);
+  font-size: 60px;
 }
 
 /* General */
@@ -59,44 +74,6 @@ body {
   background-color: var(--dark);
 }
 
-input[type="radio"] {
-  display: none;
-  width: 50px;
-}
-
-.login-box label {
-  position: relative;
-  justify-content: center;
-  font-size: 14px;
-  width: 90px;
-  border-radius: 3px;
-  border: 1px solid var(--lighter-grey);
-  color: var(--light-grey);
-  padding: 10px 10px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  cursor: pointer;
-  margin: 4px;
-  transition: width 0.1s ease-in-out, border 0.3s ease-in-out,
-    color 0.3s ease-in-out;
-}
-
-input[type="radio"]:hover + label {
-  border: 1px solid var(--accent-blue);
-  color: var(--accent-blue);
-  transition: border 0.3s ease-in-out, color 0.3s ease-in-out;
-}
-
-input[type="radio"]:checked + label {
-  background-color: var(--accent-pink);
-  border: 1px solid var(--accent-pink);
-  color: white;
-  width: 120px;
-  transition: width 0.1s ease-in-out, background-color 0.1s ease-in-out,
-    color 0.1s ease-in-out;
-}
-
 /* Containers */
 
 .container {
@@ -112,6 +89,10 @@ input[type="radio"]:checked + label {
 
 .container.between {
   justify-content: space-between;
+}
+
+.nfcontainer {
+  margin: 40px;
 }
 
 .fw-col {
@@ -144,7 +125,7 @@ nav {
 
 .logo {
   display: inline-block;
-  color: #c9d9e4;
+  color: var(--light-blue);
   font-size: 45px;
   font-family: "Bebasneue";
 }
@@ -174,6 +155,35 @@ nav {
   padding: 6px 40px;
 }
 
+.navbar.admin {
+  border-bottom: 0.3px solid #c9d9e31f;
+}
+
+/* Table */
+
+table {
+  margin-top: 50px;
+  background-color: var(--light);
+  width: 100%;
+  border-collapse: separate;
+  border: solid var(--dark) 1px;
+  border-radius: 13px;
+  -moz-border-radius: 6px;
+  padding: 30px;
+  table-layout: fixed;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 10px;
+}
+
+th {
+  color: var(--dark);
+  font-size: 20px;
+}
+
 /* Input Forms */
 
 form {
@@ -190,6 +200,9 @@ form {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.login-box-container.admin {
   height: 80vh;
 }
 
@@ -253,4 +266,44 @@ button.login-submit {
 .forgot a:hover {
   color: var(--accent-pink);
   transition: color 0.3s ease-in-out;
+}
+
+/* Radio */
+
+input[type="radio"] {
+  display: none;
+  width: 50px;
+}
+
+.login-box label {
+  position: relative;
+  justify-content: center;
+  font-size: 14px;
+  width: 90px;
+  border-radius: 3px;
+  border: 1px solid var(--lighter-grey);
+  color: var(--light-grey);
+  padding: 10px 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  margin: 4px;
+  transition: width 0.1s ease-in-out, border 0.3s ease-in-out,
+    color 0.3s ease-in-out;
+}
+
+input[type="radio"]:hover + label {
+  border: 1px solid var(--accent-blue);
+  color: var(--accent-blue);
+  transition: border 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+input[type="radio"]:checked + label {
+  background-color: var(--accent-pink);
+  border: 1px solid var(--accent-pink);
+  color: white;
+  width: 120px;
+  transition: width 0.1s ease-in-out, background-color 0.1s ease-in-out,
+    color 0.1s ease-in-out;
 }
