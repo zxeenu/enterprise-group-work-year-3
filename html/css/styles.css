@@ -190,6 +190,7 @@ form {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 80vh;
 }
 
 input[type="text"],
