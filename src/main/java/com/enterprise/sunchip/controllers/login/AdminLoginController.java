@@ -2,7 +2,6 @@ package main.java.com.enterprise.sunchip.controllers.login;
 
 import Common.Shared;
 import Database.Entities.User;
-import main.java.com.enterprise.sunchip.services.DbService;
 import main.java.com.enterprise.sunchip.services.LocalSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
