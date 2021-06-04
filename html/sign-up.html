@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/styles.css" />
-    <title>Eezee Ride</title>
+    <title>Eezee Ride - Sign Up</title>
   </head>
   <body class="light">
     <nav class="navbar">
@@ -21,11 +21,28 @@
 
     <div class="container center">
       <div class="fifty-col">
-        <h1 class="hero-title">EeZee Ride</h1>
+        <h1 class="hero-title">Sign Up</h1>
 
         <div class="login-box-container">
-          <form action="/login" method="post">
+          <form action="/signup" method="post">
             <div class="login-box">
+              <div style="display: flex">
+                <input type="radio" name="user-type" id="customer" value="customer" checked />
+                <label for="customer">Customer</label>
+                <input type="radio" name="user-type" id="driver" value="customer" />
+                <label for="driver">Driver</label>
+              </div>
+              <input type="text" placeholder="Full Name" name="name" required />
+
+              <input type="email" placeholder="Email" name="email" required />
+
+              <input
+                type="tel"
+                placeholder="Mobile Number"
+                name="mobile"
+                required
+              />
+
               <input
                 type="text"
                 placeholder="Username"
@@ -40,9 +57,14 @@
                 required
               />
 
-              <button class="login-submit" type="submit">Login</button>
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                name="confirm-password"
+                required
+              />
 
-              <div class="forgot"><a href="#">Forgot password?</a></div>
+              <button class="login-submit" type="submit">Sign Up</button>
             </div>
           </form>
         </div>
