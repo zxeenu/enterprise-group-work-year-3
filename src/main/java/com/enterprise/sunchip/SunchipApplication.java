@@ -1,5 +1,7 @@
 package com.enterprise.sunchip;
 
+import Backend.BackendContext;
+import Common.Shared;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -9,7 +11,11 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 public class SunchipApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SunchipApplication.class, args);
+
+		Shared.BeContext = new BackendContext("jdbc:sqlserver://localhost:1433;databaseName=BLANKDB;user=sa;password=QuidEst");
+		SpringApplication.run(SunchipApplication.class, args
+
+		);
 	}
 
 	/**
