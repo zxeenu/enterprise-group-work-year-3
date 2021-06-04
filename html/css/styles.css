@@ -1,0 +1,210 @@
+/* Typography */
+
+@font-face {
+  font-family: "Noto";
+  src: url("../assets/fonts/NotoSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: "NotoBold";
+  src: url("../assets/fonts/NotoSans-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Bebasneue";
+  src: url("../assets/fonts/BebasNeue-Regular.ttf");
+}
+
+.hero-title {
+  font-family: "Bebasneue";
+  color: #393e51;
+  font-size: 100px;
+  text-align: center;
+}
+
+/* General */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Noto";
+}
+
+.light {
+  background-color: #e5e5e5;
+}
+
+.dark {
+  background-color: #393e51;
+}
+
+/* Containers */
+
+.container {
+  margin: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.container.center {
+  justify-content: center;
+}
+
+.container.between {
+  justify-content: space-between;
+}
+
+.fw-col {
+  width: 100%;
+}
+
+.fifty-col {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+}
+
+.fifty-row {
+  display: flex;
+  width: 50%;
+  flex-direction: row;
+}
+
+.fw {
+  width: 100%;
+}
+/* Navbar */
+
+nav {
+  width: 100%;
+  background-color: #393e51;
+  padding-left: 30px;
+  padding-right: 10px;
+}
+
+.logo {
+  display: inline-block;
+  color: #c9d9e4;
+  font-size: 45px;
+  font-family: "Bebasneue";
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+
+.nav-item a {
+  display: inline-block;
+  padding: 10px 35px;
+  text-decoration: none;
+  color: white;
+}
+
+.nav-item a:hover {
+  color: #6e85da;
+}
+
+.nav-item {
+  border: 2px solid #393e51;
+}
+
+.nav-item:hover {
+  border: 2px solid #6e85da;
+  border-radius: 7px;
+  transition: border 0.3s ease-in-out;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+}
+
+/* Input Forms */
+
+form {
+  background-color: #e5e5e5;
+  border-radius: 8px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Login Box */
+
+.login-box-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  background-color: #efefef;
+  border: none;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+::placeholder {
+  color: #838383;
+  font-size: 15px;
+}
+
+button {
+  background-color: #7689cd;
+  color: #fffbfb;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease-in-out;
+  font-size: 15px;
+}
+
+button:hover {
+  background-color: #393e51;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button.login-submit {
+  margin-bottom: 10px;
+}
+
+.login-box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 25px 10px;
+  width: 80%;
+}
+
+.forgot a {
+  font-size: 12px;
+  text-decoration: none;
+  color: #61677e;
+}
+
+.forgot a:hover {
+  color: #6e85da;
+  transition: color 0.3s ease-in-out;
+}
