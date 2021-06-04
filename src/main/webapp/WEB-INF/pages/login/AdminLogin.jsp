@@ -40,7 +40,7 @@
 
                 <button class="login-submit" type="submit">Login</button>
 
-                <div class="forgot"><a href="ForgotPassword">Forgot password?</a></div>
+                <div class="forgot"><a href="ForgotPasswordAdmin">Forgot password?</a></div>
             </div>
         </form>
     </div>

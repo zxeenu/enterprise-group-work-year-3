@@ -6,10 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Service
-public class SessionService {
-
-    public SessionService() {
-    }
+public class LocalSession {
 
     public void storeTokenInLocalCashe(HttpServletRequest request, String token) {
         HttpSession session = request.getSession();
