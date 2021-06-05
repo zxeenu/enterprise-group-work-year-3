@@ -13,15 +13,14 @@
         <h1 class="logo">EeZee Ride</h1>
       </a>
       <ul class="nav-links">
-        <li class="nav-item"><a href="./dashboard.html">Dashboard</a></li>
-        <li class="nav-item"><a href="./drivers.html">Drivers</a></li>
-        <li class="nav-item"><a href="./customers.html">Customers</a></li>
-		<li class="nav-item"><a href="./index.html">Log Out</a></li>
+        <li class="nav-item"><a href="#">Dashboard</a></li>
+        <li class="nav-item"><a href="#">Drivers</a></li>
+        <li class="nav-item"><a href="#">Customers</a></li>
       </ul>
     </nav>
 
     <div class="nfcontainer">
-      <h1 class="title-dark">Dashboard</h1>
+      <h1>Dashboard</h1>
       <div class="secondary-title">
         <p>Active Drivers:</p>
         <p>Bookings Completed:</p>
@@ -32,19 +31,11 @@
         <tr>
           <th>Driver</th>
           <th>Customer</th>
-          <th>Distance</th>
           <th>Status</th>
         </tr>
         <tr>
           <td>Sam</td>
           <td>Banaha</td>
-          <td>3 Kilometers</td>
-          <td>In progress</td>
-        </tr>
-        <tr>
-          <td>Sam</td>
-          <td>Banaha</td>
-          <td>3 Kilometers</td>
           <td>In progress</td>
         </tr>
       </table>

@@ -1,4 +1,4 @@
-package com.enterprise.sunchip;
+package main.java.com.enterprise.sunchip;
 
 import Backend.BackendContext;
 import Common.Shared;
@@ -12,7 +12,8 @@ public class SunchipApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 
-		Shared.BeContext = new BackendContext("jdbc:sqlserver://localhost:1433;databaseName=BLANKDB;user=sa;password=QuidEst");
+//		Shared.BeContext = new BackendContext("jdbc:sqlserver://localhost:1433;databaseName=BLANKDB;user=sa;password=QuidEst");
+		Shared.BeContext = new BackendContext("jdbc:sqlserver://SILVER-NOTE:1433;databaseName=EnterpiseAppDb;user=zeenu;password=2OTF5FkZudUGv");
 		SpringApplication.run(SunchipApplication.class, args
 
 		);

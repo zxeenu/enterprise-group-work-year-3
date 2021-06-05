@@ -1,4 +1,4 @@
-package com.enterprise.sunchip.services;
+package main.java.com.enterprise.sunchip.services;
 
 import org.springframework.stereotype.Service;
 

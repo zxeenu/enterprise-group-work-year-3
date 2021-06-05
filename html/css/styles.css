@@ -35,9 +35,29 @@
   text-align: center;
 }
 
+.hero-title-dark {
+  font-family: "Bebasneue";
+  color: var(--light-blue);
+  font-size: 100px;
+  text-align: center;
+}
+
+.title {
+  font-family: "Bebasneue";
+  color: var(--dark);
+  font-size: 80px;
+  text-align: left;
+}
+
+.title-dark {
+  font-family: "Bebasneue";
+  color: var(--light-blue);
+  font-size: 80px;
+  text-align: left;
+}
 .secondary-title {
   color: var(--light-blue);
-  font-size: 25px;
+  font-size: 15px;
   padding-top: 50px;
 }
 .secondary-title p {
@@ -66,6 +86,10 @@ body {
   font-family: "Noto";
 }
 
+a:active {
+  color: var(--accent-pink);
+}
+
 .light {
   background-color: var(--bg);
 }
@@ -92,7 +116,7 @@ body {
 }
 
 .nfcontainer {
-  margin: 40px;
+  margin: 4vh 10vw;
 }
 
 .fw-col {
@@ -126,7 +150,7 @@ nav {
 .logo {
   display: inline-block;
   color: var(--light-blue);
-  font-size: 45px;
+  font-size: 35px;
   font-family: "Bebasneue";
 }
 
@@ -137,9 +161,10 @@ nav {
 
 .nav-item a {
   display: inline-block;
-  padding: 10px 35px;
+  padding: 7px 25px;
   text-decoration: none;
-  color: white;
+  font-size: 13px;
+  color: var(--light-blue);
   transition: color 0.3s ease-in-out;
 }
 
@@ -152,7 +177,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px 40px;
+  padding: 10px 10vw;
 }
 
 .navbar.admin {
@@ -165,23 +190,27 @@ table {
   margin-top: 50px;
   background-color: var(--light);
   width: 100%;
-  border-collapse: separate;
+  border-collapse: collapse;
   border: solid var(--dark) 1px;
   border-radius: 13px;
   -moz-border-radius: 6px;
-  padding: 30px;
   table-layout: fixed;
 }
 
 th,
 td {
   text-align: left;
-  padding: 10px;
+  padding: 20px 2vw;
 }
 
 th {
   color: var(--dark);
-  font-size: 20px;
+  font-size: 18px;
+}
+
+td,
+th {
+  border-bottom: 1px solid #3f3d562c;
 }
 
 /* Input Forms */
@@ -256,6 +285,10 @@ button.login-submit {
   width: 80%;
 }
 
+.forgot {
+  text-align: center;
+}
+
 .forgot a {
   font-size: 12px;
   text-decoration: none;
@@ -279,7 +312,7 @@ input[type="radio"] {
   position: relative;
   justify-content: center;
   font-size: 14px;
-  width: 90px;
+  width: 110px;
   border-radius: 3px;
   border: 1px solid var(--lighter-grey);
   color: var(--light-grey);
@@ -303,7 +336,7 @@ input[type="radio"]:checked + label {
   background-color: var(--accent-pink);
   border: 1px solid var(--accent-pink);
   color: white;
-  width: 120px;
+  width: 100px;
   transition: width 0.1s ease-in-out, background-color 0.1s ease-in-out,
     color 0.1s ease-in-out;
 }

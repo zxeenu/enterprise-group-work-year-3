@@ -12,7 +12,12 @@
       <a href="/" class="logo">
         <h1 class="logo">EeZee Ride</h1>
       </a>
+      <ul class="nav-links">
+        <li class="nav-item"><a href="#">Login</a></li>
+        <li class="nav-item"><a href="#">Sign Up</a></li>
+      </ul>
     </nav>
+
     <div class="container center">
       <div class="fifty-col">
         <h1 class="hero-title">Sign Up</h1>
@@ -37,19 +42,14 @@
                 />
                 <label for="driver">Driver</label>
               </div>
+              <input type="text" placeholder="Full Name" name="name" required />
 
-              <br />
+              <input type="email" placeholder="Email" name="email" required />
 
               <input
-                type="text"
-                placeholder="First Name"
-                name="fname"
-                required
-              />
-              <input
-                type="text"
-                placeholder="Last Name"
-                name="lname"
+                type="tel"
+                placeholder="Mobile Number"
+                name="mobile"
                 required
               />
 
@@ -59,8 +59,6 @@
                 name="username"
                 required
               />
-
-              <br />
 
               <input
                 type="password"
@@ -76,12 +74,7 @@
                 required
               />
 
-              <br />
-
               <button class="login-submit" type="submit">Sign Up</button>
-              <div class="forgot">
-                <a href="./index.html">Already have an account?</a>
-              </div>
             </div>
           </form>
         </div>

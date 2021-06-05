@@ -3,7 +3,6 @@ package Backend;
 import Common.Logger;
 import Common.Shared;
 import Database.DatabaseContext;
-import Database.Entities.Trip;
 import WebUI.Session;
 import WebUI.SessionMonitor;
 import com.j256.ormlite.table.TableUtils;
