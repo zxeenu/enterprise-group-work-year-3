@@ -35,6 +35,20 @@ public class Trip {
     @DatabaseField(foreignAutoRefresh = true, foreign = true, foreignAutoCreate = true)
     public Vehicle Vehicle;
 
+    @DatabaseField
+    public double StartLattitude;
+    @DatabaseField
+    public double StartLongtitude;
+
+    @DatabaseField
+    public double EndLattitude;
+    @DatabaseField
+    public double EndLongtitude;
+
+    @DatabaseField
+    public double Distance;
+
+    @DatabaseField
     public float PaidAmount;
     public User getDriver() {
         return this.Driver;
