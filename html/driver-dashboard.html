@@ -21,11 +21,12 @@
 
       <table class="dash">
         <tr>
-          <th>Customer</th>
-          <th>Contact</th>
+          <th>Customer Name</th>
           <th>Location</th>
+          <th>Coordinates</th>
           <th>Destination</th>
-          <th>Trip</th>
+          <th>Coordinates</th>
+          <th>Distance</th>
           <th>Status</th>
         </tr>
         <tr>
@@ -34,12 +35,32 @@
           <td>Some House, Addu (69km away)</td>
           <td>Some House, Male'</td>
           <td>69,420km</td>
+          <td>Somethig</td>
           <td>
-            <button>Accept</button><button>Reject</button
-            ><button>Completed</button>
+            <button type="button" id="accept">Accept</button
+            ><button type="button" id="reject">Reject</button
+            ><button type="button" id="completed" disabled>Completed</button>
           </td>
         </tr>
       </table>
     </div>
   </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#accept").click(function () {
+        $("#completed").prop("disabled", false);
+        $("#reject").prop("disabled", true);
+      });
+      $("#completed").click(function () {
+        $("#accept").prop("disabled", true);
+        $("#completed").addClass("button-clicked");
+      });
+      $("#reject").click(function () {
+        $("#accept").prop("disabled", true);
+        $("#completed").prop("disabled", true);
+        $("#reject").addClass("button-clicked");
+      });
+    });
+  </script>
 </html>

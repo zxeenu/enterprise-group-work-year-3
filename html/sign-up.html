@@ -24,18 +24,18 @@
                 <input
                   type="radio"
                   name="user-type"
-                  id="customer"
-                  value="customer"
+                  id="driver"
+                  value="driver"
                   checked
                 />
-                <label for="customer">Customer</label>
+                <label for="driver">Driver</label>
                 <input
                   type="radio"
                   name="user-type"
-                  id="driver"
-                  value="driver"
+                  id="customer"
+                  value="customer"
                 />
-                <label for="driver">Driver</label>
+                <label for="customer">Customer</label>
               </div>
 
               <br />
@@ -57,6 +57,22 @@
                 type="text"
                 placeholder="Username"
                 name="username"
+                required
+              />
+
+              <input
+                type="text"
+                placeholder="Vehicle Type"
+                name="vehicle"
+                id="vehicle"
+                required
+              />
+
+              <input
+                type="text"
+                placeholder="License Plate Number"
+                name="plate"
+                id="plate"
                 required
               />
 
@@ -87,9 +103,24 @@
         </div>
       </div>
 
-      <div class="fifty-col">
+      <div class="fifty-col" style="height: 80vh">
         <img src="assets/images/hero.svg" />
       </div>
     </div>
   </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("input[name$='user-type']").click(function () {
+        var value = $(this).val();
+        if (value == "driver") {
+          $("#plate").show();
+          $("#vehicle").show();
+        } else {
+          $("#plate").hide();
+          $("#vehicle").hide();
+        }
+      });
+    });
+  </script>
 </html>
