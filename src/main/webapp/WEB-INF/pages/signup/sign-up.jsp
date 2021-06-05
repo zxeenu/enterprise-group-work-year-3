@@ -23,7 +23,7 @@
         <h1 class="hero-title">Sign Up</h1>
 
         <div class="login-box-container">
-          <form action="/signup" method="post">
+          <form action="/SignUp" method="post">
             <div class="login-box">
               <div style="display: flex">
                 <input

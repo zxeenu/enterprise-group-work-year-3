@@ -13,4 +13,13 @@ public class Vehicle {
     public String LicensePlateNo;
     @DatabaseField
     public String Color;
+
+    public Vehicle() {
+    }
+
+    public Vehicle(String manufacturer, String licensePlateNo, String color) {
+        Manufacturer = manufacturer;
+        LicensePlateNo = licensePlateNo;
+        Color = color;
+    }
 }
