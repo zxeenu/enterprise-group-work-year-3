@@ -1,4 +1,4 @@
-package tests;
+package Tests;
 
 import Common.Security;
 import Database.DatabaseContext;
@@ -18,7 +18,9 @@ public class DatabaseTests {
 
     public DatabaseTests() throws SQLException, InterruptedException {
         System.out.println("Running database tests...");
-		this.connectionString = "jdbc:sqlserver://localhost:1433;databaseName=JUNITDB;user=sa;password=QuidEst";
+//		this.connectionString = "jdbc:sqlserver://localhost:1433;databaseName=JUNITDB;user=sa;password=QuidEst";
+        this.connectionString = "jdbc:sqlserver://27.114.145.29:1433;databaseName=JUNITDB;user=dbacc;password=OraS1m$1";
+//        27.114.145.29
         this.context = new DatabaseContext(connectionString);
         for (var x : this.context.GetDAOList()) {
             TableUtils.dropTable(x, false);

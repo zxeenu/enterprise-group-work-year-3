@@ -1,4 +1,4 @@
-package tests;
+package Tests;
 
 import Backend.Maps.MapStructs.Point;
 import org.junit.Assert;

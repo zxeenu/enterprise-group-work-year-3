@@ -13,6 +13,7 @@ import org.json.simple.parser.JSONParser;
 
 import java.net.http.HttpClient;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ORSHandler {
@@ -48,7 +49,7 @@ public class ORSHandler {
      * @return List of routes found
      */
     public List<Route> GetRoutes(Point Start, Point...End) {
-        return GetRoutes(Start, End);
+        return GetRoutes(Start, Arrays.asList(End));
     }
 
     /**
