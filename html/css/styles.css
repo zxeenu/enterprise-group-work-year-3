@@ -86,6 +86,10 @@ body {
   font-family: "Noto";
 }
 
+a:active {
+  color: var(--accent-pink);
+}
+
 .light {
   background-color: var(--bg);
 }
@@ -279,6 +283,10 @@ button.login-submit {
   justify-content: center;
   padding: 25px 10px;
   width: 80%;
+}
+
+.forgot {
+  text-align: center;
 }
 
 .forgot a {
