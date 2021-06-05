@@ -36,6 +36,9 @@ public class Trip {
     public Vehicle Vehicle;
 
     @DatabaseField
+    public String LocationName;
+
+    @DatabaseField
     public double StartLattitude;
     @DatabaseField
     public double StartLongtitude;
@@ -47,6 +50,9 @@ public class Trip {
 
     @DatabaseField
     public double Distance;
+
+
+
 
     @DatabaseField
     public float PaidAmount;
