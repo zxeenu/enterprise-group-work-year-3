@@ -10,9 +10,6 @@ public class Vehicle {
     @DatabaseField
     public String Manufacturer;
     @DatabaseField
-    public int Year;
-
-    @DatabaseField
     public String LicensePlateNo;
     @DatabaseField
     public String Color;
