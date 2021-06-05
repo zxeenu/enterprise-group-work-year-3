@@ -276,6 +276,15 @@ button.login-submit {
   margin-bottom: 10px;
 }
 
+button:disabled,
+button[disabled] {
+  background-color: #6b63ff5b;
+}
+
+.button-clicked {
+  background-color: var(--accent-pink);
+}
+
 .login-box {
   display: flex;
   align-items: center;
