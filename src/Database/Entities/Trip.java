@@ -36,13 +36,14 @@ public class Trip {
     public Vehicle Vehicle;
 
     @DatabaseField
-    public String LocationName;
-
+    public String StartName;
     @DatabaseField
     public double StartLattitude;
     @DatabaseField
     public double StartLongtitude;
 
+    @DatabaseField
+    public String EndName;
     @DatabaseField
     public double EndLattitude;
     @DatabaseField
