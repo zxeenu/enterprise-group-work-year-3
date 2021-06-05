@@ -1,3 +1,16 @@
+/* Color variables */
+:root {
+  --light: #efefef;
+  --bg: #e5e5e5;
+  --dark: #3f3d56;
+  --accent-blue: #6c63ff;
+  --grey: #7689cd;
+  --light-grey: #838383;
+  --lighter-grey: #b2b2b2;
+  --accent-pink: #ff6584;
+  --light-blue: #c9d9e3;
+}
+
 /* Typography */
 
 @font-face {
@@ -17,9 +30,43 @@
 
 .hero-title {
   font-family: "Bebasneue";
-  color: #393e51;
+  color: var(--dark);
   font-size: 100px;
   text-align: center;
+}
+
+.hero-title-dark {
+  font-family: "Bebasneue";
+  color: var(--light-blue);
+  font-size: 100px;
+  text-align: center;
+}
+
+.title {
+  font-family: "Bebasneue";
+  color: var(--dark);
+  font-size: 80px;
+  text-align: left;
+}
+
+.title-dark {
+  font-family: "Bebasneue";
+  color: var(--light-blue);
+  font-size: 80px;
+  text-align: left;
+}
+.secondary-title {
+  color: var(--light-blue);
+  font-size: 15px;
+  padding-top: 50px;
+}
+.secondary-title p {
+  padding-bottom: 10px;
+}
+
+h1 {
+  color: var(--light-blue);
+  font-size: 60px;
 }
 
 /* General */
@@ -39,12 +86,16 @@ body {
   font-family: "Noto";
 }
 
+a:active {
+  color: var(--accent-pink);
+}
+
 .light {
-  background-color: #e5e5e5;
+  background-color: var(--bg);
 }
 
 .dark {
-  background-color: #393e51;
+  background-color: var(--dark);
 }
 
 /* Containers */
@@ -62,6 +113,10 @@ body {
 
 .container.between {
   justify-content: space-between;
+}
+
+.nfcontainer {
+  margin: 4vh 10vw;
 }
 
 .fw-col {
@@ -87,15 +142,15 @@ body {
 
 nav {
   width: 100%;
-  background-color: #393e51;
+  background-color: var(--dark);
   padding-left: 30px;
   padding-right: 10px;
 }
 
 .logo {
   display: inline-block;
-  color: #c9d9e4;
-  font-size: 45px;
+  color: var(--light-blue);
+  font-size: 35px;
   font-family: "Bebasneue";
 }
 
@@ -106,36 +161,62 @@ nav {
 
 .nav-item a {
   display: inline-block;
-  padding: 10px 35px;
+  padding: 7px 25px;
   text-decoration: none;
-  color: white;
+  font-size: 13px;
+  color: var(--light-blue);
+  transition: color 0.3s ease-in-out;
 }
 
 .nav-item a:hover {
-  color: #6e85da;
-}
-
-.nav-item {
-  border: 2px solid #393e51;
-}
-
-.nav-item:hover {
-  border: 2px solid #6e85da;
-  border-radius: 7px;
-  transition: border 0.3s ease-in-out;
+  color: var(--accent-blue);
+  transition: color 0.1s ease-in-out;
 }
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 40px;
+  padding: 10px 10vw;
+}
+
+.navbar.admin {
+  border-bottom: 0.3px solid #c9d9e31f;
+}
+
+/* Table */
+
+table {
+  margin-top: 50px;
+  background-color: var(--light);
+  width: 100%;
+  border-collapse: collapse;
+  border: solid var(--dark) 1px;
+  border-radius: 13px;
+  -moz-border-radius: 6px;
+  table-layout: fixed;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 20px 2vw;
+}
+
+th {
+  color: var(--dark);
+  font-size: 18px;
+}
+
+td,
+th {
+  border-bottom: 1px solid #3f3d562c;
 }
 
 /* Input Forms */
 
 form {
-  background-color: #e5e5e5;
+  background-color: var(--bg);
   border-radius: 8px;
   width: 300px;
   display: flex;
@@ -150,25 +231,31 @@ form {
   justify-content: center;
 }
 
+.login-box-container.admin {
+  height: 80vh;
+}
+
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="tel"],
+input[type="email"] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
-  background-color: #efefef;
+  background-color: var(--light);
   border: none;
   border-radius: 3px;
   box-sizing: border-box;
 }
 
 ::placeholder {
-  color: #838383;
+  color: var(--light-grey);
   font-size: 15px;
 }
 
 button {
-  background-color: #7689cd;
+  background-color: var(--accent-blue);
   color: #fffbfb;
   padding: 14px 20px;
   margin: 8px 0;
@@ -181,12 +268,21 @@ button {
 }
 
 button:hover {
-  background-color: #393e51;
-  transition: background-color 0.3s ease-in-out;
+  background-color: var(--accent-pink);
+  transition: background-color 0.1s ease-in-out;
 }
 
 button.login-submit {
   margin-bottom: 10px;
+}
+
+button:disabled,
+button[disabled] {
+  background-color: #6b63ff5b;
+}
+
+.button-clicked {
+  background-color: var(--accent-pink);
 }
 
 .login-box {
@@ -198,13 +294,58 @@ button.login-submit {
   width: 80%;
 }
 
+.forgot {
+  text-align: center;
+}
+
 .forgot a {
   font-size: 12px;
   text-decoration: none;
-  color: #61677e;
+  color: var(--accent-blue);
+  transition: color 0.3s ease-in-out;
 }
 
 .forgot a:hover {
-  color: #6e85da;
+  color: var(--accent-pink);
   transition: color 0.3s ease-in-out;
+}
+
+/* Radio */
+
+input[type="radio"] {
+  display: none;
+  width: 50px;
+}
+
+.login-box label {
+  position: relative;
+  justify-content: center;
+  font-size: 14px;
+  width: 110px;
+  border-radius: 3px;
+  border: 1px solid var(--lighter-grey);
+  color: var(--light-grey);
+  padding: 10px 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  margin: 4px;
+  transition: width 0.1s ease-in-out, border 0.3s ease-in-out,
+    color 0.3s ease-in-out;
+}
+
+input[type="radio"]:hover + label {
+  border: 1px solid var(--accent-blue);
+  color: var(--accent-blue);
+  transition: border 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+input[type="radio"]:checked + label {
+  background-color: var(--accent-pink);
+  border: 1px solid var(--accent-pink);
+  color: white;
+  width: 100px;
+  transition: width 0.1s ease-in-out, background-color 0.1s ease-in-out,
+    color 0.1s ease-in-out;
 }

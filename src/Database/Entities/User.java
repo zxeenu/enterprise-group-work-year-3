@@ -129,4 +129,47 @@ public class User {
         }
     }
 
+    public Integer getID() {
+        return ID;
+    }
+
+    public String getFirstName() {
+        return FirstName;
+    }
+
+    public String getLastName() {
+        return LastName;
+    }
+
+    public String getHashUsername() {
+        return HashUsername;
+    }
+
+    public String getHashPassword() {
+        return HashPassword;
+    }
+
+    public String getSalt() {
+        return Salt;
+    }
+
+    public String getTOTPSecret() {
+        return TOTPSecret;
+    }
+
+    public Vehicle getPrimaryVehicle() {
+        return PrimaryVehicle;
+    }
+
+    public String getCreditCardNumber() {
+        return CreditCardNumber;
+    }
+
+    public int getUserClassCode() {
+        return UserClassCode;
+    }
+
+    public Database.Entities.Role getRole() {
+        return Role;
+    }
 }

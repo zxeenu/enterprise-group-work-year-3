@@ -13,8 +13,8 @@
         <h1 class="logo">EeZee Ride</h1>
       </a>
       <ul class="nav-links">
-        <li class="nav-item"><a href="#">Login</a></li>
-        <li class="nav-item"><a href="#">Sign Up</a></li>
+        <li class="nav-item"><a href="Login">Login</a></li>
+        <li class="nav-item"><a href="SignUp">Sign Up</a></li>
       </ul>
     </nav>
 
