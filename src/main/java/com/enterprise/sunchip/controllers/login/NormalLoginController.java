@@ -1,5 +1,7 @@
 package main.java.com.enterprise.sunchip.controllers.login;
 
+import Backend.TripModule;
+import Backend.UserModule;
 import Common.Shared;
 import Database.Entities.User;
 import main.java.com.enterprise.sunchip.services.LocalSession;
@@ -18,12 +20,35 @@ public class NormalLoginController {
     @Autowired
     private LocalSession localSession;
 
+    UserModule userModule = new UserModule();
+
     @RequestMapping(value = "Login", method = RequestMethod.GET)
-    public ModelAndView toLoginPage()
+    public ModelAndView toLoginPage(HttpServletRequest request)
     {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("pages/login/NormalLogin");
-        System.out.println(mv);
+        mv.addObject("userLoggedIn", false);
+
+        try {
+            String tokenId = localSession.getTokenStoredInLocalCashe(request);
+
+            if (!tokenId.isEmpty()) {
+                var loggedInUser = userModule.GetByPasswordHash(tokenId);
+
+                mv.addObject("userLoggedIn", true);
+                String fullName = loggedInUser.FirstName + " " + loggedInUser.LastName;
+                mv.addObject("fullName", fullName);
+
+                switch (loggedInUser.UserClassCode){
+                    case 2:
+                        return new ModelAndView("redirect:/DriverDashboard");
+                    case 3:
+                        break;
+                }
+            }
+
+        } catch (Exception ignore) {}
+
         return mv;
     }
 

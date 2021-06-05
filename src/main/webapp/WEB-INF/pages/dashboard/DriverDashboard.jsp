@@ -15,7 +15,7 @@
         <h1 class="logo">EeZee Ride</h1>
     </a>
     <ul class="nav-links">
-        <li class="nav-item"><a href="./index.html">Log Out</a></li>
+        <li class="nav-item"><a href="DriverLogout">Log Out</a></li>
     </ul>
 </nav>
 <div class="nfcontainer">
@@ -23,7 +23,7 @@
     <table class="dash">
         <thead>
         <tr>
-<%--            <th>Customer Id</th>--%>
+            <%--            <th>Customer Id</th>--%>
             <th>Customer Name</th>
             <th>Location</th>
             <th>Coordinates</th>
@@ -37,7 +37,7 @@
         <tr>
             <c:forEach items="${tripList}" var="trip">
         <tr>
-<%--            <td>${trip.customer.ID}</td>--%>
+                <%--            <td>${trip.customer.ID}</td>--%>
             <td>${trip.customer.firstName} ${trip.customer.lastName}</td>
             <td>${trip.startName}</td>
             <td>(${trip.startLattitude}, ${trip.startLongtitude})</td>
@@ -45,23 +45,33 @@
             <td>(${trip.endLattitude}, ${trip.endLongtitude})</td>
             <td>${trip.distance}</td>
             <td>
-                <a href="/edit-todo"
+                <a href="DriverAcceptsJob?trip_id=${trip.ID}&driver_id=${driver.ID}"
                 >
-                    <button type="button" id="accept">Accept</button>
+                    <button type="submit" id="accept" formmethod="post">Accept</button>
                 </a
                 >
-                <a href="/edit-todo"
+                <a href="#"
                 >
-                    <button type="button" id="reject">Reject</button>
+                    <button type="submit" id="reject" formmethod="post">Reject</button>
                 </a
                 >
-                <a href="/edit-todo"
-                >
-                    <button type="button" id="completed" disabled>
-                        Completed
-                    </button>
-                </a
-                >
+                <%--TODO: currently button is off when trip has been completed, but it also needs to be disabled if the driver hasnt accepted the job, which cannot be known yet--%>
+                <c:choose>
+                    <c:when test="${trip.tripComplete == true}">
+                        <a href="DriverCompletesJob?trip_id=${trip.ID}&driver_id=${driver.ID}"
+                        >
+                            <button type="submit" disabled formmethod="POST">Completed</button>
+                        </a
+                        >
+                    </c:when>
+                    <c:otherwise>
+                        <a href="DriverCompletesJob?trip_id=${trip.ID}&driver_id=${driver.ID}"
+                        >
+                            <button type="submit" formmethod="POST">Completed</button>
+                        </a
+                        >
+                    </c:otherwise>
+                </c:choose>
             </td>
         </tr>
         </c:forEach>

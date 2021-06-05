@@ -66,6 +66,24 @@ public class Trip {
 //    @ForeignCollectionField
 //    public Collection<Waypoint> WayPoints;
 
+//    @DatabaseField(defaultValue = "1")
+////    1. UNASSIGNED
+////    2. ACCEPTED
+////    3. REJECTED
+//    public int JobStatus;
+
+
+//    /**
+//     * Use class enum
+//     */
+//    public static enum JobStatus {
+//        UNASSIGNED(1),  ACCEPTED(2), REJECTED(3);
+//
+//        public final int UserCode;
+//        JobStatus(int i) {
+//            UserCode = i;
+//        }
+//    }
 
     public Integer getID() {
         return ID;

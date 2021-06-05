@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html lang="en">
 <head>
@@ -10,12 +11,19 @@
 </head>
 <body class="light">
 <nav class="navbar">
-  <a href="/" class="logo">
+  <a href="Login" class="logo">
     <h1 class="logo">EeZee Ride</h1>
   </a>
   <ul class="nav-links">
-    <li class="nav-item"><a href="Login">Login</a></li>
-    <li class="nav-item"><a href="SignUp">Sign Up</a></li>
+    <c:choose>
+      <c:when test="${userLoggedIn == true}">
+        <li class="nav-item"><a href="Login" class="disabled">Hi, ${fullName}</a></li>
+      </c:when>
+      <c:otherwise>
+        <li class="nav-item"><a href="Login">Login</a></li>
+        <li class="nav-item"><a href="SignUp">Sign Up</a></li>
+      </c:otherwise>
+    </c:choose>
   </ul>
 </nav>
 

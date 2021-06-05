@@ -349,3 +349,8 @@ input[type="radio"]:checked + label {
   transition: width 0.1s ease-in-out, background-color 0.1s ease-in-out,
     color 0.1s ease-in-out;
 }
+
+.disabled {
+  pointer-events: none;
+  cursor: default;
+}
