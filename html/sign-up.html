@@ -55,13 +55,6 @@
 
               <input
                 type="text"
-                placeholder="Username"
-                name="username"
-                required
-              />
-
-              <input
-                type="text"
                 placeholder="Vehicle Type"
                 name="vehicle"
                 id="vehicle"
@@ -76,7 +69,21 @@
                 required
               />
 
+              <input
+                type="text"
+                placeholder="Colour"
+                name="colour"
+                id="colour"
+                required
+              />
+
               <br />
+              <input
+                type="text"
+                placeholder="Username"
+                name="username"
+                required
+              />
 
               <input
                 type="password"
@@ -103,7 +110,7 @@
         </div>
       </div>
 
-      <div class="fifty-col" style="height: 80vh">
+      <div class="fifty-col" style="height: 90vh">
         <img src="assets/images/hero.svg" />
       </div>
     </div>
@@ -116,9 +123,11 @@
         if (value == "driver") {
           $("#plate").show();
           $("#vehicle").show();
+          $("#colour").show();
         } else {
           $("#plate").hide();
           $("#vehicle").hide();
+          $("#colour").hide();
         }
       });
     });
