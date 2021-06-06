@@ -20,7 +20,6 @@ public class TripPoolHandler extends Thread {
         while (true) {
 
             List<Trip> processed = new ArrayList<>();
-            System.out.println("Checking");
             try {
                 for (var p : tripModule.TripPool) {
                     if (p.State == Trip.TripState.IN_PROGRESS) continue;;
