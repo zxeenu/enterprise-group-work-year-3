@@ -4,6 +4,7 @@ import Backend.UserModule;
 import Database.Entities.User;
 import Database.Entities.Vehicle;
 import main.java.com.enterprise.sunchip.models.SignUpModel;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,8 +24,11 @@ public class SignUpController {
     }
 
     @RequestMapping(value = "SignUp", method = RequestMethod.POST)
-    public String SignUpAction(@ModelAttribute("signUpForm") SignUpModel newUser)
+    public String SignUpAction(@ModelAttribute("signUpForm") SignUpModel newUser, BindingResult result)
     {
+        if (result.hasErrors()){
+            return "Error";
+        }
         UserModule userModule = new UserModule();
         try {
             if (newUser.getUserType() == User.UserType.DRIVER)

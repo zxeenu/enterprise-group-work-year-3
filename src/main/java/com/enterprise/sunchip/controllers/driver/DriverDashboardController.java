@@ -1,0 +1,159 @@
+package main.java.com.enterprise.sunchip.controllers.driver;
+
+import Backend.TripModule;
+import Backend.UserModule;
+import Common.Shared;
+import Database.Entities.Trip;
+import main.java.com.enterprise.sunchip.services.LocalSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+
+@RestController
+public class DriverDashboardController {
+
+    @Autowired
+    private LocalSession localSession;
+
+    UserModule userModule = new UserModule();
+    TripModule tripModule = new TripModule();
+
+    @RequestMapping(value = "DriverDashboard", method = RequestMethod.GET)
+    public ModelAndView forgotPasswordAction(HttpServletRequest request) {
+        ModelAndView mv = new ModelAndView();
+        String tokenId = "";
+        mv.setViewName("pages/dashboard/DriverDashboard");
+
+        try {
+            tokenId = localSession.getTokenStoredInLocalCashe(request);
+
+            if (!tokenId.isEmpty()) {
+                var driver = userModule.GetByPasswordHash(tokenId);
+                var tripList = tripModule.GetAllTripsByDriver(driver); // doesnt work for somereason
+                mv.addObject("tripList", tripList);
+                mv.addObject("driver", driver);
+            }
+
+        } catch (Exception e) {
+            mv.setViewName("pages/error/Error");
+            mv.addObject("errorMessage", "sorry, you need to login before you can use this page!");
+        }
+
+        return mv;
+    }
+
+    /***
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "DriverDashboard", method = RequestMethod.POST)
+    public ModelAndView forgotPasswordActionPost(HttpServletRequest request) {
+        ModelAndView mv = new ModelAndView();
+        String tokenId = "";
+        mv.setViewName("pages/dashboard/DriverDashboard");
+
+        try {
+            tokenId = localSession.getTokenStoredInLocalCashe(request);
+
+            if (!tokenId.isEmpty()) {
+                var driver = userModule.GetByPasswordHash(tokenId);
+                var tripList = tripModule.GetAllTripsByDriver(driver); // doesnt work for somereason
+                mv.addObject("tripList", tripList);
+                mv.addObject("driver", driver);
+            }
+
+        } catch (Exception e) {
+            mv.setViewName("pages/error/Error");
+            mv.addObject("errorMessage", "sorry, you need to login before you can use this page!");
+            return mv;
+        }
+
+        return mv;
+    }
+
+    /***
+     * Please do not use the either method = RequestMethod.POST or method = RequestMethod.GET for this method
+     * it seems to make the link not work
+     *
+     * Further investigation will be needed
+     *
+     * @param request
+     * @param tripId
+     * @param driverId
+     * @return
+     */
+    @RequestMapping(value = "DriverAcceptsJob")
+    public ModelAndView driverJobAcceptance(HttpServletRequest request, @RequestParam("trip_id") String tripId, @RequestParam("driver_id") String driverId) {
+        String tokenId = "";
+        try {
+            tokenId = localSession.getTokenStoredInLocalCashe(request);
+
+            if (!tokenId.isEmpty()) {
+                var driver = userModule.GetByPasswordHash(tokenId);
+                var tripList = tripModule.GetAllTripsByDriver(driver);
+
+                Trip currentTrip = null;
+
+                for (var trip : tripList)  {
+
+                    if (trip.ID.toString().equals(tripId)) {
+                        // save the accepted state here
+                        // save to db
+                        Shared.DbContext.Trips.update(trip);
+                    }
+                }
+            }
+
+
+        } catch (Exception e) {
+            ModelAndView mv = new ModelAndView();
+            mv.setViewName("pages/error/Error");
+            mv.addObject("errorMessage", "sorry, the job could not be accepted!");
+            return mv;
+        }
+
+        return new ModelAndView("redirect:/DriverDashboard");
+    }
+
+    @RequestMapping(value = "DriverCompletesJob")
+    public ModelAndView driverJobCompletion(HttpServletRequest request, @RequestParam("trip_id") String tripId, @RequestParam("driver_id") String driverId) {
+        String tokenId = "";
+        try {
+            tokenId = localSession.getTokenStoredInLocalCashe(request);
+
+            if (!tokenId.isEmpty()) {
+                var driver = userModule.GetByPasswordHash(tokenId);
+                var tripList = tripModule.GetAllTripsByDriver(driver);
+
+                Trip currentTrip = null;
+
+                for (var trip : tripList)  {
+                    if (trip.ID.toString().equals(tripId)) {
+                        trip.TripComplete = true;
+                        Shared.DbContext.Trips.update(trip);
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            ModelAndView mv = new ModelAndView();
+            mv.setViewName("pages/error/Error");
+            mv.addObject("errorMessage", "sorry, the job could not be completed!");
+            return mv;
+        }
+
+        return new ModelAndView("redirect:/DriverDashboard");
+    }
+
+    @RequestMapping(value = "DriverLogout", method = RequestMethod.GET)
+    public ModelAndView loginActionForAdmin(HttpServletRequest request) {
+        localSession.clearTokenStoredInLocalCashe(request);
+        return new ModelAndView("redirect:/Login");
+    }
+
+
+
+
+}

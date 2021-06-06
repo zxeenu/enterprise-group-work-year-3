@@ -13,9 +13,14 @@ public class LocalSession {
         session.setAttribute("usertoken", token);
     }
 
-    public String getTokenStoredInLocalCahse(HttpServletRequest request) {
+    public String getTokenStoredInLocalCashe(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return (String) session.getAttribute("usertoken");
+    }
+
+    public void clearTokenStoredInLocalCashe(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.setAttribute("usertoken", "");
     }
 
 }
