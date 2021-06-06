@@ -1,5 +1,7 @@
 package Common;
 
+import com.j256.ormlite.logger.Log;
+
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.Instant;

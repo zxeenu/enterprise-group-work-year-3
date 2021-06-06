@@ -63,8 +63,8 @@ public class TripHandlerTests {
         var CustomerATrip = BeContext.Trip.RequestNewTrip(CustomerA);
         var CustomerBTrip = BeContext.Trip.RequestNewTrip(CustomerB);
 
-        BeContext.Trip.AddTripToQueue(CustomerATrip);
-        BeContext.Trip.AddTripToQueue(CustomerBTrip);
+        BeContext.Trip.AddTripToPool(CustomerATrip);
+        BeContext.Trip.AddTripToPool(CustomerBTrip);
         Thread.sleep(1500);
         Assert.assertTrue((
                 CustomerATrip.State == Trip.TripState.IN_PROGRESS && CustomerBTrip.State == Trip.TripState.IN_PROGRESS
@@ -78,9 +78,9 @@ public class TripHandlerTests {
         var CustomerBTrip = BeContext.Trip.RequestNewTrip(CustomerB);
         var CustomerCTrip = BeContext.Trip.RequestNewTrip(CustomerC);
 
-        BeContext.Trip.AddTripToQueue(CustomerATrip);
-        BeContext.Trip.AddTripToQueue(CustomerBTrip);
-        BeContext.Trip.AddTripToQueue(CustomerCTrip);
+        BeContext.Trip.AddTripToPool(CustomerATrip);
+        BeContext.Trip.AddTripToPool(CustomerBTrip);
+        BeContext.Trip.AddTripToPool(CustomerCTrip);
 
         if (CustomerCTrip.State == Trip.TripState.IN_PROGRESS) Assert.fail("Customer C trip processed unexpectedly");
 
@@ -103,7 +103,7 @@ public class TripHandlerTests {
         var listener = new DummyListener();
         BeContext.Trip.SubscribeToTripStateChange(listener);
         BeContext.DbContext.Trips.create(CustomerATrip);
-        BeContext.Trip.AddTripToQueue(CustomerATrip);
+        BeContext.Trip.AddTripToPool(CustomerATrip);
         Thread.sleep(1000);
         if (!listener.TripCompleted || listener.trip != CustomerATrip) {
             Assert.fail();
@@ -113,6 +113,8 @@ public class TripHandlerTests {
     public class DummyListener implements Backend.Interfaces.TripStateChange {
         public boolean TripCompleted = false;
         public Trip trip = null;
+
+
         @Override
         public void OnTripStateChange(Trip t) {
             TripCompleted = true;

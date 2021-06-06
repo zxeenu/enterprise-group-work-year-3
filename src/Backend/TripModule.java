@@ -4,6 +4,7 @@ import Backend.Interfaces.TripStateChange;
 import Common.Shared;
 import Database.Entities.Trip;
 import Database.Entities.User;
+import jdk.jshell.spi.ExecutionControl;
 
 import java.sql.SQLException;
 import java.util.*;
@@ -106,16 +107,17 @@ public class TripModule {
      * @param t Trip to be assigned
      * @return Boolean : Indicates if the trip got assigned
      */
-    public boolean AssignTripToDriver(Trip t) {
-        var Drivers = Shared.BeContext.User.GetAllDrivers();
-        for (var d : Drivers) {
-            if (this.GetActiveTripsByDriver(d).isEmpty()) {
-                t.Driver = d;
-                t.State = Trip.TripState.IN_PROGRESS;
-                return true;
-            }
-        }
-        return false;
+    public boolean AssignTripToDriver(Trip t) throws ExecutionControl.NotImplementedException {
+        throw new ExecutionControl.NotImplementedException("Go away");
+//        var Drivers = Shared.BeContext.User.GetAllDrivers();
+//        for (var d : Drivers) {
+//            if (this.GetActiveTripsByDriver(d).isEmpty()) {
+//                t.Driver = d;
+//                t.State = Trip.TripState.IN_PROGRESS;
+//                return true;
+//            }
+//        }
+//        return false;
     }
 
     /**
@@ -195,6 +197,14 @@ public class TripModule {
     protected TripPoolHandler poolHandler;
 
     /**
+     * Get the trip pool list
+     * @return trip pool list
+     */
+    public List<Trip> GetTripPool() {
+        return TripPool;
+    }
+
+    /**
      * Use this function to subscribe to the event when a trip state has been changed
      * @param l Class with the TripStateChange interface implemented
      */
@@ -215,7 +225,7 @@ public class TripModule {
      * try to assign a trip to an available driver
      * @param t Trip to add
      */
-    public void AddTripToQueue(Trip t) {
+    public void AddTripToPool(Trip t) {
         TripPool.add(t);
     }
 
@@ -223,7 +233,7 @@ public class TripModule {
      * Use this function to remove a trip from the pool queue
      * @param t Trip to remove
      */
-    public void RemoveTripFromQueue(Trip t) {
+    public void RemoveTripFromPool(Trip t) {
         TripPool.remove(t);
     }
 
@@ -241,7 +251,6 @@ public class TripModule {
      * @param p Trip
      */
     protected void NotifyTripStateChange(Trip p) {
-
         for (var l : TripStateChangeListeners) {
             l.OnTripStateChange(p);
         }

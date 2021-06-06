@@ -14,16 +14,23 @@ import java.util.ArrayList;
 public class BackendContext implements SessionMonitor{
 
     public DatabaseContext DbContext;
+
+    // Modules
     public TripModule Trip;
     public UserModule User;
 
     public ArrayList<Session> ActiveSessions;
 
     @Override
-    public void SessionExpired(Session s) {}
+    public void SessionExpired(Session s) {
+
+
+    }
 
     @Override
-    public void SessionExtended(Session s) {}
+    public void SessionExtended(Session s) {
+
+    }
 
     @Override
     public void SessionTerminated(Session s) {
@@ -34,7 +41,7 @@ public class BackendContext implements SessionMonitor{
         this.ConnectToDatabase(ConnectionString);
         this.User = new UserModule();
         this.Trip = new TripModule();
-        this.Trip.StartTripPoolHandler();
+        this.Trip.StartTripPoolHandler(); // Start handler thread
         Shared.BeContext = this;
         Shared.DbContext = this.DbContext;
     }
