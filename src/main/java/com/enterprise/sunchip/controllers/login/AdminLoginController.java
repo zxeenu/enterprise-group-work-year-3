@@ -1,5 +1,7 @@
 package main.java.com.enterprise.sunchip.controllers.login;
 
+import Backend.TripModule;
+import Backend.UserModule;
 import Common.Shared;
 import Database.Entities.User;
 import main.java.com.enterprise.sunchip.services.LocalSession;
@@ -18,34 +20,87 @@ public class AdminLoginController {
     @Autowired
     private LocalSession localSession;
 
+    UserModule userModule = new UserModule();
+    TripModule tripModule = new TripModule();
+
 //    private static Session userSession = new Session();
 //    private static WebUIManager webesiteUIManager = new WebUIManager();
 
+//    @RequestMapping(value = "LoginAdmin", method = RequestMethod.GET)
+//    public ModelAndView toAdminLoginPage() {
+//        ModelAndView mv = new ModelAndView();
+//        mv.setViewName("pages/login/AdminLogin");
+//        return mv;
+//
+//    }
+
+//    @RequestMapping(value = "LoginAdmin", method = RequestMethod.POST)
+//    public ModelAndView loginActionForAdmin(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletRequest request) {
+//        ModelAndView mv = new ModelAndView();
+//        mv.setViewName("pages/error/Error");
+//        User currentUser = Shared.BeContext.User.GetByUsernameAndPassword(username, password);
+//
+//        if (currentUser == null) {
+//            localSession.storeTokenInLocalCashe(request, "");
+//            mv.addObject("errorMessage", "sorry, you did not input correct credentials!");
+//        } else {
+//            localSession.storeTokenInLocalCashe(request, currentUser.HashUsername);
+//
+////            webesiteUIManager.setTokenId(currentUser.HashUsername);
+////            userSession.Subscribe(webesiteUIManager);
+////            userSession.StartSession();
+//
+//            mv.addObject("errorMessage", "sorry, successful login. But admin page has not been implemented!");
+//        }
+//        return mv;
+//    }
+
     @RequestMapping(value = "LoginAdmin", method = RequestMethod.GET)
-    public ModelAndView toAdminLoginPage() {
+    public ModelAndView toAdminLoginPage(HttpServletRequest request)
+    {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("pages/login/AdminLogin");
-        return mv;
+        mv.addObject("userLoggedIn", false);
 
+        try {
+            String tokenId = localSession.getTokenStoredInLocalCashe(request);
+
+            if (!tokenId.isEmpty()) {
+                var loggedInUser = userModule.GetByPasswordHash(tokenId);
+
+                mv.addObject("userLoggedIn", true);
+                String fullName = loggedInUser.FirstName + " " + loggedInUser.LastName;
+                mv.addObject("fullName", fullName);
+
+                if (loggedInUser.UserClassCode == 1) {
+                    return new ModelAndView("redirect:/XAwef32r32jr32oiu");
+                }
+            }
+
+        } catch (Exception ignore) {}
+
+        return mv;
     }
 
     @RequestMapping(value = "LoginAdmin", method = RequestMethod.POST)
     public ModelAndView loginActionForAdmin(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("pages/error/Error");
+
         User currentUser = Shared.BeContext.User.GetByUsernameAndPassword(username, password);
 
-        if (currentUser == null) {
-            localSession.storeTokenInLocalCashe(request, "");
-            mv.addObject("errorMessage", "sorry, you did not input correct credentials!");
-        } else {
-            localSession.storeTokenInLocalCashe(request, currentUser.HashUsername);
+        localSession.clearTokenStoredInLocalCashe(request);
+        mv.setViewName("pages/error/Error");
+        mv.addObject("errorMessage", "sorry, you did not input correct credentials!");
 
-//            webesiteUIManager.setTokenId(currentUser.HashUsername);
-//            userSession.Subscribe(webesiteUIManager);
-//            userSession.StartSession();
+        if (currentUser != null) {
 
-            mv.addObject("errorMessage", "sorry, successful login. But admin page has not been implemented!");
+            switch (currentUser.UserClassCode){
+                case 1:
+                    localSession.storeTokenInLocalCashe(request, currentUser.HashPassword);
+                    // return new ModelAndView("forward:/redirectedUrl", model);
+                    // return new ModelAndView("redirect:/redirectedUrl", model);
+                    return new ModelAndView("redirect:/XAwef32r32jr32oiu");
+            }
         }
         return mv;
     }
