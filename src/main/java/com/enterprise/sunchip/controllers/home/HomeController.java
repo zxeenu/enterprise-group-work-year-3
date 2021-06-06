@@ -10,10 +10,11 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView homeView()
     {
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("pages/login/NormalLogin");
-        System.out.println(mv);
-        return mv;
+//        ModelAndView mv = new ModelAndView();
+//        mv.setViewName("pages/login/NormalLogin");
+//        System.out.println(mv);
+//        return mv;
+        return new ModelAndView("redirect:/Login");
     }
 
 }
