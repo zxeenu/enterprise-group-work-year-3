@@ -3,6 +3,7 @@ package main.java.com.enterprise.sunchip.controllers.login;
 import Backend.TripModule;
 import Backend.UserModule;
 import Common.Shared;
+import Database.Entities.Trip;
 import Database.Entities.User;
 import main.java.com.enterprise.sunchip.services.LocalSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.SQLException;
 
 @RestController
 public class NormalLoginController {
@@ -20,7 +22,6 @@ public class NormalLoginController {
     @Autowired
     private LocalSession localSession;
 
-    UserModule userModule = new UserModule();
 
     @RequestMapping(value = "Login", method = RequestMethod.GET)
     public ModelAndView toLoginPage(HttpServletRequest request)
@@ -33,7 +34,7 @@ public class NormalLoginController {
             String tokenId = localSession.getTokenStoredInLocalCashe(request);
 
             if (!tokenId.isEmpty()) {
-                var loggedInUser = userModule.GetByPasswordHash(tokenId);
+                var loggedInUser = Shared.BeContext.User.GetByPasswordHash(tokenId);
 
                 mv.addObject("userLoggedIn", true);
                 String fullName = loggedInUser.FirstName + " " + loggedInUser.LastName;
@@ -45,7 +46,7 @@ public class NormalLoginController {
                     case 2:
                         return new ModelAndView("redirect:/DriverDashboard");
                     case 3:
-                        break;
+                        return new ModelAndView("redirect:/LoginHello"); // cleans cookies and takes to fresh page
                 }
             }
 
@@ -83,10 +84,60 @@ public class NormalLoginController {
         return mv;
     }
 
+    @RequestMapping(value = "LoginHello", method = RequestMethod.GET)
+    public ModelAndView toLoginPageFromSignup(HttpServletRequest request)
+    {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("pages/login/NormalLogin");
+        localSession.clearTokenStoredInLocalCashe(request);
+        mv.addObject("userLoggedIn", false);
+        return mv;
+    }
+
     @RequestMapping(value = "ForgotPassword", method = RequestMethod.GET)
     public ModelAndView forgotPasswordAction() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("pages/forgot/ForgotPassword");
+        return mv;
+    }
+
+    @RequestMapping(value = "MakeStuffUp", method = RequestMethod.GET)
+    public ModelAndView makeStuffUp() throws SQLException {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("pages/login/NormalLogin");
+
+        var driver = Shared.BeContext.User.RegisterNewUser("driver", "driver", "driver", "driver", User.UserType.DRIVER);
+
+        var customer1 = Shared.BeContext.User.RegisterNewUser("fob", "fob", "fob", "fob", User.UserType.CUSTOMER);
+        for (Integer i = 0; i < 5; i ++) {
+            Trip t = new Trip();
+            t.StartName =  "blob" + i.toString();
+            t.EndName = "blob" + i.toString();
+            t.StartLattitude = 100 * 1;
+            t.Customer = customer1;
+            t.Driver = driver;
+            t.StartLongtitude = 200 * 100 * 1;;
+            t.EndLattitude = 240 * 100 * 1;;
+            t.EndLongtitude = 40 * 100 * 1;;
+            t.Distance = 248 * 100 * 1;;
+            Shared.DbContext.Trips.create(t);
+        }
+
+        var customer2 = Shared.BeContext.User.RegisterNewUser("bob", "bob", "bob", "bob", User.UserType.CUSTOMER);
+        for (Integer i = 0; i < 5; i ++) {
+            Trip t = new Trip();
+            t.StartName =  "blob" + i.toString();
+            t.EndName = "blob" + i.toString();
+            t.StartLattitude = 100 * 1;
+            t.Customer = customer2;
+            t.Driver = driver;
+            t.StartLongtitude = 200 * 100 * 1;;
+            t.EndLattitude = 240 * 100 * 1;;
+            t.EndLongtitude = 40 * 100 * 1;;
+            t.Distance = 248 * 100 * 1;;
+            Shared.DbContext.Trips.create(t);
+        }
+
         return mv;
     }
 

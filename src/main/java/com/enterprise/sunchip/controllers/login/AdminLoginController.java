@@ -20,9 +20,6 @@ public class AdminLoginController {
     @Autowired
     private LocalSession localSession;
 
-    UserModule userModule = new UserModule();
-    TripModule tripModule = new TripModule();
-
 //    private static Session userSession = new Session();
 //    private static WebUIManager webesiteUIManager = new WebUIManager();
 
@@ -66,7 +63,7 @@ public class AdminLoginController {
             String tokenId = localSession.getTokenStoredInLocalCashe(request);
 
             if (!tokenId.isEmpty()) {
-                var loggedInUser = userModule.GetByPasswordHash(tokenId);
+                var loggedInUser = Shared.BeContext.User.GetByPasswordHash(tokenId);
 
                 mv.addObject("userLoggedIn", true);
                 String fullName = loggedInUser.FirstName + " " + loggedInUser.LastName;

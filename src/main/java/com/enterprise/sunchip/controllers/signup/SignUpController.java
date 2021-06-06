@@ -1,9 +1,12 @@
 package main.java.com.enterprise.sunchip.controllers.signup;
 
 import Backend.UserModule;
+import Common.Shared;
 import Database.Entities.User;
 import Database.Entities.Vehicle;
 import main.java.com.enterprise.sunchip.models.SignUpModel;
+import main.java.com.enterprise.sunchip.services.LocalSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,29 +14,43 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 
 @RestController
 public class SignUpController {
 
+    @Autowired
+    private LocalSession localSession;
+
     @RequestMapping(value = "SignUp", method = RequestMethod.GET)
-    public ModelAndView ViewSignUp()
+    public ModelAndView ViewSignUp(HttpServletRequest request)
     {
+        try {
+            String tokenId = localSession.getTokenStoredInLocalCashe(request);
+            if (!tokenId.isEmpty()) {
+                return new ModelAndView("redirect:/Login");
+            }
+        } catch (Exception ignore) { }
+
         SignUpModel form = new SignUpModel();
         return new ModelAndView("pages/signup/sign-up", "signUpForm", form);
     }
 
     @RequestMapping(value = "SignUp", method = RequestMethod.POST)
-    public String SignUpAction(@ModelAttribute("signUpForm") SignUpModel newUser, BindingResult result)
+    public ModelAndView SignUpAction(@ModelAttribute("signUpForm") SignUpModel newUser, BindingResult result, HttpServletRequest request)
     {
-        if (result.hasErrors()){
-            return "Error";
-        }
-        UserModule userModule = new UserModule();
+//        if (result.hasErrors()){
+//            return "Error";
+//        }
+
+        User user = null;
+        localSession.clearTokenStoredInLocalCashe(request);
+
         try {
-            if (newUser.getUserType() == User.UserType.DRIVER)
+            if (newUser.getUserType() == 2) //Driver
             {
-                User user = userModule.RegisterNewUser(
+                user = Shared.BeContext.User.RegisterNewUser(
                         newUser.getFirstName(),
                         newUser.getLastName(),
                         newUser.getUsername(),
@@ -45,19 +62,22 @@ public class SignUpController {
                         newUser.getLicensePlateNo(),
                         newUser.getColor());
             }
-            else
+            else //Customer
             {
-                userModule.RegisterNewUser(
+                user = Shared.BeContext.User.RegisterNewUser(
                         newUser.getFirstName(),
                         newUser.getLastName(),
                         newUser.getUsername(),
                         newUser.getPassword(),
                         User.UserType.CUSTOMER);
             }
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            return new ModelAndView("redirect:/SignUp");
         }
-        return "NormalLogin";
+
+        return new ModelAndView("redirect:/LoginHello");
     }
 
 }

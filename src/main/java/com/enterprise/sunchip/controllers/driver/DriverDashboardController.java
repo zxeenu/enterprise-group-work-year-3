@@ -16,9 +16,6 @@ public class DriverDashboardController {
     @Autowired
     private LocalSession localSession;
 
-    UserModule userModule = new UserModule();
-    TripModule tripModule = new TripModule();
-
     @RequestMapping(value = "DriverDashboard", method = RequestMethod.GET)
     public ModelAndView forgotPasswordAction(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
@@ -30,10 +27,10 @@ public class DriverDashboardController {
             tokenId = localSession.getTokenStoredInLocalCashe(request);
 
             if (!tokenId.isEmpty()) {
-                var driver = userModule.GetByPasswordHash(tokenId);
+                var driver = Shared.BeContext.User.GetByPasswordHash(tokenId);
                 if (driver != null) {
                     if (driver.UserClassCode == 2) {
-                        var tripList = tripModule.GetAllTripsByDriver(driver);
+                        var tripList = Shared.BeContext.Trip.GetAllTripsByDriver(driver);
                         mv.setViewName("pages/dashboard/DriverDashboard");
                         mv.addObject("tripList", tripList);
                         mv.addObject("driver", driver);
@@ -62,11 +59,11 @@ public class DriverDashboardController {
             tokenId = localSession.getTokenStoredInLocalCashe(request);
 
             if (!tokenId.isEmpty()) {
-                var driver = userModule.GetByPasswordHash(tokenId);
+                var driver = Shared.BeContext.User.GetByPasswordHash(tokenId);
 
                 if (driver != null) {
                     if (driver.UserClassCode == 2) {
-                        var tripList = tripModule.GetAllTripsByDriver(driver); // doesnt work for somereason
+                        var tripList = Shared.BeContext.Trip.GetAllTripsByDriver(driver); // doesnt work for somereason
                         mv.setViewName("pages/dashboard/DriverDashboard");
                         mv.addObject("tripList", tripList);
                         mv.addObject("driver", driver);
@@ -97,11 +94,11 @@ public class DriverDashboardController {
             tokenId = localSession.getTokenStoredInLocalCashe(request);
 
             if (!tokenId.isEmpty()) {
-                var driver = userModule.GetByPasswordHash(tokenId);
+                var driver = Shared.BeContext.User.GetByPasswordHash(tokenId);
 
                 if (driver != null) {
                     if (driver.UserClassCode == 2) {
-                        var tripList = tripModule.GetAllTripsByDriver(driver);
+                        var tripList = Shared.BeContext.Trip.GetAllTripsByDriver(driver);
                         for (var trip : tripList) {
                             if (trip.ID.toString().equals(tripId)) {
                                 // save the accepted state here
@@ -132,11 +129,11 @@ public class DriverDashboardController {
             tokenId = localSession.getTokenStoredInLocalCashe(request);
 
             if (!tokenId.isEmpty()) {
-                var driver = userModule.GetByPasswordHash(tokenId);
+                var driver = Shared.BeContext.User.GetByPasswordHash(tokenId);
 
                 if (driver != null) {
                     if (driver.UserClassCode == 2) {
-                        var tripList = tripModule.GetAllTripsByDriver(driver);
+                        var tripList = Shared.BeContext.Trip.GetAllTripsByDriver(driver);
                         for (var trip : tripList)  {
                             if (trip.ID.toString().equals(tripId)) {
                                 trip.TripComplete = true;
@@ -153,7 +150,6 @@ public class DriverDashboardController {
             mv.addObject("errorMessage", "sorry, the job could not be completed!");
             return mv;
         }
-
         return new ModelAndView("redirect:/DriverDashboard");
     }
 
