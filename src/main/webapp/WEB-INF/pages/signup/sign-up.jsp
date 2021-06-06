@@ -32,7 +32,7 @@
                         path="userType"
                         name="user-type"
                         id="customer"
-                        value="customer"
+                        value="3"
                         checked = "checked"
                 />
                 <label for="customer">Customer</label>
@@ -40,7 +40,7 @@
                         path="userType"
                         name="user-type"
                         id="driver"
-                        value="driver"
+                        value="2"
                 />
                 <label for="driver">Driver</label>
               </div>
@@ -76,7 +76,7 @@
               />
 
               <form:password
-                      path=""
+                      path="confirmPassword"
                       placeholder="Confirm Password"
                       name="confirm-password"
                       required = "required"
