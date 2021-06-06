@@ -76,8 +76,9 @@ public class NormalLoginController {
                     return new ModelAndView("redirect:/DriverDashboard");
                 case 3:
                     localSession.storeTokenInLocalCashe(request, currentUser.HashPassword);
-                    mv.setViewName("pages/error/Error");
-                    mv.addObject("errorMessage", "sorry, customer dashboard not implemented!");
+//                    mv.setViewName("pages/error/Error");
+                    mv.setViewName("pages/customers/RequestRide");
+//                    mv.addObject("errorMessage", "sorry, customer dashboard not implemented!");
                     break;
             }
         }
@@ -89,6 +90,7 @@ public class NormalLoginController {
     {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("pages/login/NormalLogin");
+//        mv.setViewName("pages/customers/RequestRide");
         localSession.clearTokenStoredInLocalCashe(request);
         mv.addObject("userLoggedIn", false);
         return mv;
