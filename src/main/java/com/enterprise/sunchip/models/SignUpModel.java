@@ -3,7 +3,7 @@ package main.java.com.enterprise.sunchip.models;
 import Database.Entities.User;
 
 public class SignUpModel {
-    private User.UserType userType;
+    private int userType;
 
     private String firstName;
     private String lastName;
@@ -14,6 +14,7 @@ public class SignUpModel {
 
     private String username;
     private String password;
+    private String confirmPassword;
 
 
     public String getManufacturer() {
@@ -40,11 +41,11 @@ public class SignUpModel {
         Color = color;
     }
 
-    public User.UserType getUserType() {
+    public int getUserType() {
         return userType;
     }
 
-    public void setUserType(User.UserType userType) {
+    public void setUserType(int userType) {
         this.userType = userType;
     }
 
@@ -80,4 +81,7 @@ public class SignUpModel {
         this.password = password;
     }
 
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
 }

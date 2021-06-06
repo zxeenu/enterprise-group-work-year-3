@@ -48,7 +48,7 @@ public class SignUpController {
         localSession.clearTokenStoredInLocalCashe(request);
 
         try {
-            if (newUser.getUserType() == User.UserType.DRIVER)
+            if (newUser.getUserType() == 2) //Driver
             {
                 user = Shared.BeContext.User.RegisterNewUser(
                         newUser.getFirstName(),
@@ -62,7 +62,7 @@ public class SignUpController {
                         newUser.getLicensePlateNo(),
                         newUser.getColor());
             }
-            else
+            else //Customer
             {
                 user = Shared.BeContext.User.RegisterNewUser(
                         newUser.getFirstName(),
