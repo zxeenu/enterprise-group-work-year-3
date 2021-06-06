@@ -26,10 +26,12 @@ public class SignUpController {
     @RequestMapping(value = "SignUp", method = RequestMethod.GET)
     public ModelAndView ViewSignUp(HttpServletRequest request)
     {
-        String tokenId = localSession.getTokenStoredInLocalCashe(request);
-        if (!tokenId.isEmpty()) {
-            return new ModelAndView("redirect:/Login");
-        }
+        try {
+            String tokenId = localSession.getTokenStoredInLocalCashe(request);
+            if (!tokenId.isEmpty()) {
+                return new ModelAndView("redirect:/Login");
+            }
+        } catch (Exception ignore) { }
 
         SignUpModel form = new SignUpModel();
         return new ModelAndView("pages/signup/sign-up", "signUpForm", form);
