@@ -3,6 +3,7 @@ package main.java.com.enterprise.sunchip.controllers.login;
 import Backend.TripModule;
 import Backend.UserModule;
 import Common.Shared;
+import Database.Entities.Trip;
 import Database.Entities.User;
 import main.java.com.enterprise.sunchip.services.LocalSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.SQLException;
 
 @RestController
 public class NormalLoginController {
@@ -21,6 +23,7 @@ public class NormalLoginController {
     private LocalSession localSession;
 
     UserModule userModule = new UserModule();
+    TripModule tripModule = new TripModule();
 
     @RequestMapping(value = "Login", method = RequestMethod.GET)
     public ModelAndView toLoginPage(HttpServletRequest request)
@@ -83,10 +86,48 @@ public class NormalLoginController {
         return mv;
     }
 
+    @RequestMapping(value = "LoginHello", method = RequestMethod.GET)
+    public ModelAndView toLoginPageFromSignup(HttpServletRequest request)
+    {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("pages/login/NormalLogin");
+        mv.addObject("userLoggedIn", false);
+        return mv;
+    }
+
     @RequestMapping(value = "ForgotPassword", method = RequestMethod.GET)
     public ModelAndView forgotPasswordAction() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("pages/forgot/ForgotPassword");
+        return mv;
+    }
+
+    @RequestMapping(value = "MakeStuffUp", method = RequestMethod.GET)
+    public ModelAndView makeStuffUp() throws SQLException {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("pages/login/NormalLogin");
+
+//        userModule.RegisterNewUser("bob", "bob", "bob", "bob", User.UserType.ADMIN);
+//        userModule.RegisterNewUser("cob", "cob", "cob", "cob", User.UserType.ADMIN);
+//        var d = userModule.RegisterNewUser("dob", "dob", "dob", "dob", User.UserType.DRIVER);
+//        userModule.RegisterNewUser("eob", "eob", "eob", "eob", User.UserType.DRIVER);
+//        userModule.RegisterNewUser("fob", "fob", "fob", "fob", User.UserType.CUSTOMER);
+//        userModule.RegisterNewUser("gob", "gob", "gob", "gob", User.UserType.CUSTOMER);
+//        userModule.RegisterNewUser("fff", "fff", "fff", "fff", User.UserType.DRIVER);
+//        userModule.RegisterNewUser("eee", "eee", "eee", "eee", User.UserType.DRIVER);
+//
+        var cu = userModule.RegisterNewUser("fob", "fob", "hht", "hht", User.UserType.DRIVER);
+
+        Trip t = new Trip();
+        t.StartName =  "blob";
+        t.EndName = "blob";
+        t.StartLattitude = 100;
+        t.StartLongtitude = 200;
+        t.EndLattitude = 240;
+        t.EndLongtitude = 40;
+        t.Distance = 248;
+        tripModule.AddTripToQueue(t);
+
         return mv;
     }
 
