@@ -3,7 +3,6 @@ package main.java.com.enterprise.sunchip.controllers.driver;
 import Backend.TripModule;
 import Backend.UserModule;
 import Common.Shared;
-import Database.Entities.Trip;
 import main.java.com.enterprise.sunchip.services.LocalSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,22 +23,26 @@ public class DriverDashboardController {
     public ModelAndView forgotPasswordAction(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
         String tokenId = "";
-        mv.setViewName("pages/dashboard/DriverDashboard");
+        mv.setViewName("pages/error/Error");
+        mv.addObject("errorMessage", "sorry, you need to login before you can use this page!");
 
         try {
             tokenId = localSession.getTokenStoredInLocalCashe(request);
 
             if (!tokenId.isEmpty()) {
                 var driver = userModule.GetByPasswordHash(tokenId);
-                var tripList = tripModule.GetAllTripsByDriver(driver); // doesnt work for somereason
-                mv.addObject("tripList", tripList);
-                mv.addObject("driver", driver);
+                if (driver != null) {
+                    if (driver.UserClassCode == 2) {
+                        var tripList = tripModule.GetAllTripsByDriver(driver);
+                        mv.setViewName("pages/dashboard/DriverDashboard");
+                        mv.addObject("tripList", tripList);
+                        mv.addObject("driver", driver);
+                    }
+                }
+
             }
 
-        } catch (Exception e) {
-            mv.setViewName("pages/error/Error");
-            mv.addObject("errorMessage", "sorry, you need to login before you can use this page!");
-        }
+        } catch (Exception ignored) { }
 
         return mv;
     }
@@ -52,23 +55,26 @@ public class DriverDashboardController {
     public ModelAndView forgotPasswordActionPost(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
         String tokenId = "";
-        mv.setViewName("pages/dashboard/DriverDashboard");
+        mv.setViewName("pages/error/Error");
+        mv.addObject("errorMessage", "sorry, you need to login before you can use this page!");
 
         try {
             tokenId = localSession.getTokenStoredInLocalCashe(request);
 
             if (!tokenId.isEmpty()) {
                 var driver = userModule.GetByPasswordHash(tokenId);
-                var tripList = tripModule.GetAllTripsByDriver(driver); // doesnt work for somereason
-                mv.addObject("tripList", tripList);
-                mv.addObject("driver", driver);
+
+                if (driver != null) {
+                    if (driver.UserClassCode == 2) {
+                        var tripList = tripModule.GetAllTripsByDriver(driver); // doesnt work for somereason
+                        mv.setViewName("pages/dashboard/DriverDashboard");
+                        mv.addObject("tripList", tripList);
+                        mv.addObject("driver", driver);
+                    }
+                }
             }
 
-        } catch (Exception e) {
-            mv.setViewName("pages/error/Error");
-            mv.addObject("errorMessage", "sorry, you need to login before you can use this page!");
-            return mv;
-        }
+        } catch (Exception ignored) { }
 
         return mv;
     }
@@ -92,16 +98,17 @@ public class DriverDashboardController {
 
             if (!tokenId.isEmpty()) {
                 var driver = userModule.GetByPasswordHash(tokenId);
-                var tripList = tripModule.GetAllTripsByDriver(driver);
 
-                Trip currentTrip = null;
-
-                for (var trip : tripList)  {
-
-                    if (trip.ID.toString().equals(tripId)) {
-                        // save the accepted state here
-                        // save to db
-                        Shared.DbContext.Trips.update(trip);
+                if (driver != null) {
+                    if (driver.UserClassCode == 2) {
+                        var tripList = tripModule.GetAllTripsByDriver(driver);
+                        for (var trip : tripList) {
+                            if (trip.ID.toString().equals(tripId)) {
+                                // save the accepted state here
+                                // save to db
+                                Shared.DbContext.Trips.update(trip);
+                            }
+                        }
                     }
                 }
             }
@@ -117,6 +124,7 @@ public class DriverDashboardController {
         return new ModelAndView("redirect:/DriverDashboard");
     }
 
+
     @RequestMapping(value = "DriverCompletesJob")
     public ModelAndView driverJobCompletion(HttpServletRequest request, @RequestParam("trip_id") String tripId, @RequestParam("driver_id") String driverId) {
         String tokenId = "";
@@ -125,14 +133,16 @@ public class DriverDashboardController {
 
             if (!tokenId.isEmpty()) {
                 var driver = userModule.GetByPasswordHash(tokenId);
-                var tripList = tripModule.GetAllTripsByDriver(driver);
 
-                Trip currentTrip = null;
-
-                for (var trip : tripList)  {
-                    if (trip.ID.toString().equals(tripId)) {
-                        trip.TripComplete = true;
-                        Shared.DbContext.Trips.update(trip);
+                if (driver != null) {
+                    if (driver.UserClassCode == 2) {
+                        var tripList = tripModule.GetAllTripsByDriver(driver);
+                        for (var trip : tripList)  {
+                            if (trip.ID.toString().equals(tripId)) {
+                                trip.TripComplete = true;
+                                Shared.DbContext.Trips.update(trip);
+                            }
+                        }
                     }
                 }
             }
@@ -146,14 +156,5 @@ public class DriverDashboardController {
 
         return new ModelAndView("redirect:/DriverDashboard");
     }
-
-    @RequestMapping(value = "DriverLogout", method = RequestMethod.GET)
-    public ModelAndView loginActionForAdmin(HttpServletRequest request) {
-        localSession.clearTokenStoredInLocalCashe(request);
-        return new ModelAndView("redirect:/Login");
-    }
-
-
-
 
 }

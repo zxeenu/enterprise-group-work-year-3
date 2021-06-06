@@ -85,6 +85,8 @@ public class Trip {
 //        }
 //    }
 
+
+
     public Integer getID() {
         return ID;
     }
@@ -139,5 +141,65 @@ public class Trip {
 
     public float getPaidAmount() {
         return PaidAmount;
+    }
+
+    public void setID(Integer ID) {
+        this.ID = ID;
+    }
+
+    public void setCustomer(User customer) {
+        Customer = customer;
+    }
+
+    public void setTripComplete(boolean tripComplete) {
+        TripComplete = tripComplete;
+    }
+
+    public void setCreationTime(Date creationTime) {
+        CreationTime = creationTime;
+    }
+
+    public void setBookingDate(Date bookingDate) {
+        BookingDate = bookingDate;
+    }
+
+    public void setDriver(User driver) {
+        Driver = driver;
+    }
+
+    public void setVehicle(Database.Entities.Vehicle vehicle) {
+        Vehicle = vehicle;
+    }
+
+    public void setStartName(String startName) {
+        StartName = startName;
+    }
+
+    public void setStartLattitude(double startLattitude) {
+        StartLattitude = startLattitude;
+    }
+
+    public void setStartLongtitude(double startLongtitude) {
+        StartLongtitude = startLongtitude;
+    }
+
+    public void setEndName(String endName) {
+        EndName = endName;
+    }
+
+    public void setEndLattitude(double endLattitude) {
+        EndLattitude = endLattitude;
+    }
+
+    public void setEndLongtitude(double endLongtitude) {
+        EndLongtitude = endLongtitude;
+    }
+
+    public void setDistance(double distance) {
+        Distance = distance;
+    }
+
+    public void setPaidAmount(float paidAmount) {
+        PaidAmount = paidAmount;
     }
 }

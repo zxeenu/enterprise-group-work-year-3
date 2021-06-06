@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html lang="en">
 <head>
@@ -15,7 +16,8 @@
         <h1 class="logo">EeZee Ride</h1>
     </a>
     <ul class="nav-links">
-        <li class="nav-item"><a href="DriverLogout">Log Out</a></li>
+        <li class="nav-item"><a href="Login" class="disabled">Hi, ${driver.firstName} ${driver.lastName}</a></li>
+        <li class="nav-item"><a href="Logout">Log Out</a></li>
     </ul>
 </nav>
 <div class="nfcontainer">
@@ -23,7 +25,6 @@
     <table class="dash">
         <thead>
         <tr>
-            <%--            <th>Customer Id</th>--%>
             <th>Customer Name</th>
             <th>Location</th>
             <th>Coordinates</th>
@@ -37,7 +38,6 @@
         <tr>
             <c:forEach items="${tripList}" var="trip">
         <tr>
-                <%--            <td>${trip.customer.ID}</td>--%>
             <td>${trip.customer.firstName} ${trip.customer.lastName}</td>
             <td>${trip.startName}</td>
             <td>(${trip.startLattitude}, ${trip.startLongtitude})</td>
