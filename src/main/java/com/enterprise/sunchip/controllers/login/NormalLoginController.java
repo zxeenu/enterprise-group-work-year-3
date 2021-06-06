@@ -40,6 +40,8 @@ public class NormalLoginController {
                 mv.addObject("fullName", fullName);
 
                 switch (loggedInUser.UserClassCode){
+                    case 1:
+                        return new ModelAndView("redirect:/XAwef32r32jr32oiu"); // admin page
                     case 2:
                         return new ModelAndView("redirect:/DriverDashboard");
                     case 3:
@@ -47,7 +49,8 @@ public class NormalLoginController {
                 }
             }
 
-        } catch (Exception ignore) {}
+        } catch (Exception ignore) {
+        }
 
         return mv;
     }
