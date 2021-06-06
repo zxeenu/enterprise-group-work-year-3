@@ -363,7 +363,7 @@ input[type="radio"]:checked + label {
 }
 
 .sun {
-  background-image: url("../assets/images/sun.png");
+  background-image: url("../assets/images/Request-Ride.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
