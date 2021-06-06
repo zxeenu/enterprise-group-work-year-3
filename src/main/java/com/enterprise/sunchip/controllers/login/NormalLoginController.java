@@ -22,8 +22,6 @@ public class NormalLoginController {
     @Autowired
     private LocalSession localSession;
 
-    UserModule userModule = new UserModule();
-    TripModule tripModule = new TripModule();
 
     @RequestMapping(value = "Login", method = RequestMethod.GET)
     public ModelAndView toLoginPage(HttpServletRequest request)
@@ -36,7 +34,7 @@ public class NormalLoginController {
             String tokenId = localSession.getTokenStoredInLocalCashe(request);
 
             if (!tokenId.isEmpty()) {
-                var loggedInUser = userModule.GetByPasswordHash(tokenId);
+                var loggedInUser = Shared.BeContext.User.GetByPasswordHash(tokenId);
 
                 mv.addObject("userLoggedIn", true);
                 String fullName = loggedInUser.FirstName + " " + loggedInUser.LastName;
@@ -116,7 +114,7 @@ public class NormalLoginController {
 //        userModule.RegisterNewUser("fff", "fff", "fff", "fff", User.UserType.DRIVER);
 //        userModule.RegisterNewUser("eee", "eee", "eee", "eee", User.UserType.DRIVER);
 //
-        var cu = userModule.RegisterNewUser("fob", "fob", "hht", "hht", User.UserType.DRIVER);
+        var cu = Shared.BeContext.User.RegisterNewUser("fob", "fob", "hht", "hht", User.UserType.DRIVER);
 
         Trip t = new Trip();
         t.StartName =  "blob";
@@ -126,7 +124,7 @@ public class NormalLoginController {
         t.EndLattitude = 240;
         t.EndLongtitude = 40;
         t.Distance = 248;
-        tripModule.AddTripToQueue(t);
+        Shared.BeContext.Trip.AddTripToQueue(t);
 
         return mv;
     }

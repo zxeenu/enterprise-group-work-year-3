@@ -24,8 +24,13 @@ public class SignUpController {
     private LocalSession localSession;
 
     @RequestMapping(value = "SignUp", method = RequestMethod.GET)
-    public ModelAndView ViewSignUp()
+    public ModelAndView ViewSignUp(HttpServletRequest request)
     {
+        String tokenId = localSession.getTokenStoredInLocalCashe(request);
+        if (!tokenId.isEmpty()) {
+            return new ModelAndView("redirect:/Login");
+        }
+
         SignUpModel form = new SignUpModel();
         return new ModelAndView("pages/signup/sign-up", "signUpForm", form);
     }
