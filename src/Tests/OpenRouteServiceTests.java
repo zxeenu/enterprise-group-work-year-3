@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class OpenRouteServiceTests {
 
-    public String TestingToken = "5b3ce3597851110001cf624856dfbc93ad4f41428588775eb447549b";
+    public String TestingToken = Const.ORSToken;
 
     @Test
     public void DistanceAccuracyTest() {

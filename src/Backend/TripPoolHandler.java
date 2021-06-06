@@ -4,7 +4,9 @@ import Common.Logger;
 import Database.Entities.Trip;
 import org.junit.platform.commons.util.ExceptionUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class TripPoolHandler extends Thread {
 
@@ -16,15 +18,21 @@ public class TripPoolHandler extends Thread {
 
     public void run() {
         while (true) {
+
+            List<Trip> processed = new ArrayList<>();
+            System.out.println("Checking");
             try {
                 for (var p : tripModule.TripPool) {
                     if (p.State == Trip.TripState.IN_PROGRESS) continue;;
                     var driver = tripModule.AssignTripToAvailableDriver(p);
                     if (driver != null) {
-                        p.State = Trip.TripState.IN_PROGRESS;
-                        tripModule.TripPool.remove(p);
-                        tripModule.NotifyTripStateChange(p);
+                        processed.add(p);
                     }
+                }
+                for (var t : processed) {
+                    t.State = Trip.TripState.IN_PROGRESS;
+                    tripModule.TripPool.remove(t);
+                    tripModule.NotifyTripStateChange(t);
                 }
                 Thread.sleep(1000);
             } catch (Exception e) {

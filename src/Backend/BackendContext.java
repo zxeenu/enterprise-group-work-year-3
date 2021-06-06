@@ -58,7 +58,7 @@ public class BackendContext implements SessionMonitor{
      * Drops all the tables. Only use for rapid development. Do not use in production build.
      * @throws SQLException Standard ORMLite Exception
      */
-    private void DropAllTables() throws SQLException {
+    public void DropAllTables() throws SQLException {
         for (var x : DbContext.GetDAOList()) {
             TableUtils.dropTable(x, false);
         }

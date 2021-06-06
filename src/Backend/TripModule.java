@@ -5,6 +5,7 @@ import Common.Shared;
 import Database.Entities.Trip;
 import Database.Entities.User;
 
+import java.sql.SQLException;
 import java.util.*;
 
 public class TripModule {
@@ -244,6 +245,12 @@ public class TripModule {
         for (var l : TripStateChangeListeners) {
             l.OnTripStateChange(p);
         }
+    }
+
+    public void MarkTripAsComplete(Trip p) throws SQLException {
+        p.State = Trip.TripState.COMPLETE;
+        p.TripComplete = true;
+        Shared.DbContext.Trips.update(p);
     }
 
 

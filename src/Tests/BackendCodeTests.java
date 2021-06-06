@@ -20,8 +20,7 @@ public class BackendCodeTests {
 
     public BackendCodeTests() throws SQLException, InterruptedException {
         System.out.println("Running database tests...");
-		//this.connectionString = "jdbc:sqlserver://localhost:1433;databaseName=JUNITDB;user=sa;password=QuidEst";
-        this.connectionString = "jdbc:sqlserver://27.114.145.29:1433;databaseName=JUNITDB;user=dbacc;password=OraS1m$1";
+        this.connectionString = Const.JUnitConnectionString;
 		this.BEContext = new BackendContext(this.connectionString);
 		Shared.BeContext = this.BEContext;
 		Shared.DbContext = BEContext.DbContext;
