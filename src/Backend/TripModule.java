@@ -1,10 +1,11 @@
 package Backend;
 
+import Backend.Interfaces.TripStateChange;
 import Common.Shared;
 import Database.Entities.Trip;
 import Database.Entities.User;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class TripModule {
 
@@ -104,11 +105,12 @@ public class TripModule {
      * @param t Trip to be assigned
      * @return Boolean : Indicates if the trip got assigned
      */
-    public boolean AssginTripToDriver(Trip t) {
+    public boolean AssignTripToDriver(Trip t) {
         var Drivers = Shared.BeContext.User.GetAllDrivers();
         for (var d : Drivers) {
             if (this.GetActiveTripsByDriver(d).isEmpty()) {
                 t.Driver = d;
+                t.State = Trip.TripState.IN_PROGRESS;
                 return true;
             }
         }
@@ -124,10 +126,129 @@ public class TripModule {
     public boolean AssignTripDriver(Trip t, User d) {
         if (this.GetActiveTripsByDriver(d).isEmpty()) {
             t.Driver = d;
+            t.State = Trip.TripState.IN_PROGRESS;
             return true;
         }
         return false;
     }
+
+
+
+    /**
+     * Some junk to do some internal processing because Javas
+     * native support to .NET Core and .NET Framework is absolute
+     * shit
+     */
+    public class TripCount implements Comparable<TripCount> {
+        public User Driver;
+        public int Count;
+
+        public TripCount(User driver, Integer count) {
+            this.Driver = driver;
+            this.Count = count;
+        }
+
+        @Override
+        public int compareTo(TripModule.TripCount o) {
+            if (o.Count > this.Count) return -1;
+            if (o.Count < this.Count) return 1;
+            return 0;
+        }
+    }
+
+    /**
+     * Returns a list of object. It will help you get a list of sorted
+     * list of drivers by how many drivers they have
+     * @return List of drivers
+     */
+    public List<TripCount> GetUserTripCount() {
+        var driverList = Shared.BeContext.User.GetAllDrivers();
+        var returnObj = new ArrayList<TripCount>();
+        for (var d : driverList) {
+            returnObj.add(new TripCount(d, GetAllTripsByDriver(d).size()));
+        }
+        Collections.sort(returnObj);
+        return returnObj;
+    }
+
+    /**
+     * This function will accept a trip and try to assign a driver
+     * to the trip. It will prioritize assigning a trip to the drivers
+     * with the least amount of trips in their pocket
+     * @param t Trip
+     * @return Driver that was assigned. Null if wasn't assigned
+     */
+    public User AssignTripToAvailableDriver(Trip t) {
+        var availableDrivers = GetUserTripCount();
+        for (var d : availableDrivers) {
+            if (GetActiveTripsByDriver(d.Driver).isEmpty()) {
+                AssignTripDriver(t, d.Driver);
+                return d.Driver;
+            }
+        }
+        return null;
+    }
+
+    protected List<Trip> TripPool = new ArrayList<Trip>();
+    protected List<Backend.Interfaces.TripStateChange> TripStateChangeListeners = new ArrayList<TripStateChange>();
+    protected TripPoolHandler poolHandler;
+
+    /**
+     * Use this function to subscribe to the event when a trip state has been changed
+     * @param l Class with the TripStateChange interface implemented
+     */
+    public void SubscribeToTripStateChange(TripStateChange l) {
+        TripStateChangeListeners.add(l);
+    }
+
+    /**
+     * Use this function to unsubscribe to the event when a trip state has been changed
+     * @param l Class with the TripStateChange interface implemented
+     */
+    public void UnsubscribeFromTripStateChange(TripStateChange l) {
+        TripStateChangeListeners.remove(l);
+    }
+
+    /**
+     * Use this function to add a trip to the pool queue. The the backend will then automatically
+     * try to assign a trip to an available driver
+     * @param t Trip to add
+     */
+    public void AddTripToQueue(Trip t) {
+        TripPool.add(t);
+    }
+
+    /**
+     * Use this function to remove a trip from the pool queue
+     * @param t Trip to remove
+     */
+    public void RemoveTripFromQueue(Trip t) {
+        TripPool.remove(t);
+    }
+
+
+    /**
+     * This function will start the thread to process new pools
+     */
+    public void StartTripPoolHandler() {
+        poolHandler = new TripPoolHandler(this);
+        poolHandler.start();
+    }
+
+    /**
+     * This function will notify the listeners that a trip state has been changed
+     * @param p Trip
+     */
+    protected void NotifyTripStateChange(Trip p) {
+
+        for (var l : TripStateChangeListeners) {
+            l.OnTripStateChange(p);
+        }
+    }
+
+
+
+
 
 
 }

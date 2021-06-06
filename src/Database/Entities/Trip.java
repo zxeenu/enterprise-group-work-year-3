@@ -52,8 +52,13 @@ public class Trip {
     @DatabaseField
     public double Distance;
 
+    public enum TripState {
+        AWAITING_PICKUP,
+        IN_PROGRESS,
+        COMPLETE
+    }
 
-
+    public TripState State = TripState.AWAITING_PICKUP;
 
     @DatabaseField
     public float PaidAmount;

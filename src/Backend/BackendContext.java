@@ -3,6 +3,7 @@ package Backend;
 import Common.Logger;
 import Common.Shared;
 import Database.DatabaseContext;
+import Database.Entities.Trip;
 import WebUI.Session;
 import WebUI.SessionMonitor;
 import com.j256.ormlite.table.TableUtils;
@@ -33,9 +34,12 @@ public class BackendContext implements SessionMonitor{
         this.ConnectToDatabase(ConnectionString);
         this.User = new UserModule();
         this.Trip = new TripModule();
+        this.Trip.StartTripPoolHandler();
         Shared.BeContext = this;
         Shared.DbContext = this.DbContext;
     }
+
+
 
     /**
      * Connect to database
