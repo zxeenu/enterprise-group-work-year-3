@@ -265,6 +265,7 @@ button {
   width: 100%;
   transition: background-color 0.3s ease-in-out;
   font-size: 15px;
+  font-family: "Noto";
 }
 
 button:hover {
@@ -369,11 +370,41 @@ input[type="radio"]:checked + label {
   background-position: top;
 }
 
-input[type="datetime-local"] {
+input[type="datetime-local"],input[type="date"],input[type="time"] {
   margin-top: 10px;
   padding: 15px;
   background-color: var(--light);
   border: var(--light);
   color: var(--light-grey);
   font-size: 15px;
+}
+
+input[type="time"]::before {
+content:'Time:';}
+
+table.ride {
+  background-color: var(--accent-blue);
+  border: none;
+  color: #fff;
+}
+
+table.eta {
+  background-color: var(--accent-pink);
+  border: none;
+  color: #fff;
+}
+
+.ride td,
+.ride th,.eta td,
+.eta th {
+  border:none;
+  color: #fff;
+  font-size: 20px;
+  
+}
+
+.eta td,
+.eta th{
+  text-align: center; 
+   vertical-align: middle; 
 }
