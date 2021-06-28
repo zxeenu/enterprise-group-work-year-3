@@ -54,6 +54,7 @@
   color: var(--light-blue);
   font-size: 80px;
   text-align: left;
+  padding: 30px 0px;
 }
 .secondary-title {
   color: var(--light-blue);
@@ -62,6 +63,14 @@
 }
 .secondary-title p {
   padding-bottom: 10px;
+}
+
+.sub-title {
+  font-family: "Bebasneue";
+  color: var(--dark);
+  font-size: 30px;
+  text-align: left;
+  display: flex;
 }
 
 h1 {
@@ -187,7 +196,6 @@ nav {
 /* Table */
 
 table {
-  margin-top: 50px;
   background-color: var(--light);
   width: 100%;
   border-collapse: collapse;
@@ -213,6 +221,45 @@ th {
   border-bottom: 1px solid #3f3d562c;
 }
 
+table.t-eta {
+  background-color: var(--dark);
+  border: none;
+  color: #fff;
+  width: 19%;
+}
+
+table.t-ride {
+  background-color: var(--accent-blue);
+  border: none;
+  color: rgb(112, 103, 103);
+  width: 80%;
+}
+
+.t-ride td,
+.t-ride th,
+.t-eta td,
+.t-eta th {
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 100;
+  vertical-align: top;
+}
+
+.t-eta td,
+.t-eta th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.ride {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ride table {
+  margin-top: 40px;
+}
 /* Input Forms */
 
 form {
@@ -258,7 +305,6 @@ button {
   background-color: var(--accent-blue);
   color: #fffbfb;
   padding: 14px 20px;
-  margin: 8px 0;
   border: none;
   border-radius: 3px;
   cursor: pointer;
@@ -284,6 +330,14 @@ button[disabled] {
 
 .button-clicked {
   background-color: var(--accent-pink);
+}
+
+.ride button {
+  width: 150px;
+}
+
+.dash button {
+  margin-bottom: 10px;
 }
 
 .login-box {
@@ -370,41 +424,59 @@ input[type="radio"]:checked + label {
   background-position: top;
 }
 
-input[type="datetime-local"],input[type="date"],input[type="time"] {
+.girl {
+  background-image: url("../assets/images/hero.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+input[type="datetime-local"],
+input[type="date"],
+input[type="time"] {
   margin-top: 10px;
   padding: 15px;
   background-color: var(--light);
   border: var(--light);
   color: var(--light-grey);
   font-size: 15px;
+  font-family: "Noto";
 }
 
 input[type="time"]::before {
-content:'Time:';}
-
-table.ride {
-  background-color: var(--accent-blue);
-  border: none;
-  color: #fff;
+  content: "Time:";
 }
 
-table.eta {
+.filter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+select {
+  padding: 13px 20px;
+  width: 100%;
+  border: 1px solid var(--dark);
+  border-radius: 5px;
   background-color: var(--accent-pink);
-  border: none;
-  color: #fff;
+  cursor: pointer;
+  transition: all 150ms ease;
+  color: #fffbfb;
+  font-size: 15px;
+  font-family: "Noto";
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+  width: 170px;
+
+  background: url(http://127.0.0.1:5500/html/assets/images/chevron.png)
+    no-repeat right var(--accent-pink);
+  -webkit-appearance: none;
+  background-position-x: 134px;
 }
 
-.ride td,
-.ride th,.eta td,
-.eta th {
-  border:none;
-  color: #fff;
-  font-size: 20px;
-  
-}
-
-.eta td,
-.eta th{
-  text-align: center; 
-   vertical-align: middle; 
+.filter a {
+  margin-left: 5px;
+  min-width: 170px;
 }
