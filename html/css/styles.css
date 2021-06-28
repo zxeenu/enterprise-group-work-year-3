@@ -235,6 +235,21 @@ table.t-ride {
   width: 80%;
 }
 
+table.t-details {
+  margin-top: 20px;
+  background-color: var(--bg);
+  border: none;
+}
+
+.t-details td,
+.t-details th {
+  color: var(--dark);
+  border: none;
+  font-size: 18px;
+  font-weight: 100;
+  vertical-align: top;
+}
+
 .t-ride td,
 .t-ride th,
 .t-eta td,
@@ -425,7 +440,7 @@ input[type="radio"]:checked + label {
 }
 
 .girl {
-  background-image: url("../assets/images/hero.svg");
+  background-image: url("../assets/images/background.svg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
