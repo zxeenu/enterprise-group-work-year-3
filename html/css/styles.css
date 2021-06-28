@@ -335,7 +335,7 @@ button:hover {
 }
 
 button.login-submit {
-  margin-bottom: 10px;
+  margin: 10px 0px;
 }
 
 button:disabled,
@@ -347,8 +347,17 @@ button[disabled] {
   background-color: var(--accent-pink);
 }
 
+.driver button {
+  width: 120px;
+  margin-bottom: 20px;
+}
 .ride button {
   width: 150px;
+}
+
+.save {
+  margin: 10px 0px;
+  width: 100%;
 }
 
 .dash button {
@@ -362,6 +371,15 @@ button[disabled] {
   justify-content: center;
   padding: 25px 10px;
   width: 80%;
+}
+
+.login-box-driver {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 25px 10px;
+  width: 100%;
 }
 
 .request-box {
@@ -460,6 +478,22 @@ input[type="time"] {
 
 input[type="time"]::before {
   content: "Time:";
+}
+
+#history-start::before {
+  content: "Start: ";
+}
+
+#history-end::before {
+  content: "End: ";
+}
+
+input[type="date"]#history-start,
+input[type="date"]#history-end {
+  margin-top: 0px;
+  padding: 12px;
+  margin-left: 5px;
+  border-radius: 5px;
 }
 
 .filter {

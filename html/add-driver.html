@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/styles.css" />
-    <title>Eezee Ride - Sign Up</title>
+    <title>Eezee Ride - Sign Up Driver</title>
   </head>
   <body class="light">
     <nav class="navbar">
@@ -15,11 +15,11 @@
     </nav>
     <div class="container center">
       <div class="fifty-col">
-        <h1 class="hero-title">Sign Up</h1>
+        <h1 class="hero-title">Add new driver</h1>
 
         <div class="login-box-container">
-          <form action="/signup" method="post">
-            <div class="login-box">
+          <form action="/signupdriver" method="post">
+            <div class="login-box-driver">
               <br />
 
               <input
@@ -32,6 +32,30 @@
                 type="text"
                 placeholder="Last Name"
                 name="lname"
+                required
+              />
+
+              <input
+                type="text"
+                placeholder="Vehicle Type"
+                name="vehicle"
+                id="vehicle"
+                required
+              />
+
+              <input
+                type="text"
+                placeholder="License Plate Number"
+                name="plate"
+                id="plate"
+                required
+              />
+
+              <input
+                type="text"
+                placeholder="Colour"
+                name="colour"
+                id="colour"
                 required
               />
 
@@ -56,9 +80,8 @@
                 required
               />
 
-              <button class="login-submit" type="submit">Sign Up</button>
-              <div class="forgot">
-                <a href="./index.html">Already have an account?</a>
+              <div class="save">
+                <a href="./drivers.html"><button type="submit">Save</button></a>
               </div>
             </div>
           </form>
