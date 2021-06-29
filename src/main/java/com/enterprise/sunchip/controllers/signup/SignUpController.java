@@ -40,38 +40,17 @@ public class SignUpController {
     @RequestMapping(value = "SignUp", method = RequestMethod.POST)
     public ModelAndView SignUpAction(@ModelAttribute("signUpForm") SignUpModel newUser, BindingResult result, HttpServletRequest request)
     {
-//        if (result.hasErrors()){
-//            return "Error";
-//        }
 
         User user = null;
         localSession.clearTokenStoredInLocalCashe(request);
 
         try {
-            if (newUser.getUserType() == 2) //Driver
-            {
-                user = Shared.BeContext.User.RegisterNewUser(
-                        newUser.getFirstName(),
-                        newUser.getLastName(),
-                        newUser.getUsername(),
-                        newUser.getPassword(),
-                        User.UserType.DRIVER);
-
-
-                user.PrimaryVehicle = new Vehicle(
-                        newUser.getManufacturer(),
-                        newUser.getLicensePlateNo(),
-                        newUser.getColor());
-            }
-            else //Customer
-            {
-                user = Shared.BeContext.User.RegisterNewUser(
-                        newUser.getFirstName(),
-                        newUser.getLastName(),
-                        newUser.getUsername(),
-                        newUser.getPassword(),
-                        User.UserType.CUSTOMER);
-            }
+            user = Shared.BeContext.User.RegisterNewUser(
+                    newUser.getFirstName(),
+                    newUser.getLastName(),
+                    newUser.getUsername(),
+                    newUser.getPassword(),
+                    User.UserType.CUSTOMER);
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
