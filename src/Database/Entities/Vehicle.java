@@ -22,4 +22,36 @@ public class Vehicle {
         LicensePlateNo = licensePlateNo;
         Color = color;
     }
+
+    public Integer getID() {
+        return ID;
+    }
+
+    public void setID(Integer ID) {
+        this.ID = ID;
+    }
+
+    public String getManufacturer() {
+        return Manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        Manufacturer = manufacturer;
+    }
+
+    public String getLicensePlateNo() {
+        return LicensePlateNo;
+    }
+
+    public void setLicensePlateNo(String licensePlateNo) {
+        LicensePlateNo = licensePlateNo;
+    }
+
+    public String getColor() {
+        return Color;
+    }
+
+    public void setColor(String color) {
+        Color = color;
+    }
 }
