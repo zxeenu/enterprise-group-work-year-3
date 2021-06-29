@@ -63,7 +63,7 @@
 
                     <button class="login-submit" type="submit">Sign Up</button>
                     <div class="forgot">
-                        <a href="./index.html">Already have an account?</a>
+                        <a href="/Login">Already have an account?</a>
                     </div>
                 </div>
             </form:form>
