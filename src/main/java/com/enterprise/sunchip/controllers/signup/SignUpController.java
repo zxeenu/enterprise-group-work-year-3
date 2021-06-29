@@ -1,9 +1,7 @@
 package main.java.com.enterprise.sunchip.controllers.signup;
 
-import Backend.UserModule;
 import Common.Shared;
 import Database.Entities.User;
-import Database.Entities.Vehicle;
 import main.java.com.enterprise.sunchip.models.SignUpModel;
 import main.java.com.enterprise.sunchip.services.LocalSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,30 +46,12 @@ public class SignUpController {
         localSession.clearTokenStoredInLocalCashe(request);
 
         try {
-            if (newUser.getUserType() == 2) //Driver
-            {
-                user = Shared.BeContext.User.RegisterNewUser(
-                        newUser.getFirstName(),
-                        newUser.getLastName(),
-                        newUser.getUsername(),
-                        newUser.getPassword(),
-                        User.UserType.DRIVER);
-
-                user.PrimaryVehicle = new Vehicle(
-                        newUser.getManufacturer(),
-                        newUser.getLicensePlateNo(),
-                        newUser.getColor());
-            }
-            else //Customer
-            {
-                user = Shared.BeContext.User.RegisterNewUser(
-                        newUser.getFirstName(),
-                        newUser.getLastName(),
-                        newUser.getUsername(),
-                        newUser.getPassword(),
-                        User.UserType.CUSTOMER);
-            }
-
+            user = Shared.BeContext.User.RegisterNewUser(
+                    newUser.getFirstName(),
+                    newUser.getLastName(),
+                    newUser.getUsername(),
+                    newUser.getPassword(),
+                    User.UserType.CUSTOMER);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return new ModelAndView("redirect:/SignUp");
