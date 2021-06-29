@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,19 +9,21 @@
 </head>
 <body class="dark">
 <nav class="navbar admin">
-    <a href="/" class="logo">
+    <a href="Home" class="logo">
         <h1 class="logo">EeZee Ride</h1>
     </a>
     <ul class="nav-links">
-        <li class="nav-item"><a href="./dashboard.html">Dashboard</a></li>
-        <li class="nav-item"><a href="./drivers.html">Drivers</a></li>
-        <li class="nav-item"><a href="./customers.html">Customers</a></li>
+        <li class="nav-item"><a href="AdminDashboard">Dashboard</a></li>
+        <li class="nav-item"><a href="AdminDashboardDrivers">Drivers</a></li>
+        <li class="nav-item"><a href="AdminDashboardCustomers">Customers</a></li>
         <li class="nav-item"><a href="Logout">Log Out</a></li>
     </ul>
 </nav>
 
 <div class="nfcontainer">
     <h1 class="title-dark">Drivers</h1>
+
+    <a href="CreateDriver" class="driver"><button>Add New</button></a>
 
     <table class="dash">
         <tr>
@@ -42,4 +43,3 @@
     </table>
 </div>
 </body>
-</html>

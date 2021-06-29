@@ -57,6 +57,7 @@ public class SignUpController {
                         newUser.getPassword(),
                         User.UserType.DRIVER);
 
+
                 user.PrimaryVehicle = new Vehicle(
                         newUser.getManufacturer(),
                         newUser.getLicensePlateNo(),

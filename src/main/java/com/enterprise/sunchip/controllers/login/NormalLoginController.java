@@ -22,6 +22,11 @@ public class NormalLoginController {
     @Autowired
     private LocalSession localSession;
 
+    @RequestMapping(value = "Home", method = RequestMethod.GET)
+    public ModelAndView home() {
+        return new ModelAndView("redirect:/Login");
+    }
+
 
     @RequestMapping(value = "Login", method = RequestMethod.GET)
     public ModelAndView toLoginPage(HttpServletRequest request)
@@ -42,7 +47,7 @@ public class NormalLoginController {
 
                 switch (loggedInUser.UserClassCode){
                     case 1:
-                        return new ModelAndView("redirect:/XAwef32r32jr32oiu"); // admin page
+                        return new ModelAndView("redirect:/AdminDashboard"); // admin page
                     case 2:
                         return new ModelAndView("redirect:/DriverDashboard");
                     case 3:
