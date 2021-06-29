@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <head>
     <meta charset="UTF-8" />
@@ -24,16 +26,24 @@
     <h1 class="title-dark">Customers</h1>
 
     <table class="dash">
+        <thead>
         <tr>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Username</th>
+            <th>Id</th>
         </tr>
-        <tr>
-            <td>Sam</td>
-            <td>Ramirez</td>
-            <td>sam@gmail.com</td>
-        </tr>
+        </thead>
+        <tbody>
+            <c:forEach items="${customerList}" var="customer">
+                <tr>
+                    <td>${customer.firstName}</td>
+                    <td>${customer.lastName}</td>
+                    <td>${customer.ID}</td>
+                </tr>
+            </c:forEach>
+        </tbody>
     </table>
+
+
 </div>
 </body>
