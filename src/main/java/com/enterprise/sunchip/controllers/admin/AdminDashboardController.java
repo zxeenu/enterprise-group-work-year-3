@@ -60,7 +60,9 @@ public class AdminDashboardController {
                 if (admin != null) {
                     if (admin.UserClassCode == 1) {
                         mv.setViewName("pages/admin/DriverDetails");
-//                        mv.addObject("errorMessage", "sprry admin driver not done!");
+
+                        var dirverList = Shared.BeContext.User.GetAllDrivers();
+                        mv.addObject("driverList", dirverList);
                     }
                 }
             }
@@ -88,7 +90,8 @@ public class AdminDashboardController {
                 if (admin != null) {
                     if (admin.UserClassCode == 1) {
                         mv.setViewName("pages/admin/CustomerDetails");
-                        mv.addObject("admin", admin);
+                        var customerList = Shared.BeContext.User.GetAllCustomers();
+                        mv.addObject("customerList", customerList);
                     }
                 }
             }

@@ -1,7 +1,5 @@
 package main.java.com.enterprise.sunchip.controllers.login;
 
-import Backend.TripModule;
-import Backend.UserModule;
 import Common.Shared;
 import Database.Entities.Trip;
 import Database.Entities.User;
@@ -82,8 +80,9 @@ public class NormalLoginController {
                 case 3:
                     localSession.storeTokenInLocalCashe(request, currentUser.HashPassword);
 //                    mv.setViewName("pages/error/Error");
-                    mv.setViewName("pages/customers/RequestRide");
+//                    mv.setViewName("pages/customers/RequestRide");
 //                    mv.addObject("errorMessage", "sorry, customer dashboard not implemented!");
+                      return new ModelAndView("redirect:/RequestRide");
                     break;
             }
         }

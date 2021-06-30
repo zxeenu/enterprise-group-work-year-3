@@ -6,6 +6,7 @@ import Database.Entities.User;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.sql.Driver;
 import java.sql.SQLException;
 
 public class TripHandlerTests {
@@ -108,6 +109,17 @@ public class TripHandlerTests {
         if (!listener.TripCompleted || listener.trip != CustomerATrip) {
             Assert.fail();
         }
+    }
+
+    @Test
+    public void RejectionReasonsPersistenceTest() throws SQLException {
+        AddDummyUsers();
+        var CustomerATrip = BeContext.Trip.RequestNewTrip(CustomerA);
+        var CustomerBTrip = BeContext.Trip.RequestNewTrip(CustomerB);
+
+        BeContext.Trip.RejectByDriver(CustomerATrip, DriverA, "Driver A Rejection Reason For Trip A");
+        BeContext.Trip.RejectByDriver(CustomerATrip, DriverB, "Driver B Rejection Reason For Trip A");
+        BeContext.Trip.RejectByDriver(CustomerBTrip, DriverB, "Driver A Rejection Reason For Trip B");
     }
 
     public class DummyListener implements Backend.Interfaces.TripStateChange {

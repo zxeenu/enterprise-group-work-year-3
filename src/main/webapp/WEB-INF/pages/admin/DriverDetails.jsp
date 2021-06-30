@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <head>
     <meta charset="UTF-8" />
@@ -21,25 +23,31 @@
 </nav>
 
 <div class="nfcontainer">
-    <h1 class="title-dark">Drivers</h1>
+        <h1 class="title-dark">Drivers</h1>
 
-    <a href="CreateDriver" class="driver"><button>Add New</button></a>
+        <a href="AddDriver" class="driver"><button>Add New</button></a>
 
-    <table class="dash">
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Vehicle Type</th>
-            <th>Plate Number</th>
-            <th>Colour</th>
-        </tr>
-        <tr>
-            <td>Sam</td>
-            <td>Ramirez</td>
-            <td>Tesla</td>
-            <td>P1234</td>
-            <td>That's Racist</td>
-        </tr>
-    </table>
-</div>
+        <table class="dash">
+            <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Vehicle Type</th>
+                <th>Plate Number</th>
+                <th>Colour</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${driverList}" var="driver">
+                <tr>
+                    <td>${driver.firstName}</td>
+                    <td>${driver.lastName}</td>
+                    <td>${driver.primaryVehicle.manufacturer}</td>
+                    <td>${driver.primaryVehicle.licensePlateNo}</td>
+                    <td>${driver.primaryVehicle.color}</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
 </body>
