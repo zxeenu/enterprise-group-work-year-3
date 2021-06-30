@@ -3,7 +3,7 @@ package Database.Entities;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable(tableName = "vehicles")
+@DatabaseTable(tableName = "Vehicles")
 public class Vehicle {
     @DatabaseField(columnName = "ID",generatedId = true)
     public Integer ID;

@@ -19,7 +19,7 @@ public class DatabaseContext {
         this.Roles = DaoManager.createDao(Connection, Role.class);
         this.Waypoints = DaoManager.createDao(Connection, WaypointDB.class);
         this.Trips = DaoManager.createDao(Connection, Trip.class);
-
+        this.RejectionReasons = DaoManager.createDao(Connection, TripRejectionReason.class);
         CheckAndRebuildDb();
 
     }
@@ -32,6 +32,7 @@ public class DatabaseContext {
         if (!Roles.isTableExists()) TableUtils.createTable(Connection, Role.class);
         if (!Waypoints.isTableExists()) TableUtils.createTable(Connection, WaypointDB.class);
         if (!Trips.isTableExists()) TableUtils.createTable(Connection, Trip.class);
+        if (!RejectionReasons.isTableExists()) TableUtils.createTable(Connection, TripRejectionReason.class);
     }
 
     public Dao<User, String> Users = null;
@@ -39,6 +40,7 @@ public class DatabaseContext {
     public Dao<Role, String> Roles = null;
     public Dao<WaypointDB, String> Waypoints = null;
     public Dao<Trip, String> Trips = null;
+    public Dao<TripRejectionReason, String> RejectionReasons = null;
 
     public ArrayList<Dao<?, ?>> GetDAOList() {
         return new ArrayList<Dao<?, ?>>() {{

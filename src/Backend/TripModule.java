@@ -3,6 +3,7 @@ package Backend;
 import Backend.Interfaces.TripStateChange;
 import Common.Shared;
 import Database.Entities.Trip;
+import Database.Entities.TripRejectionReason;
 import Database.Entities.User;
 import jdk.jshell.spi.ExecutionControl;
 
@@ -31,11 +32,15 @@ public class TripModule {
      * @param customer Customer to use
      * @return Created trip object
      */
-    public Trip RequestNewTrip(User customer) {
+    public Trip RequestNewTrip(User customer) throws SQLException {
         if (this.GetActiveTripsByCustomer(customer).isEmpty()) {
             var trip = new Trip();
             trip.TripComplete = false;
             trip.Customer = customer;
+
+            Shared.DbContext.Trips.create(trip);
+
+
             return trip;
         }
         return null;
@@ -256,10 +261,30 @@ public class TripModule {
         }
     }
 
+    /**
+     * This function will mark the trip as complete
+     * @param p Trip to mark as complete
+     * @throws SQLException Standard SQL Exception
+     */
     public void MarkTripAsComplete(Trip p) throws SQLException {
         p.State = Trip.TripState.COMPLETE;
         p.TripComplete = true;
         Shared.DbContext.Trips.update(p);
+    }
+
+    /**
+     * This function will reject a trip
+     * @param t Trip to reject
+     * @param d Driver
+     * @param reason Reason for rejection
+     * @throws SQLException Standard SQL Exception
+     */
+    public void RejectByDriver(Trip t, User d, String reason) throws SQLException {
+        TripRejectionReason r = new TripRejectionReason();
+        r.Driver = d;
+        r.RejectionReason = reason;
+        t.RejectionReasons.add(r);
+        Shared.DbContext.Trips.update(t);
     }
 
 
