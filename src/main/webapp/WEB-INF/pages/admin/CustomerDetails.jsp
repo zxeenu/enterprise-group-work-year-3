@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/styles.css" />
-    <title>EeZee Ride - Drivers</title>
+    <title>EeZee Ride - Customers</title>
 </head>
 <body class="dark">
 <nav class="navbar admin">
@@ -23,31 +23,27 @@
 </nav>
 
 <div class="nfcontainer">
-        <h1 class="title-dark">Drivers</h1>
+    <h1 class="title-dark">Customers</h1>
 
-        <a href="AddDriver" class="driver"><button>Add New</button></a>
-
-        <table class="dash">
-            <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Vehicle Type</th>
-                <th>Plate Number</th>
-                <th>Colour</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${driverList}" var="driver">
+    <table class="dash">
+        <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Id</th>
+        </tr>
+        </thead>
+        <tbody>
+            <c:forEach items="${customerList}" var="customer">
                 <tr>
-                    <td>${driver.firstName}</td>
-                    <td>${driver.lastName}</td>
-                    <td>${driver.primaryVehicle.manufacturer}</td>
-                    <td>${driver.primaryVehicle.licensePlateNo}</td>
-                    <td>${driver.primaryVehicle.color}</td>
+                    <td>${customer.firstName}</td>
+                    <td>${customer.lastName}</td>
+                    <td>${customer.ID}</td>
                 </tr>
             </c:forEach>
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
+
+
+</div>
 </body>

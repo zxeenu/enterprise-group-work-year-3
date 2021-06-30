@@ -1,16 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/styles.css" />
-    <title>Eezee Ride - Sign Up</title>
+    <title>Eezee Ride - Sign Up Driver</title>
 </head>
 <body class="light">
 <nav class="navbar">
@@ -20,11 +18,11 @@
 </nav>
 <div class="container center">
     <div class="fifty-col">
-        <h1 class="hero-title">Sign Up</h1>
+        <h1 class="hero-title">Add new driver</h1>
 
         <div class="login-box-container">
-            <form:form action="SignUp" method="post" modelAttribute="signUpForm">
-                <div class="login-box">
+            <form:form action="AddDriver" method="post" modelAttribute="driverForm">
+                <div class="login-box-driver">
                     <br />
 
                     <form:input
@@ -33,10 +31,32 @@
                             name="fname"
                             required = "required"
                     />
+
                     <form:input
                             path="lastName"
                             placeholder="Last Name"
                             name="lname"
+                            required = "required"
+                    />
+
+                    <form:input
+                            path="manufacturer"
+                            placeholder="Vehicle Type"
+                            name="manufacturer"
+                            required = "required"
+                    />
+
+                    <form:input
+                            path="licensePlateNo"
+                            placeholder="License Plate Number"
+                            name="plate"
+                            required = "required"
+                    />
+
+                    <form:input
+                            path="colour"
+                            placeholder="Colour"
+                            name="colour"
                             required = "required"
                     />
 
@@ -61,9 +81,8 @@
                             required = "required"
                     />
 
-                    <button class="login-submit" type="submit">Sign Up</button>
-                    <div class="forgot">
-                        <a href="/Login">Already have an account?</a>
+                    <div class="save">
+                        <a href="./drivers.html"><button type="submit">Save</button></a>
                     </div>
                 </div>
             </form:form>
@@ -76,3 +95,4 @@
 </div>
 </body>
 </html>
+

@@ -1,11 +1,15 @@
 package main.java.com.enterprise.sunchip.models;
 
-public class SignUpModel {
+public class DriverModel {
     private String firstName;
     private String lastName;
     private String username;
     private String password;
     private String confirmPassword;
+    private String manufacturer;
+    private String licensePlateNo;
+    private String colour;
+
 
 
     public String getFirstName() {
@@ -24,6 +28,19 @@ public class SignUpModel {
         this.lastName = lastName;
     }
 
+    public String getManufacturer() { return manufacturer; }
+
+    public void setManufacturer(String manufacturer) { this.manufacturer = manufacturer; }
+
+
+    public String getLicensePlateNo() { return licensePlateNo; }
+
+    public void setLicensePlateNo(String licensePlateNo) { this.licensePlateNo = licensePlateNo; }
+
+    public String getColour() { return colour; }
+
+    public void setColour(String colour) { this.colour = colour; }
+
     public String getUsername() {
         return username;
     }
@@ -36,11 +53,11 @@ public class SignUpModel {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public void setPassword(String password) { this.password = password; }
 
     public String getConfirmPassword() {
         return confirmPassword;
     }
+
 }
+

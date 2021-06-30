@@ -54,6 +54,7 @@
   color: var(--light-blue);
   font-size: 80px;
   text-align: left;
+  padding: 30px 0px;
 }
 .secondary-title {
   color: var(--light-blue);
@@ -62,6 +63,14 @@
 }
 .secondary-title p {
   padding-bottom: 10px;
+}
+
+.sub-title {
+  font-family: "Bebasneue";
+  color: var(--dark);
+  font-size: 30px;
+  text-align: left;
+  display: flex;
 }
 
 h1 {
@@ -187,7 +196,6 @@ nav {
 /* Table */
 
 table {
-  margin-top: 50px;
   background-color: var(--light);
   width: 100%;
   border-collapse: collapse;
@@ -213,6 +221,60 @@ th {
   border-bottom: 1px solid #3f3d562c;
 }
 
+table.t-eta {
+  background-color: var(--dark);
+  border: none;
+  color: #fff;
+  width: 19%;
+}
+
+table.t-ride {
+  background-color: var(--accent-blue);
+  border: none;
+  color: rgb(112, 103, 103);
+  width: 80%;
+}
+
+table.t-details {
+  margin-top: 20px;
+  background-color: var(--bg);
+  border: none;
+}
+
+.t-details td,
+.t-details th {
+  color: var(--dark);
+  border: none;
+  font-size: 18px;
+  font-weight: 100;
+  vertical-align: top;
+}
+
+.t-ride td,
+.t-ride th,
+.t-eta td,
+.t-eta th {
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 100;
+  vertical-align: top;
+}
+
+.t-eta td,
+.t-eta th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.ride {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ride table {
+  margin-top: 40px;
+}
 /* Input Forms */
 
 form {
@@ -258,13 +320,13 @@ button {
   background-color: var(--accent-blue);
   color: #fffbfb;
   padding: 14px 20px;
-  margin: 8px 0;
   border: none;
   border-radius: 3px;
   cursor: pointer;
   width: 100%;
   transition: background-color 0.3s ease-in-out;
   font-size: 15px;
+  font-family: "Noto";
 }
 
 button:hover {
@@ -273,7 +335,7 @@ button:hover {
 }
 
 button.login-submit {
-  margin-bottom: 10px;
+  margin: 10px 0px;
 }
 
 button:disabled,
@@ -285,6 +347,23 @@ button[disabled] {
   background-color: var(--accent-pink);
 }
 
+.driver button {
+  width: 120px;
+  margin-bottom: 20px;
+}
+.ride button {
+  width: 150px;
+}
+
+.save {
+  margin: 10px 0px;
+  width: 100%;
+}
+
+.dash button {
+  margin-bottom: 10px;
+}
+
 .login-box {
   display: flex;
   align-items: center;
@@ -292,6 +371,15 @@ button[disabled] {
   justify-content: center;
   padding: 25px 10px;
   width: 80%;
+}
+
+.login-box-driver {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 25px 10px;
+  width: 100%;
 }
 
 .request-box {
@@ -369,11 +457,75 @@ input[type="radio"]:checked + label {
   background-position: top;
 }
 
-input[type="datetime-local"] {
+.girl {
+  background-image: url("../assets/images/background.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+input[type="datetime-local"],
+input[type="date"],
+input[type="time"] {
   margin-top: 10px;
   padding: 15px;
   background-color: var(--light);
   border: var(--light);
   color: var(--light-grey);
   font-size: 15px;
+  font-family: "Noto";
+}
+
+input[type="time"]::before {
+  content: "Time:";
+}
+
+#history-start::before {
+  content: "Start: ";
+}
+
+#history-end::before {
+  content: "End: ";
+}
+
+input[type="date"]#history-start,
+input[type="date"]#history-end {
+  margin-top: 0px;
+  padding: 12px;
+  margin-left: 5px;
+  border-radius: 5px;
+}
+
+.filter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+select {
+  padding: 13px 20px;
+  width: 100%;
+  border: 1px solid var(--dark);
+  border-radius: 5px;
+  background-color: var(--accent-pink);
+  cursor: pointer;
+  transition: all 150ms ease;
+  color: #fffbfb;
+  font-size: 15px;
+  font-family: "Noto";
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+  width: 170px;
+
+  background: url(http://127.0.0.1:5500/html/assets/images/chevron.png)
+    no-repeat right var(--accent-pink);
+  -webkit-appearance: none;
+  background-position-x: 134px;
+}
+
+.filter a {
+  margin-left: 5px;
+  min-width: 170px;
 }
