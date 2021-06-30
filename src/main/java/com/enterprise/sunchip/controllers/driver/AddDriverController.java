@@ -37,7 +37,9 @@ public class AddDriverController {
 //        }
 
         User user = null;
-        Vehicle vehicle = new Vehicle(newDriver.getManufacturer(), newDriver.getLicensePlateNo(), newDriver.getColour());
+        Vehicle vehicle = new Vehicle(newDriver.getManufacturer(),
+                                      newDriver.getLicensePlateNo(),
+                                      newDriver.getColour());
 
         localSession.clearTokenStoredInLocalCashe(request);
         try {
@@ -58,7 +60,7 @@ public class AddDriverController {
 
 
 
-        return new ModelAndView("redirect:/LoginHello");
+        return new ModelAndView("redirect:/SignUp");
     }
 
 }
