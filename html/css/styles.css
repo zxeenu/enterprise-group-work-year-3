@@ -13,6 +13,10 @@
 
 /* Typography */
 
+a {
+  text-decoration: none;
+}
+
 @font-face {
   font-family: "Noto";
   src: url("../assets/fonts/NotoSans-Regular.ttf");
