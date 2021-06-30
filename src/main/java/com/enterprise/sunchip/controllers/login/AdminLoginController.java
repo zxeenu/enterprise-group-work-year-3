@@ -69,14 +69,7 @@ public class AdminLoginController {
     public ModelAndView forgotPasswordActionForAdmin() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("pages/error/Error");
-        mv.addObject("errorMessage", "sorry, forgot password has not been implemented yet!");
-        return mv;
-    }
-
-    @RequestMapping(value = "Check", method = RequestMethod.GET)
-    public ModelAndView checkSessionActionForAdmin() {
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("pages/error/Error");
+        mv.addObject("errorMessage", "sorry, forgot password for admin has not been implemented yet!");
         return mv;
     }
 

@@ -101,8 +101,7 @@ public class DriverDashboardController {
                         var tripList = Shared.BeContext.Trip.GetAllTripsByDriver(driver);
                         for (var trip : tripList) {
                             if (trip.ID.toString().equals(tripId)) {
-                                // save the accepted state here
-                                // save to db
+                                trip.setState(0); // accepted. ie, awaiting pickup
                                 Shared.DbContext.Trips.update(trip);
                             }
                         }
@@ -137,6 +136,38 @@ public class DriverDashboardController {
                         for (var trip : tripList)  {
                             if (trip.ID.toString().equals(tripId)) {
                                 trip.TripComplete = true;
+                                trip.setState(2); // completion code
+                                Shared.DbContext.Trips.update(trip);
+                            }
+                        }
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            ModelAndView mv = new ModelAndView();
+            mv.setViewName("pages/error/Error");
+            mv.addObject("errorMessage", "sorry, the job could not be completed!");
+            return mv;
+        }
+        return new ModelAndView("redirect:/DriverDashboard");
+    }
+
+    @RequestMapping(value = "DriverRejectsJob")
+    public ModelAndView driverJobRejection(HttpServletRequest request, @RequestParam("trip_id") String tripId, @RequestParam("driver_id") String driverId) {
+        String tokenId = "";
+        try {
+            tokenId = localSession.getTokenStoredInLocalCashe(request);
+
+            if (!tokenId.isEmpty()) {
+                var driver = Shared.BeContext.User.GetByPasswordHash(tokenId);
+
+                if (driver != null) {
+                    if (driver.UserClassCode == 2) {
+                        var tripList = Shared.BeContext.Trip.GetAllTripsByDriver(driver);
+                        for (var trip : tripList)  {
+                            if (trip.ID.toString().equals(tripId)) {
+                                trip.setState(-2); // rejection code
                                 Shared.DbContext.Trips.update(trip);
                             }
                         }

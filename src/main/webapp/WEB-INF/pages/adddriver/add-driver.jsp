@@ -82,7 +82,8 @@
                     />
 
                     <div class="save">
-                        <a href="./drivers.html"><button type="submit">Save</button></a>
+<%--                        <a href="./drivers.html"><button type="submit">Save</button></a>--%>
+                        <button type="submit">Save</button>
                     </div>
                 </div>
             </form:form>

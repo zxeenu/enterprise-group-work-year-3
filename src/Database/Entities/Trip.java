@@ -221,5 +221,21 @@ public class Trip {
         PaidAmount = paidAmount;
     }
 
+    public ForeignCollection<TripRejectionReason> getRejectionReasons() {
+        return RejectionReasons;
+    }
+
+    public void setRejectionReasons(ForeignCollection<TripRejectionReason> rejectionReasons) {
+        RejectionReasons = rejectionReasons;
+    }
+
+    public int getState() {
+        return State;
+    }
+
+    public void setState(int state) {
+        State = state;
+    }
+
     //endregion
 }

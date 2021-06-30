@@ -14,6 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/styles.css" />
+    <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" >
     <title>404</title>
 </head>
 <body class="girl">
@@ -21,7 +22,7 @@
     <a href="Home" class="logo">
         <h1 class="logo">EeZee Ride</h1>
         <ul class="nav-links">
-            <li class="nav-item"><a href="./index.html">Log Out</a></li>
+            <li class="nav-item"><a href="Logout">Log Out</a></li>
         </ul>
     </a>
 </nav>

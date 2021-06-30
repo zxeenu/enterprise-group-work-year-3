@@ -13,10 +13,10 @@
 </head>
 <body class="sun">
 <nav class="navbar">
-    <a href="/" class="logo">
+    <a href="Home" class="logo">
         <h1 class="logo">EeZee Ride</h1>
         <ul class="nav-links">
-            <li class="nav-item"><a href="./index.html">Log Out</a></li>
+            <li class="nav-item"><a href="Logout">Log Out</a></li>
         </ul>
     </a>
 </nav>
