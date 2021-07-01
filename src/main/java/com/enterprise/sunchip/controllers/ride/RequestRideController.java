@@ -42,6 +42,7 @@ public class RequestRideController {
                     newtrip.setBookingDate(newRequest.getDateAndTime());
                     newtrip.setStartName(newRequest.getLocation());
                     newtrip.setEndName(newRequest.getDestination());
+                    newtrip.setPaidAmount(100*2);
                     Shared.BeContext.Trip.AssignTripToAvailableDriver(newtrip);
                     Shared.DbContext.Trips.update(newtrip);
 
@@ -52,7 +53,7 @@ public class RequestRideController {
             throwables.printStackTrace();
             return new ModelAndView("redirect:/RequestRide");
         }
-        return new ModelAndView("redirect:/RequestRide");
+        return new ModelAndView("redirect:/ComfirmedRide");
     }
 }
 
