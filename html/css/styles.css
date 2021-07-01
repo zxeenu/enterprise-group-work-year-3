@@ -77,6 +77,14 @@ a {
   display: flex;
 }
 
+.sub-title-light {
+  font-family: "Bebasneue";
+  color: var(--light-blue);
+  font-size: 30px;
+  text-align: left;
+  display: flex;
+}
+
 h1 {
   color: var(--light-blue);
   font-size: 60px;
@@ -287,6 +295,19 @@ form {
   width: 300px;
   display: flex;
   justify-content: center;
+}
+
+form.reject-humanity {
+  background-color: #ffffff00;
+  border-radius: 0px;
+  width: 700px;
+  display: flex;
+  justify-content: left;
+}
+
+textarea {
+  padding: 15px;
+  font-family: "Noto";
 }
 
 /* Login Box */
