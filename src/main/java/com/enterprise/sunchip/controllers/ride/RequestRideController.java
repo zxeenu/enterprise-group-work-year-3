@@ -32,19 +32,18 @@ public class RequestRideController {
     public ModelAndView RequestAction(@ModelAttribute("requestForm") RequestModel newRequest, BindingResult result, HttpServletRequest request)
     {
         try {
-            Trip newtrip = new Trip();
             String tokenId = "";
 
             tokenId = localSession.getTokenStoredInLocalCashe(request);
             if (!tokenId.isEmpty()) {
                 var customer = Shared.BeContext.User.GetByPasswordHash(tokenId);
                 if (customer != null){
-                    newtrip.setCustomer(customer);
+                    Trip newtrip = Shared.BeContext.Trip.RequestNewTrip(customer);
                     newtrip.setBookingDate(newRequest.getDateAndTime());
                     newtrip.setStartName(newRequest.getLocation());
                     newtrip.setEndName(newRequest.getDestination());
                     Shared.BeContext.Trip.AssignTripToAvailableDriver(newtrip);
-                    Shared.DbContext.Trips.create(newtrip);
+                    Shared.DbContext.Trips.update(newtrip);
 
                 }
 
