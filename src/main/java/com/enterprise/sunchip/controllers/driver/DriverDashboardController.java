@@ -1,7 +1,5 @@
 package main.java.com.enterprise.sunchip.controllers.driver;
 
-import Backend.TripModule;
-import Backend.UserModule;
 import Common.Shared;
 import main.java.com.enterprise.sunchip.services.LocalSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +9,14 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
+@RequestMapping("/Driver")
 public class DriverDashboardController {
 
     @Autowired
     private LocalSession localSession;
 
-    @RequestMapping(value = "DriverDashboard", method = RequestMethod.GET)
+//    @RequestMapping(value = "DriverDashboard", method = RequestMethod.GET)
+    @GetMapping(path = "/Dashboard")
     public ModelAndView forgotPasswordAction(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
         String tokenId = "";
@@ -48,7 +48,8 @@ public class DriverDashboardController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "DriverDashboard", method = RequestMethod.POST)
+//    @RequestMapping(value = "DriverDashboard", method = RequestMethod.POST)
+    @PostMapping(path = "/Dashboard")
     public ModelAndView forgotPasswordActionPost(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
         String tokenId = "";
@@ -87,7 +88,8 @@ public class DriverDashboardController {
      * @param driverId
      * @return
      */
-    @RequestMapping(value = "DriverAcceptsJob")
+//    @RequestMapping(value = "DriverAcceptsJob")
+    @GetMapping(path = "/DriverAcceptsJob")
     public ModelAndView driverJobAcceptance(HttpServletRequest request, @RequestParam("trip_id") String tripId, @RequestParam("driver_id") String driverId) {
         String tokenId = "";
         try {
@@ -117,11 +119,12 @@ public class DriverDashboardController {
             return mv;
         }
 
-        return new ModelAndView("redirect:/DriverDashboard");
+        return new ModelAndView("redirect:/Driver/Dashboard");
     }
 
 
-    @RequestMapping(value = "DriverCompletesJob")
+//    @RequestMapping(value = "DriverCompletesJob")
+    @GetMapping(path = "/DriverCompletesJob")
     public ModelAndView driverJobCompletion(HttpServletRequest request, @RequestParam("trip_id") String tripId, @RequestParam("driver_id") String driverId) {
         String tokenId = "";
         try {
@@ -150,10 +153,11 @@ public class DriverDashboardController {
             mv.addObject("errorMessage", "sorry, the job could not be completed!");
             return mv;
         }
-        return new ModelAndView("redirect:/DriverDashboard");
+        return new ModelAndView("redirect:/Driver/Dashboard");
     }
 
-    @RequestMapping(value = "DriverRejectsJob")
+//    @RequestMapping(value = "DriverRejectsJob")
+    @GetMapping(path = "/DriverRejectsJob")
     public ModelAndView driverJobRejection(HttpServletRequest request, @RequestParam("trip_id") String tripId, @RequestParam("driver_id") String driverId) {
         String tokenId = "";
         try {
@@ -168,6 +172,7 @@ public class DriverDashboardController {
                         for (var trip : tripList)  {
                             if (trip.ID.toString().equals(tripId)) {
                                 trip.setState(-2); // rejection code
+//                                Shared.DbContext.RejectionReasons.create();
                                 Shared.DbContext.Trips.update(trip);
                             }
                         }
@@ -181,7 +186,7 @@ public class DriverDashboardController {
             mv.addObject("errorMessage", "sorry, the job could not be completed!");
             return mv;
         }
-        return new ModelAndView("redirect:/DriverDashboard");
+        return new ModelAndView("redirect:/Driver/Dashboard");
     }
 
 }

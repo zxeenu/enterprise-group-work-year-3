@@ -7,7 +7,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="css/styles.css"/>
+    <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" >
     <title>EeZee Ride - Driver Dashboard</title>
 </head>
 <body class="dark">
@@ -44,64 +44,6 @@
             <td>${trip.endName}</td>
             <td>(${trip.endLattitude}, ${trip.endLongtitude})</td>
             <td>${trip.distance}</td>
-<%--            <td>--%>
-<%--                &lt;%&ndash;<a href="DriverAcceptsJob?trip_id=${trip.ID}&driver_id=${driver.ID}"><button type="submit" id="accept" formmethod="post">Accept</button></a>--%>
-<%--                trip is rejectable if the trip is awaiting pickup&ndash;%&gt;--%>
-<%--                <c:choose>--%>
-<%--                    <c:when test="${trip.state != -2 || trip.state != 0}">--%>
-<%--                        <a href="DriverAcceptsJob?trip_id=${trip.ID}&driver_id=${driver.ID}"--%>
-<%--                        >--%>
-<%--                            <button type="submit" disabled formmethod="POST">Accept</button>--%>
-<%--                        </a--%>
-<%--                        >--%>
-<%--                    </c:when>--%>
-<%--                    <c:otherwise>--%>
-<%--                        <a href="DriverAcceptsJob?trip_id=${trip.ID}&driver_id=${driver.ID}"--%>
-<%--                        >--%>
-<%--                            <button type="submit" formmethod="POST">Accept</button>--%>
-<%--                        </a--%>
-<%--                        >--%>
-<%--                    </c:otherwise>--%>
-<%--                </c:choose>--%>
-
-<%--                &lt;%&ndash;<a href="#"><button type="submit" id="reject" formmethod="post">Reject</button></a>--%>
-<%--                trip is rejectable if its not rejected&ndash;%&gt;--%>
-<%--                <c:choose>--%>
-<%--                    <c:when test="${trip.state != -2}">--%>
-<%--                        <a href="DriverRejectsJob?trip_id=${trip.ID}&driver_id=${driver.ID}"--%>
-<%--                        >--%>
-<%--                            <button type="submit" disabled formmethod="POST">Reject</button>--%>
-<%--                        </a--%>
-<%--                        >--%>
-<%--                    </c:when>--%>
-<%--                    <c:otherwise>--%>
-<%--                        <a href="DriverRejectsJob?trip_id=${trip.ID}&driver_id=${driver.ID}"--%>
-<%--                        >--%>
-<%--                            <button type="submit" formmethod="POST">Reject</button>--%>
-<%--                        </a--%>
-<%--                        >--%>
-<%--                    </c:otherwise>--%>
-<%--                </c:choose>--%>
-
-<%--                &lt;%&ndash;if trip is not complete&ndash;%&gt;--%>
-<%--                <c:choose>--%>
-<%--                    <c:when test="${trip.state == 0 || trip.state == 1}">--%>
-<%--                        <a href="DriverCompletesJob?trip_id=${trip.ID}&driver_id=${driver.ID}"--%>
-<%--                        >--%>
-<%--                            <button type="submit" disabled formmethod="POST">Completed</button>--%>
-<%--                        </a--%>
-<%--                        >--%>
-<%--                    </c:when>--%>
-<%--                    <c:otherwise>--%>
-<%--                        <a href="DriverCompletesJob?trip_id=${trip.ID}&driver_id=${driver.ID}"--%>
-<%--                        >--%>
-<%--                            <button type="submit" formmethod="POST">Completed</button>--%>
-<%--                        </a--%>
-<%--                        >--%>
-<%--                    </c:otherwise>--%>
-<%--                </c:choose>--%>
-<%--            </td>--%>
-
             <td>
                 <c:choose>
                     <%-- trip in state -2, rejected --%>

@@ -16,9 +16,9 @@
         <h1 class="logo">EeZee Ride</h1>
     </a>
     <ul class="nav-links">
-        <li class="nav-item"><a href="AdminDashboard">Dashboard</a></li>
-        <li class="nav-item"><a href="AdminDashboardDrivers">Drivers</a></li>
-        <li class="nav-item"><a href="AdminDashboardCustomers">Customers</a></li>
+        <li class="nav-item"><a href="Dashboard">Dashboard</a></li>
+        <li class="nav-item"><a href="Drivers">Drivers</a></li>
+        <li class="nav-item"><a href="Customers">Customers</a></li>
         <li class="nav-item"><a href="Logout">Log Out</a></li>
     </ul>
 </nav>

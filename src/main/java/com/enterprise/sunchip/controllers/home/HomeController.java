@@ -9,11 +9,18 @@ public class HomeController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView homeView()
-    {
-//        ModelAndView mv = new ModelAndView();
-//        mv.setViewName("pages/login/NormalLogin");
-//        System.out.println(mv);
-//        return mv;
+    { return new ModelAndView("redirect:/Login"); }
+
+    @RequestMapping(value="/**/Home", method=RequestMethod.GET)
+    public ModelAndView homeViewForAll()
+    { return new ModelAndView("redirect:/Login"); }
+
+    @RequestMapping(value="/**/Login", method=RequestMethod.GET)
+    public ModelAndView LoginViewForAll()
+    { return new ModelAndView("redirect:/Login"); }
+
+    @RequestMapping(value = "Home", method = RequestMethod.GET)
+    public ModelAndView home() {
         return new ModelAndView("redirect:/Login");
     }
 

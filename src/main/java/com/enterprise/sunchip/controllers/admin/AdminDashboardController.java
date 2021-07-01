@@ -3,6 +3,7 @@ package main.java.com.enterprise.sunchip.controllers.admin;
 import Common.Shared;
 import main.java.com.enterprise.sunchip.services.LocalSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,12 +12,14 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
+@RequestMapping("/Admin")
 public class AdminDashboardController {
 
     @Autowired
     private LocalSession localSession;
 
-    @RequestMapping(value = "AdminDashboard", method = RequestMethod.GET)
+//    @RequestMapping(value = "AdminDashboard", method = RequestMethod.GET)
+    @GetMapping(path = "/Dashboard")
     public ModelAndView goToAdminDashboard(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("pages/error/Error");
@@ -43,7 +46,8 @@ public class AdminDashboardController {
         return mv;
     }
 
-    @RequestMapping(value = "AdminDashboardDrivers", method = RequestMethod.GET)
+//    @RequestMapping(value = "AdminDashboardDrivers", method = RequestMethod.GET)
+    @GetMapping(path = "/Drivers")
     public ModelAndView goToAdminDriversView(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("pages/error/Error");
@@ -73,7 +77,8 @@ public class AdminDashboardController {
         return mv;
     }
 
-    @RequestMapping(value = "AdminDashboardCustomers", method = RequestMethod.GET)
+//    @RequestMapping(value = "AdminDashboardCustomers", method = RequestMethod.GET)
+    @GetMapping(path = "/Customers")
     public ModelAndView goToAdminCustomersView(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("pages/error/Error");

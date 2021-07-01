@@ -22,14 +22,14 @@ public class AddDriverController {
     @Autowired
     private LocalSession localSession;
 
-    @RequestMapping(value = "AddDriver", method = RequestMethod.GET)
+    @RequestMapping(value = "/Admin/AddDriver", method = RequestMethod.GET)
     public ModelAndView ViewAddDriver(HttpServletRequest request)
     {
         DriverModel form = new DriverModel();
         return new ModelAndView("pages/adddriver/add-driver", "driverForm", form);
     }
 
-    @RequestMapping(value = "AddDriver", method = RequestMethod.POST)
+    @RequestMapping(value = "/Admin/AddDriver", method = RequestMethod.POST)
     public ModelAndView SignUpAction(@ModelAttribute("driverForm") DriverModel newDriver, BindingResult result, HttpServletRequest request)
     {
 //        if (result.hasErrors()){

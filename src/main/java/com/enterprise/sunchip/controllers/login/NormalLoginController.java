@@ -1,7 +1,6 @@
 package main.java.com.enterprise.sunchip.controllers.login;
 
 import Common.Shared;
-import Database.Entities.Trip;
 import Database.Entities.User;
 import main.java.com.enterprise.sunchip.services.LocalSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +18,6 @@ public class NormalLoginController {
 
     @Autowired
     private LocalSession localSession;
-
-    @RequestMapping(value = "Home", method = RequestMethod.GET)
-    public ModelAndView home() {
-        return new ModelAndView("redirect:/Login");
-    }
-
 
     @RequestMapping(value = "Login", method = RequestMethod.GET)
     public ModelAndView toLoginPage(HttpServletRequest request)
@@ -45,9 +38,9 @@ public class NormalLoginController {
 
                 switch (loggedInUser.UserClassCode){
                     case 1:
-                        return new ModelAndView("redirect:/AdminDashboard"); // admin page
+                        return new ModelAndView("redirect:/Admin/Dashboard"); // admin page
                     case 2:
-                        return new ModelAndView("redirect:/DriverDashboard");  // sends user to driver dashboard
+                        return new ModelAndView("redirect:/Driver/Dashboard");  // sends user to driver dashboard
                     case 3:
                         return new ModelAndView("redirect:/RequestRide"); // sends user to customer request ride page
                 }
@@ -76,7 +69,7 @@ public class NormalLoginController {
                     localSession.storeTokenInLocalCashe(request, currentUser.HashPassword);
                     // return new ModelAndView("forward:/redirectedUrl", model);
                     // return new ModelAndView("redirect:/redirectedUrl", model);
-                    return new ModelAndView("redirect:/DriverDashboard");
+                    return new ModelAndView("redirect:/Driver/Dashboard");
                 case 3:
                     localSession.storeTokenInLocalCashe(request, currentUser.HashPassword);
 //                    mv.setViewName("pages/error/Error");

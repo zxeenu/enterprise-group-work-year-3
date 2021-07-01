@@ -36,7 +36,7 @@ public class AdminLoginController {
                 mv.addObject("fullName", fullName);
 
                 if (loggedInUser.UserClassCode == 1) {
-                    return new ModelAndView("redirect:/AdminDashboard");
+                    return new ModelAndView("redirect:/Admin/Dashboard");
                 }
             }
         } catch (Exception ignore) {}
@@ -59,7 +59,7 @@ public class AdminLoginController {
             switch (currentUser.UserClassCode){
                 case 1:
                     localSession.storeTokenInLocalCashe(request, currentUser.HashPassword);
-                    return new ModelAndView("redirect:/AdminDashboard");
+                    return new ModelAndView("redirect:/Admin/Dashboard");
             }
         }
         return mv;
