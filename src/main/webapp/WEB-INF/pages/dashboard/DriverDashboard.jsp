@@ -47,22 +47,22 @@
             <td>
                 <c:choose>
                     <%-- trip in state -2, rejected --%>
-                    <c:when test="${trip.state == -2 && trip.tripComplete == false}">
+                    <c:when test="${trip.state == -2}">
                         <a href="DriverAcceptsJob?trip_id=${trip.ID}&driver_id=${driver.ID}"><button type="submit" disabled formmethod="POST">Accept</button></a>
                         <a href="DriverRejectsJob?trip_id=${trip.ID}&driver_id=${driver.ID}"><button type="submit" disabled formmethod="POST">Reject</button></a>
                         <a href="DriverCompletesJob?trip_id=${trip.ID}&driver_id=${driver.ID}"><button type="submit" disabled formmethod="POST">Completed</button></a>
                     </c:when>
                     <%-- trip in state 0, awaiting pickup --%>
-                    <c:when test="${trip.state == 0 && trip.tripComplete == false}">
-                        <a href="DriverAcceptsJob?trip_id=${trip.ID}&driver_id=${driver.ID}"><button type="submit" disabled formmethod="POST">Accept</button></a>
-                        <a href="DriverRejectsJob?trip_id=${trip.ID}&driver_id=${driver.ID}"><button type="submit" disabled formmethod="POST">Reject</button></a>
-                        <a href="DriverCompletesJob?trip_id=${trip.ID}&driver_id=${driver.ID}"><button type="submit" formmethod="POST">Completed</button></a>
-                    </c:when>
-                    <%-- trip in state 1, in progress --%>
-                    <c:when test="${trip.state == 1 && trip.tripComplete == false}">
+                    <c:when test="${trip.state == 0}">
                         <a href="DriverAcceptsJob?trip_id=${trip.ID}&driver_id=${driver.ID}"><button type="submit" formmethod="POST">Accept</button></a>
                         <a href="DriverRejectsJob?trip_id=${trip.ID}&driver_id=${driver.ID}"><button type="submit" formmethod="POST">Reject</button></a>
                         <a href="DriverCompletesJob?trip_id=${trip.ID}&driver_id=${driver.ID}"><button type="submit" disabled formmethod="POST">Completed</button></a>
+                    </c:when>
+                    <%-- trip in state 1, in progress --%>
+                    <c:when test="${trip.state == 1}">
+                        <a href="DriverAcceptsJob?trip_id=${trip.ID}&driver_id=${driver.ID}"><button type="submit" disabled formmethod="POST">Accept</button></a>
+                        <a href="DriverRejectsJob?trip_id=${trip.ID}&driver_id=${driver.ID}"><button type="submit" disabled formmethod="POST">Reject</button></a>
+                        <a href="DriverCompletesJob?trip_id=${trip.ID}&driver_id=${driver.ID}"><button type="submit" formmethod="POST">Completed</button></a>
                     </c:when>
                     <%-- trip in state 2, complete --%>
                     <c:when test="${trip.state == 2 || trip.tripComplete == true}">

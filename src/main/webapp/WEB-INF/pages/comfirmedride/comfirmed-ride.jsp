@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/styles.css" />
+    <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" >
     <title>EeZee Ride - Driver Confirmed</title>
 </head>
 <body class="girl">
@@ -23,10 +23,10 @@
     <div class="ride">
         <h1 class="title">Your driver is on the way!</h1>
         <div>
-            <a href="/ComfirmedRide"  style="margin-right: 10px">
+            <a href="ComfirmedRide"  style="margin-right: 10px">
                 <button class="login-submit" type="submit">Refresh</button>
             </a>
-            <a href="/CancelRide">
+            <a href="CancelRide">
                 <button class="login-submit" type="submit">Cancel Ride</button>
             </a>
         </div>

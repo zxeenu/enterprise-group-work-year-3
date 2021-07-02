@@ -5,6 +5,7 @@ import Database.Entities.Trip;
 import Database.Entities.User;
 import main.java.com.enterprise.sunchip.services.LocalSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,11 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
+@RequestMapping("/Customer")
 public class ComfirmedRideController {
     @Autowired
     private LocalSession localSession;
 
-    @RequestMapping(value = "ComfirmedRide", method = RequestMethod.GET)
+//    @RequestMapping(value = "ComfirmedRide", method = RequestMethod.GET)
+    @GetMapping(path = "/ComfirmedRide")
     public ModelAndView ViewComfirmedRide(HttpServletRequest request)
     {
         ModelAndView mv = new ModelAndView();
@@ -45,7 +48,8 @@ public class ComfirmedRideController {
         return mv;
     }
 
-    @RequestMapping(value = "CancelRide", method = RequestMethod.GET)
+//    @RequestMapping(value = "CancelRide", method = RequestMethod.GET)
+    @GetMapping(path = "/CancelRide")
     public ModelAndView CancelRide(HttpServletRequest request)
     {
         ModelAndView mv = new ModelAndView();

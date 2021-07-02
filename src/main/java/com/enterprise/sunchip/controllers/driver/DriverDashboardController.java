@@ -1,12 +1,15 @@
 package main.java.com.enterprise.sunchip.controllers.driver;
 
 import Common.Shared;
+import Database.Entities.Trip;
+import Database.Entities.User;
 import main.java.com.enterprise.sunchip.services.LocalSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/Driver")
@@ -103,8 +106,10 @@ public class DriverDashboardController {
                         var tripList = Shared.BeContext.Trip.GetAllTripsByDriver(driver);
                         for (var trip : tripList) {
                             if (trip.ID.toString().equals(tripId)) {
-                                trip.setState(0); // accepted. ie, awaiting pickup
-                                Shared.DbContext.Trips.update(trip);
+//                                trip.setState(0); // accepted. ie, awaiting pickup
+//                                Shared.DbContext.Trips.update(trip);
+//                                Shared.BeContext.Trip.AssignTripDriver(trip, driver);
+                                Shared.BeContext.Trip.AssignTripToDriver(trip);
                             }
                         }
                     }
@@ -138,9 +143,10 @@ public class DriverDashboardController {
                         var tripList = Shared.BeContext.Trip.GetAllTripsByDriver(driver);
                         for (var trip : tripList)  {
                             if (trip.ID.toString().equals(tripId)) {
-                                trip.TripComplete = true;
-                                trip.setState(2); // completion code
-                                Shared.DbContext.Trips.update(trip);
+//                                trip.TripComplete = true;
+//                                trip.setState(2); // completion code
+//                                Shared.DbContext.Trips.update(trip);
+                                Shared.BeContext.Trip.MarkTripAsComplete(trip);
                             }
                         }
                     }
@@ -160,6 +166,7 @@ public class DriverDashboardController {
     @GetMapping(path = "/DriverRejectsJob")
     public ModelAndView driverJobRejection(HttpServletRequest request, @RequestParam("trip_id") String tripId, @RequestParam("driver_id") String driverId) {
         String tokenId = "";
+        ModelAndView mv = new ModelAndView();
         try {
             tokenId = localSession.getTokenStoredInLocalCashe(request);
 
@@ -171,9 +178,14 @@ public class DriverDashboardController {
                         var tripList = Shared.BeContext.Trip.GetAllTripsByDriver(driver);
                         for (var trip : tripList)  {
                             if (trip.ID.toString().equals(tripId)) {
-                                trip.setState(-2); // rejection code
+//                                trip.setState(-2); // rejection code
 //                                Shared.DbContext.RejectionReasons.create();
-                                Shared.DbContext.Trips.update(trip);
+//                                Shared.DbContext.Trips.update(trip);
+//                                Shared.BeContext.Trip.RejectByDriver(trip, driver, "stupidity");
+                                HttpSession session = request.getSession();
+                                session.setAttribute("tripToCancell", trip);
+                                session.setAttribute("driverAssosicatedToCancelledJob", driver);
+                                mv.setViewName("pages/jobrejection/DriverJobRejection");
                             }
                         }
                     }
@@ -181,12 +193,37 @@ public class DriverDashboardController {
             }
 
         } catch (Exception e) {
-            ModelAndView mv = new ModelAndView();
             mv.setViewName("pages/error/Error");
             mv.addObject("errorMessage", "sorry, the job could not be completed!");
             return mv;
         }
-        return new ModelAndView("redirect:/Driver/Dashboard");
+        return mv;
+    }
+
+    @PostMapping(path = "/DriverRejectsJob")
+    public ModelAndView driverJobRejectionConfirmation(HttpServletRequest request, @RequestParam("rejection_reason") String rejectionReason){
+
+        ModelAndView mv = new ModelAndView();
+        HttpSession session = request.getSession();
+
+        try {
+
+            var trip = (Trip) session.getAttribute("tripToCancell");
+            var driver = (User) session.getAttribute("driverAssosicatedToCancelledJob");
+            Shared.BeContext.Trip.RejectByDriver(trip, driver, rejectionReason);
+
+            mv.setViewName("pages/dashboard/DriverDashboard");
+
+        } catch (Exception e) {
+            mv.setViewName("pages/error/Error");
+            mv.addObject("errorMessage", "sorry, the job could not be completed! Something went wrong");
+        }
+
+        // remove the meta data
+        session.setAttribute("tripToCancell", null);
+        session.setAttribute("driverAssosicatedToCancelledJob", null);
+
+        return mv;
     }
 
 }

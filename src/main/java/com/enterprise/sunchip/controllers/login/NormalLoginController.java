@@ -42,7 +42,7 @@ public class NormalLoginController {
                     case 2:
                         return new ModelAndView("redirect:/Driver/Dashboard");  // sends user to driver dashboard
                     case 3:
-                        return new ModelAndView("redirect:/RequestRide"); // sends user to customer request ride page
+                        return new ModelAndView("redirect:/Customer/RequestRide"); // sends user to customer request ride page
                 }
             }
 
@@ -72,11 +72,7 @@ public class NormalLoginController {
                     return new ModelAndView("redirect:/Driver/Dashboard");
                 case 3:
                     localSession.storeTokenInLocalCashe(request, currentUser.HashPassword);
-//                    mv.setViewName("pages/error/Error");
-//                    mv.setViewName("pages/customers/RequestRide");
-//                    mv.addObject("errorMessage", "sorry, customer dashboard not implemented!");
-                      return new ModelAndView("redirect:/RequestRide");
-//                      break;
+                      return new ModelAndView("redirect:/Customer/RequestRide");
             }
         }
         return mv;
@@ -87,7 +83,6 @@ public class NormalLoginController {
     {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("pages/login/NormalLogin");
-//        mv.setViewName("pages/customers/RequestRide");
         localSession.clearTokenStoredInLocalCashe(request);
         mv.addObject("userLoggedIn", false);
         return mv;
@@ -106,37 +101,6 @@ public class NormalLoginController {
         mv.setViewName("pages/login/NormalLogin");
 
         var driver = Shared.BeContext.User.RegisterNewUser("Bob", "Abu", "bob", "bob", User.UserType.ADMIN);
-
-//        var customer1 = Shared.BeContext.User.RegisterNewUser("fob", "fob", "fob", "fob", User.UserType.CUSTOMER);
-//        for (Integer i = 0; i < 5; i ++) {
-//            Trip t = new Trip();
-//            t.StartName =  "blob" + i.toString();
-//            t.EndName = "blob" + i.toString();
-//            t.StartLattitude = 100 * 1;
-//            t.Customer = customer1;
-//            t.Driver = driver;
-//            t.StartLongtitude = 200 * 100 * 1;;
-//            t.EndLattitude = 240 * 100 * 1;;
-//            t.EndLongtitude = 40 * 100 * 1;;
-//            t.Distance = 248 * 100 * 1;;
-//            Shared.DbContext.Trips.create(t);
-//        }
-//
-//        var customer2 = Shared.BeContext.User.RegisterNewUser("bob", "bob", "bob", "bob", User.UserType.CUSTOMER);
-//        for (Integer i = 0; i < 5; i ++) {
-//            Trip t = new Trip();
-//            t.StartName =  "blob" + i.toString();
-//            t.EndName = "blob" + i.toString();
-//            t.StartLattitude = 100 * 1;
-//            t.Customer = customer2;
-//            t.Driver = driver;
-//            t.StartLongtitude = 200 * 100 * 1;;
-//            t.EndLattitude = 240 * 100 * 1;;
-//            t.EndLongtitude = 40 * 100 * 1;;
-//            t.Distance = 248 * 100 * 1;;
-//            Shared.DbContext.Trips.create(t);
-//        }
-
         return mv;
     }
 

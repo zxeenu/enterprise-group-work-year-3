@@ -36,6 +36,7 @@
                 <th>Vehicle Type</th>
                 <th>Plate Number</th>
                 <th>Colour</th>
+                <th>Driver Id</th>
             </tr>
             </thead>
             <tbody>
@@ -46,6 +47,7 @@
                     <td>${driver.primaryVehicle.manufacturer}</td>
                     <td>${driver.primaryVehicle.licensePlateNo}</td>
                     <td>${driver.primaryVehicle.color}</td>
+                    <th>${driver.ID}</th>
                 </tr>
             </c:forEach>
             </tbody>

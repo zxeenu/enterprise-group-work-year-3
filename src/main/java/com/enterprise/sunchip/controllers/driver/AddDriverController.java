@@ -41,7 +41,7 @@ public class AddDriverController {
                                       newDriver.getLicensePlateNo(),
                                       newDriver.getColour());
 
-        localSession.clearTokenStoredInLocalCashe(request);
+//        localSession.clearTokenStoredInLocalCashe(request); // no longer required.
         try {
             user = Shared.BeContext.User.RegisterNewUser(
                     newDriver.getFirstName(),
@@ -55,12 +55,12 @@ public class AddDriverController {
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            return new ModelAndView("redirect:/SignUp");
+            return new ModelAndView("redirect:/Admin/Drivers");
         }
 
 
 
-        return new ModelAndView("redirect:/SignUp");
+        return new ModelAndView("redirect:/Admin/Drivers");
     }
 
 }
