@@ -305,7 +305,7 @@ public class TripModule {
      * @return Trips within range
      */
     public List<Trip> GetTripWithinDateRange(Date startDate, Date endDate) throws Exception {
-        if (startDate.before(endDate)) throw new Exception("Start date must be after the end date");
+        if (endDate.before(startDate)) throw new Exception("Start date must be after the end date");
         var returnList = new ArrayList<Trip>();
         for (var t : Shared.DbContext.Trips) {
             if (t.CreationTime.after(startDate) && t.CreationTime.before(endDate)) {
