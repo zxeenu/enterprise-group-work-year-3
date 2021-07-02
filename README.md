@@ -5,7 +5,7 @@
       Group Assignment</h6>
 </div>
 <p align="center">
-<img src="https://i.imgur.com/RIT8tJR.png">
+<img src="doc-images/EeZee Ride.png">
 </p>
 <p align="center"><i><b>The Taxi App You <strike>Need</strike> Deserve</b></i></p>
 
