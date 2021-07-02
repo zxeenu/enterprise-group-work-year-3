@@ -54,7 +54,7 @@ public class RequestRideController {
                 var customer = Shared.BeContext.User.GetByPasswordHash(tokenId);
                 if (customer != null){
                     Trip newtrip = Shared.BeContext.Trip.RequestNewTrip(customer);
-                    newtrip.setBookingDate(newRequest.getDateAndTime());
+                    newtrip.setCreationTime(newRequest.getDateAndTime());
                     newtrip.setStartName(newRequest.getLocation());
                     newtrip.setEndName(newRequest.getDestination());
                     newtrip.setPaidAmount(100*2);

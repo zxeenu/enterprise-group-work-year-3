@@ -26,33 +26,63 @@
 <div class="nfcontainer">
     <h1 class="title-dark">Dashboard</h1>
 
+<%--    <div class="filter">--%>
+<%--        <div class="dropdown">--%>
+<%--            <select name="drivers" id="drivers">--%>
+<%--                <option selected value="All">All Drivers</option>--%>
+<%--                <option value="sam">Sam</option>--%>
+<%--                <option value="nahy">Nahy</option>--%>
+<%--                <option value="bob">Bob</option>--%>
+<%--                <option value="fff">Fff</option>--%>
+<%--            </select>--%>
+
+<%--            <select name="status" id="status">--%>
+<%--                <option selected value="All">All Jobs</option>--%>
+<%--                <option value="sam">Ongoing</option>--%>
+<%--                <option value="nahy">Rejected</option>--%>
+<%--                <option value="bob">Completed</option>--%>
+<%--            </select>--%>
+<%--        </div>--%>
+<%--        <input--%>
+<%--                type="date"--%>
+<%--                value="TODO"--%>
+<%--                id="history-start"--%>
+<%--                name="history-start"--%>
+<%--        />--%>
+
+<%--        <input type="date" value="TODO" id="history-end" name="history-end" />--%>
+<%--        <a href="Filter?drivers=${trip.ID}&status=${driver.ID}"><button>Select</button></a>--%>
+<%--    </div>--%>
+
     <div class="filter">
-        <div class="dropdown">
-            <select name="drivers" id="drivers">
-                <option selected value="All">All Drivers</option>
-                <option value="sam">Sam</option>
-                <option value="nahy">Nahy</option>
-                <option value="bob">Bob</option>
-                <option value="fff">Fff</option>
-            </select>
+        <form action="Filter" method="Post">
+            <div class="dropdown">
 
-            <select name="status" id="status">
-                <option selected value="All">All Jobs</option>
-                <option value="sam">Ongoing</option>
-                <option value="nahy">Rejected</option>
-                <option value="bob">Completed</option>
-            </select>
-            <!-- IF POSSIBLE: We need to set this to default to today and show all of today's history on initial load -->
-        </div>
-        <input
-                type="date"
-                value="TODO"
-                id="history-start"
-                name="history-start"
-        />
+                <select name="driver" id="drivers">
+                    <option value="all_drivers">All Drivers</option>
+                    <c:forEach items="${driverList}" var="driver">
+                        <option value="${driver.ID}">${driver.firstName} ${driver.lastName}</option>
+                    </c:forEach>
+                </select>
 
-        <input type="date" value="TODO" id="history-end" name="history-end" />
-        <a href="/TODO"><button>Select</button></a>
+                <select name="status" id="status">
+                    <option value="all_status">All Jobs</option>
+                    <option value="ongoing">In Progress</option>
+                    <option value="rejected">Rejected</option>
+                    <option value="completed">Completed</option>
+                </select>
+
+                <input
+                        type="date"
+                        id="history-start"
+                        name="history-start"
+                />
+
+                <input type="date" id="history-end" name="history-end" />
+
+                <button formaction="Filter" formmethod="post">Filter</button>
+            </div>
+        </form>
     </div>
 
     <table>
