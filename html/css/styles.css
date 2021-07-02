@@ -290,11 +290,15 @@ table.t-details {
 /* Input Forms */
 
 form {
-  background-color: var(--bg);
+
   border-radius: 8px;
-  width: 300px;
+  width: 500px;
   display: flex;
   justify-content: center;
+}
+
+form.admin-login{
+  background-color: var(--bg);
 }
 
 form.reject-humanity {

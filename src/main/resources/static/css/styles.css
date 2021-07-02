@@ -13,6 +13,10 @@
 
 /* Typography */
 
+a {
+  text-decoration: none;
+}
+
 @font-face {
   font-family: "Noto";
   src: url("../assets/fonts/NotoSans-Regular.ttf");
@@ -68,6 +72,14 @@
 .sub-title {
   font-family: "Bebasneue";
   color: var(--dark);
+  font-size: 30px;
+  text-align: left;
+  display: flex;
+}
+
+.sub-title-light {
+  font-family: "Bebasneue";
+  color: var(--light-blue);
   font-size: 30px;
   text-align: left;
   display: flex;
@@ -289,6 +301,19 @@ form.admin-login{
   background-color: var(--bg);
 }
 
+form.reject-humanity {
+  background-color: #ffffff00;
+  border-radius: 0px;
+  width: 700px;
+  display: flex;
+  justify-content: left;
+}
+
+textarea {
+  padding: 15px;
+  font-family: "Noto";
+}
+
 /* Login Box */
 
 .login-box-container {
@@ -436,7 +461,7 @@ input[type="radio"] {
   cursor: pointer;
   margin: 4px;
   transition: width 0.1s ease-in-out, border 0.3s ease-in-out,
-    color 0.3s ease-in-out;
+  color 0.3s ease-in-out;
 }
 
 input[type="radio"]:hover + label {
@@ -451,7 +476,7 @@ input[type="radio"]:checked + label {
   color: white;
   width: 100px;
   transition: width 0.1s ease-in-out, background-color 0.1s ease-in-out,
-    color 0.1s ease-in-out;
+  color 0.1s ease-in-out;
 }
 
 .sun {
@@ -524,7 +549,7 @@ select {
   width: 170px;
 
   background: url(http://127.0.0.1:5500/html/assets/images/chevron.png)
-    no-repeat right var(--accent-pink);
+  no-repeat right var(--accent-pink);
   -webkit-appearance: none;
   background-position-x: 134px;
 }
