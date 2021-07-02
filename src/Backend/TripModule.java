@@ -325,7 +325,7 @@ public class TripModule {
     public List<Trip> FilterByDriver(List<Trip> l, User driver) {
         var return_list = new ArrayList<Trip>();
         for (var t : l) {
-            if (t.Driver == driver) {
+            if (t.Driver.getID() == driver.getID()) {
                 return_list.add(t);
             }
         }
