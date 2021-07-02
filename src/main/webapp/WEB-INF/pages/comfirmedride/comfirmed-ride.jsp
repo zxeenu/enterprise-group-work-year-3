@@ -45,8 +45,8 @@
                 <td>${trip.startName}</td>
                 <td>${trip.endName}</td>
                 <td>${trip.paidAmount}</td>
-                <td>000</td>
-                <td>${trip.paidAmount}</td>
+                <td>${trip.paidAmount*0.06}</td>
+                <td>${trip.paidAmount*1.06}</td>
             </tr>
         </table>
     </div>
