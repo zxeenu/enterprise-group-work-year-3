@@ -29,10 +29,10 @@ public class ApiController {
             locatinList.add(_location);
         }
 
-        JSONObject preparedList = new JSONObject();
-        preparedList.put("location_list", locatinList.toJSONString());
+//        JSONObject preparedList = new JSONObject();
+//        preparedList.put("location_list", locatinList.toJSONString());
 
-        return preparedList.toJSONString();
+        return locatinList.toJSONString();
     }
 
     @GetMapping("/v1/location-services-sunchip/***")
