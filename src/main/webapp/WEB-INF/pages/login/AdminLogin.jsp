@@ -17,7 +17,7 @@
 
 <div class="container center">
   <div class="login-box-container admin">
-    <form action="LoginAdmin" method="post">
+    <form action="LoginAdmin" method="post" class="admin-login">
       <div class="login-box">
         <h1 class="title">Admin</h1>
         <input

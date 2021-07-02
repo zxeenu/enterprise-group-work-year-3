@@ -31,23 +31,25 @@
         <table class="dash">
             <thead>
             <tr>
+                <th>ID</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Vehicle Type</th>
                 <th>Plate Number</th>
                 <th>Colour</th>
-                <th>Driver Id</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
             <c:forEach items="${driverList}" var="driver">
                 <tr>
+                    <th>${driver.ID}</th>
                     <td>${driver.firstName}</td>
                     <td>${driver.lastName}</td>
                     <td>${driver.primaryVehicle.manufacturer}</td>
                     <td>${driver.primaryVehicle.licensePlateNo}</td>
                     <td>${driver.primaryVehicle.color}</td>
-                    <th>${driver.ID}</th>
+                    <td><a href="TODO"><button>Delete</button></a></td>
                 </tr>
             </c:forEach>
             </tbody>

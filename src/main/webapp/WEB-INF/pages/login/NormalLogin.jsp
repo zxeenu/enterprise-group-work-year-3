@@ -40,8 +40,6 @@
           <button class="login-submit" type="submit">Login</button>
 
           <div class="forgot">
-            <a href="ForgotPassword">Forgot password?</a>
-            <br/>
             <a href="SignUp">Don't have an account?</a>
           </div>
         </div>

@@ -29,17 +29,19 @@
     <table class="dash">
         <thead>
         <tr>
+            <th>Id</th>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Id</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
             <c:forEach items="${customerList}" var="customer">
                 <tr>
+                    <td>${customer.ID}</td>
                     <td>${customer.firstName}</td>
                     <td>${customer.lastName}</td>
-                    <td>${customer.ID}</td>
+                    <td><a href="TODO"><button>Delete</button></a></td>
                 </tr>
             </c:forEach>
         </tbody>
