@@ -91,7 +91,6 @@ public class DriverDashboardController {
      * @param driverId
      * @return
      */
-//    @RequestMapping(value = "DriverAcceptsJob")
     @GetMapping(path = "/DriverAcceptsJob")
     public ModelAndView driverJobAcceptance(HttpServletRequest request, @RequestParam("trip_id") String tripId, @RequestParam("driver_id") String driverId) {
         String tokenId = "";
@@ -106,10 +105,7 @@ public class DriverDashboardController {
                         var tripList = Shared.BeContext.Trip.GetAllTripsByDriver(driver);
                         for (var trip : tripList) {
                             if (trip.ID.toString().equals(tripId)) {
-//                                trip.setState(0); // accepted. ie, awaiting pickup
-//                                Shared.DbContext.Trips.update(trip);
                                 Shared.BeContext.Trip.AssignTripDriver(trip, driver);
-//                                Shared.BeContext.Trip.AssignTripToDriver(trip);
                             }
                         }
                     }
@@ -178,10 +174,6 @@ public class DriverDashboardController {
                         var tripList = Shared.BeContext.Trip.GetAllTripsByDriver(driver);
                         for (var trip : tripList)  {
                             if (trip.ID.toString().equals(tripId)) {
-//                                trip.setState(-2); // rejection code
-//                                Shared.DbContext.RejectionReasons.create();
-//                                Shared.DbContext.Trips.update(trip);
-//                                Shared.BeContext.Trip.RejectByDriver(trip, driver, "stupidity");
                                 HttpSession session = request.getSession();
                                 session.setAttribute("tripToCancell", trip);
                                 session.setAttribute("driverAssosicatedToCancelledJob", driver);

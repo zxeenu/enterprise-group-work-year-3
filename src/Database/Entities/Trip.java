@@ -102,6 +102,24 @@ public class Trip {
 //        }
 //    }
 
+    public Trip(Integer ID, User customer, boolean tripComplete, Date creationTime, User driver, Database.Entities.Vehicle vehicle, String startName, double startLattitude, double startLongtitude, String endName, double endLattitude, double endLongtitude, double distance, int state, float paidAmount) {
+        this.ID = ID;
+        Customer = customer;
+        TripComplete = tripComplete;
+        CreationTime = creationTime;
+        Driver = driver;
+        Vehicle = vehicle;
+        StartName = startName;
+        StartLattitude = startLattitude;
+        StartLongtitude = startLongtitude;
+        EndName = endName;
+        EndLattitude = endLattitude;
+        EndLongtitude = endLongtitude;
+        Distance = distance;
+        State = state;
+        PaidAmount = paidAmount;
+    }
+
 
     //region Getters and Setters
 

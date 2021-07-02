@@ -331,4 +331,17 @@ public class TripModule {
         }
         return return_list;
     }
+
+
+    public List<Trip> GetTripWithinDateRangeAndDriver(Date startDate, Date endDate, Integer driverId) throws Exception {
+        if (endDate.before(startDate)) throw new Exception("Start date must be after the end date");
+        var returnList = new ArrayList<Trip>();
+        for (var t : Shared.DbContext.Trips) {
+            if (t.CreationTime.after(startDate) && t.CreationTime.before(endDate) && t.Driver.ID.equals(driverId)) {
+                returnList.add(t);
+            }
+        }
+        return returnList;
+    }
+
 }

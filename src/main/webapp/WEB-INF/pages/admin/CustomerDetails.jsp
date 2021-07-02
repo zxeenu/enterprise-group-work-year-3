@@ -41,7 +41,7 @@
                     <td>${customer.ID}</td>
                     <td>${customer.firstName}</td>
                     <td>${customer.lastName}</td>
-                    <td><a href="TODO"><button>Delete</button></a></td>
+                    <td><a href="CustomerDelete?customer_id=${customer.ID}"><button type="submit" formmethod="POST">Delete</button></a></td>
                 </tr>
             </c:forEach>
         </tbody>

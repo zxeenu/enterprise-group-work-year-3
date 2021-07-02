@@ -239,42 +239,45 @@ public class AdminDashboardController {
                             end = sdformat.parse(historyEnd);
                         }
 
-                        var tripListDate = Shared.BeContext.Trip.GetTripWithinDateRange(start, end);
+//                        var tripListDate = Shared.BeContext.Trip.GetTripWithinDateRange(start, end);
                         var driverList = Shared.BeContext.User.GetAllDrivers();
 //                        ArrayList<Trip> tripListDateDriverFiltered = new ArrayList<>();
                         var tripListDateDriverFiltered = new ArrayList<Trip>();
-                        Integer driverSelected = null;
+                        String driverSelected = "";
+                        Integer driverSelectedInt = -1;
 
                         // get the driver object for filering
                         if (!driverId.contentEquals("all_drivers")) {
                             for (var driver : driverList) {
                                 if (driverId.contentEquals(driver.ID.toString())) {
 //                                    tripListDateDriverFiltered = Shared.BeContext.Trip.FilterByDriver(tripListDate, driver);
-                                    driverSelected = driver.ID;
+                                    driverSelected = driver.ID.toString();
+                                    driverSelectedInt = driver.getID();
                                     driverName = driver.FirstName + " " + driver.LastName;
                                 }
                             }
                         }
 
-                        if (driverSelected != null) {
-                            for (Trip t: tripListDate) {
-                                if (t.Driver.getID().equals(driverSelected)) {
-                                    tripListDateDriverFiltered.add(t);
-                                }
-                            }
+
+                        var tripListDateTemp = Shared.BeContext.Trip.GetTripWithinDateRange(start, end);
+
+                        if (!driverSelected.isEmpty()) {
+
+                        for (var t : tripListDateTemp) {
+//                            if (driverSelected.contentEquals(Integer.toString(t.Driver.ID))) {
+//                                tripListDateDriverFiltered.add(t);
+//                            }
+                            tripListDateDriverFiltered.add(t);
                         }
-
-
-                        // filter the trip list
-//                        System.out.println(tripListDate.size() + " " + tripListDateDriverFiltered.size());
-//                        System.out.println("-------------");
+                        } else {
+                            tripListDateDriverFiltered.addAll(tripListDateTemp);
+                        }
 
                         var preparedTripListOngoing = new ArrayList<Trip>();
                         var preparedTripListRejected = new ArrayList<Trip>();
                         var preparedTripListCompleted = new ArrayList<Trip>();
-                        var preparedTripListAll= new ArrayList<Trip>();
 
-                        for (Trip t : tripListDate) {
+                        for (Trip t : tripListDateDriverFiltered) {
                             switch (t.getState()) {
                                 case 1:
                                     preparedTripListOngoing.add(t);
@@ -286,8 +289,6 @@ public class AdminDashboardController {
                                     preparedTripListCompleted.add(t);
                                     break;
                             }
-
-                            preparedTripListAll.add(t);
                         }
 
 
@@ -296,8 +297,7 @@ public class AdminDashboardController {
                         int inProgessJobs = 0;
                         int completedJobs = 0;
                         double dailyTurnOver = 0;
-
-                        for (Trip t : preparedTripListAll) {
+                        for (Trip t : tripListDateDriverFiltered) {
                             switch (t.getState()){
                                 case -2:
                                     rejectedJobs++;
@@ -314,7 +314,6 @@ public class AdminDashboardController {
                             }
                             dailyTurnOver += t.PaidAmount;
                         }
-
                         switch (statusCode) {
                             case "ongoing":
                                 mv.addObject("tripList", preparedTripListOngoing);
@@ -326,20 +325,17 @@ public class AdminDashboardController {
                                 mv.addObject("tripList", preparedTripListCompleted);
                                 break;
                             case "all_status":
-                                mv.addObject("tripList", preparedTripListAll);
+                                mv.addObject("tripList", tripListDateDriverFiltered);
                                 break;
                         }
 
-                        var driverListDropDown = Shared.BeContext.User.GetAllDrivers();
-                        mv.addObject("driverList", driverListDropDown);
-                        mv.addObject("tripList", tripListDate);
+                        mv.addObject("driverList", driverList);
                         mv.addObject("driverName", driverName);
                         mv.addObject("rejectedJobs", rejectedJobs);
                         mv.addObject("awaitingPickupJobs", awaitingPickupJobs);
                         mv.addObject("inProgessJobs", inProgessJobs);
                         mv.addObject("completedJobs", completedJobs);
                         mv.addObject("dailyTurnOver", dailyTurnOver);
-
                     }
                 }
             }
@@ -348,6 +344,7 @@ public class AdminDashboardController {
 //            localSession.clearTokenStoredInLocalCashe(request);
             System.out.println(e);
         }
+
         return mv;
     }
 
@@ -410,6 +407,67 @@ public class AdminDashboardController {
 //            localSession.clearTokenStoredInLocalCashe(request);
         }
         return mv;
+    }
+
+    @GetMapping(path = "/DriverDelete")
+    public ModelAndView deleteDriver(HttpServletRequest request, @RequestParam("driver_id") String driverId) {
+        String tokenId = "";
+        try {
+            tokenId = localSession.getTokenStoredInLocalCashe(request);
+
+            if (!tokenId.isEmpty()) {
+                var admin = Shared.BeContext.User.GetByPasswordHash(tokenId);
+
+                if (admin != null) {
+                    if (admin.UserClassCode == 1) {
+                        var driverList = Shared.BeContext.User.GetAllDrivers();
+                        for (var driver : driverList) {
+                            if (driver.ID.toString().equals(driverId)) {
+                                Shared.BeContext.User.DeleteUser(driver);
+                            }
+                        }
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            ModelAndView mv = new ModelAndView();
+            mv.setViewName("pages/error/Error");
+            mv.addObject("errorMessage", "sorry, the job could not be accepted!");
+            return mv;
+        }
+        return new ModelAndView("redirect:/Admin/Drivers");
+    }
+
+
+    @GetMapping(path = "/CustomerDelete")
+    public ModelAndView deleteCustomer(HttpServletRequest request, @RequestParam("customer_id") String customerId) {
+        String tokenId = "";
+        try {
+            tokenId = localSession.getTokenStoredInLocalCashe(request);
+
+            if (!tokenId.isEmpty()) {
+                var admin = Shared.BeContext.User.GetByPasswordHash(tokenId);
+
+                if (admin != null) {
+                    if (admin.UserClassCode == 1) {
+                        var customerList = Shared.BeContext.User.GetAllCustomers();
+                        for (var customer : customerList) {
+                            if (customer.ID.toString().equals(customerId)) {
+                                Shared.BeContext.User.DeleteUser(customer);
+                            }
+                        }
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            ModelAndView mv = new ModelAndView();
+            mv.setViewName("pages/error/Error");
+            mv.addObject("errorMessage", "sorry, the job could not be accepted!");
+            return mv;
+        }
+        return new ModelAndView("redirect:/Admin/Customers");
     }
 
 

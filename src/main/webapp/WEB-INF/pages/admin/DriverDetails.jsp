@@ -49,7 +49,7 @@
                     <td>${driver.primaryVehicle.manufacturer}</td>
                     <td>${driver.primaryVehicle.licensePlateNo}</td>
                     <td>${driver.primaryVehicle.color}</td>
-                    <td><a href="TODO"><button>Delete</button></a></td>
+                    <td><a href="DriverDelete?driver_id=${driver.ID}"><button type="submit" formmethod="POST">Delete</button></a></td>
                 </tr>
             </c:forEach>
             </tbody>
