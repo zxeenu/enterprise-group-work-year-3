@@ -31,8 +31,6 @@ public class Trip {
     @DatabaseField(dataType = DataType.DATE_STRING, format = "yyyy-MM-dd HH:mm:ss")
     public java.util.Date CreationTime;
 
-    @DatabaseField(dataType = DataType.DATE_STRING, format = "yyyy-MM-dd HH:mm:ss")
-    public java.util.Date BookingDate;
 
     @DatabaseField(foreignAutoRefresh = true, foreign = true, foreignAutoCreate = true)
     public User Driver;
@@ -123,9 +121,7 @@ public class Trip {
         return CreationTime;
     }
 
-    public Date getBookingDate() {
-        return BookingDate;
-    }
+
 
     public Database.Entities.Vehicle getVehicle() {
         return Vehicle;
@@ -175,10 +171,6 @@ public class Trip {
 
     public void setCreationTime(Date creationTime) {
         CreationTime = creationTime;
-    }
-
-    public void setBookingDate(Date bookingDate) {
-        BookingDate = bookingDate;
     }
 
     public void setDriver(User driver) {

@@ -296,9 +296,22 @@ public class TripModule {
         Shared.DbContext.Trips.update(t);
     }
 
-
-
-
-
-
+    /**
+     * This function will accept 2 dates and it will
+     * return the trips that were created between those
+     * two dates
+     * @param startDate Start date
+     * @param endDate End Date
+     * @return Trips within range
+     */
+    public List<Trip> GetTripWithinDateRange(Date startDate, Date endDate) throws Exception {
+        if (startDate.before(endDate)) throw new Exception("Start date must be after the end date");
+        var returnList = new ArrayList<Trip>();
+        for (var t : Shared.DbContext.Trips) {
+            if (t.CreationTime.after(startDate) && t.CreationTime.before(endDate)) {
+                returnList.add(t);
+            }
+        }
+        return returnList;
+    }
 }
