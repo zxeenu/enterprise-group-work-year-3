@@ -314,4 +314,21 @@ public class TripModule {
         }
         return returnList;
     }
+
+    /**
+     * This function will accept a list of trips and filter them by
+     * driver
+     * @param l List of trips
+     * @param driver Driver
+     * @return Filtered trip list
+     */
+    public List<Trip> FilterByDriver(List<Trip> l, User driver) {
+        var return_list = new ArrayList<Trip>();
+        for (var t : l) {
+            if (t.Driver == driver) {
+                return_list.add(t);
+            }
+        }
+        return return_list;
+    }
 }
