@@ -19,19 +19,9 @@
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#team">Team</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
 
@@ -49,44 +39,65 @@ It takes into account the locations of both parties and driver availability to s
 * Spring Boot MVC
 * Frontend: JavaServer Pages (JSP)
 
-<!-- GETTING STARTED -->
-## Getting Started
-
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```JS
-   const API_KEY = 'ENTER YOUR API';
-   ```
-
-
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## Usage/Features
+### For customers
+#### Sign Up as a new user
+<p>You can go to the sign up page by clicking the "Don't have an account?" on the home (log in) page, or by adding `SignUp` to the end of the root URL.</p>
+<p>Once registered as a new user, you will be automatically redirected to the log in page.</p>
+
+#### Log in
+<p>To log in you will need your username and password.</p>
+<p>Once logged in you will be taken to the Request A Ride page.</p>
 
 
+#### Request a ride
+<p>To request a ride, enter the location and destination, and the day and time of when you want the ride.</p>
+<p>Enter the date and time easily by clicking the icons at the end of their fields.</p>
+<p>After entering the information, click the Request button.</p>
+
+#### Log out
+<p>You can log out any time by clicking the "Log Out" in the header.</p>
 
 
-<!-- ROADMAP -->
-## Roadmap
+### For drivers
+#### Log in as a driver
+#### Log out
+<p>An Eezee Ride driver account will be created for you by an admin.</p>
+<p>Log in with your username and password from the home (log in) page.</p>
+<p>You will be redirected to the Assigned Jobs page.</p>
+
+#### Assigned jobs
+<p>From this page you will see the jobs that have been automatically assigned to you.</p>
+<p>You have the option to accept or reject these jobs with a given reason.</p>
+
+#### Log out
+<p>You can log out any time by clicking the "Log Out" in the header.</p>
+
+
+### For admins
+#### Log in as an admin
+<p>To log in as an admin go to `/LoginAdmin`.</p>
+<p>You will be redirected to the admin dashboard.</p>
+
+#### Admin Dashboard
+<p>The dashboard allows drivers to view reports.</p>
+<p>To filter the data by a driver</p>
+<p>To filter the data within a data range select a start and end date and click the "Filter" button. Click the calendar icon to easily pick dates.</p>
+<p>To view all drivers click "All Drivers" and to view all jobs irrespective of dates click "All Jobs".</p>
+
+#### Drivers admin page
+<p>Move to the drivers page via the link in the header.</p>
+<p>Here, you can view a list of all drivers along with their information.</p>
+<p>This is also where you can add new drivers who have joined the company.</p>
+
+#### Customers admin page
+<p>The customers page can also be accessed via the link in the header.</p>
+<p>This page displays a list of all customers with their account ID, and first and last names. It also gives you the ability to delete the user.</p>
+
+#### Log out
+<p>You can log out any time by clicking the "Log Out" in the header.</p>
 
 
 
@@ -133,17 +144,3 @@ The Sunchip Team
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-
-
-<!-- CONTACT -->
-## Contact
-
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-
-
-
-<!-- ACKNOWLEDGEMENTS -->
-
-## Acknowledgements
