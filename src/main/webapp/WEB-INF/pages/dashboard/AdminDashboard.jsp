@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <head>
     <meta charset="UTF-8" />
@@ -59,15 +61,14 @@
             <th>Ongoing Jobs</th>
             <th>Rejected Jobs</th>
             <th>Completed Jobs</th>
-
             <th>Daily Turnover</th>
         </tr>
         <tr>
-            <td>All</td>
-            <td>1</td>
-            <td>2</td>
-            <td>7</td>
-            <td>1300.00 MVR</td>
+            <td>${driverName}</td>
+            <td>${inProgessJobs}</td>
+            <td>${rejectedJobs}</td>
+            <td>${completedJobs}</td>
+            <td>${dailyTurnOver} MVR</td>
         </tr>
     </table>
     <h1 class="title-dark">Job History</h1>
@@ -80,14 +81,31 @@
             <th>Distance</th>
             <th>Status</th>
         </tr>
-        <tr>
-            <td>Sam</td>
-            <td>Banaha</td>
-            <td>Home</td>
-            <td>College</td>
-            <td>3 Kilometers</td>
-            <td>In progress</td>
-        </tr>
+        <c:forEach items="${tripList}" var="trip">
+            <tr>
+                <td>${trip.driver.firstName} ${trip.driver.lastName}</td>
+                <td>${trip.customer.firstName} ${trip.customer.lastName}</td>
+                <td>${trip.startName}</td>
+                <td>${trip.endName}</td>
+                <td>${trip.distance}</td>
+                <td>
+                    <c:choose>
+                        <c:when test="${trip.state == -2}">
+                            Rejected
+                        </c:when>
+                        <c:when test="${trip.state == 0}">
+                            Awaiting Pickup
+                        </c:when>
+                        <c:when test="${trip.state == 1}">
+                            In Progress
+                        </c:when>
+                        <c:when test="${trip.state == 2}">
+                            Complete
+                        </c:when>
+                    </c:choose>
+                </td>
+            </tr>
+        </c:forEach>
     </table>
 </div>
 </body>

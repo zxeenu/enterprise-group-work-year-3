@@ -108,8 +108,8 @@ public class DriverDashboardController {
                             if (trip.ID.toString().equals(tripId)) {
 //                                trip.setState(0); // accepted. ie, awaiting pickup
 //                                Shared.DbContext.Trips.update(trip);
-//                                Shared.BeContext.Trip.AssignTripDriver(trip, driver);
-                                Shared.BeContext.Trip.AssignTripToDriver(trip);
+                                Shared.BeContext.Trip.AssignTripDriver(trip, driver);
+//                                Shared.BeContext.Trip.AssignTripToDriver(trip);
                             }
                         }
                     }

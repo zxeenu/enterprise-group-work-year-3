@@ -107,6 +107,15 @@ public class TripModule {
     }
 
 
+    public ArrayList<Trip> GetNotCompleteTripsByCustomer(User customer) {
+        var matching_trips = new ArrayList<Trip>();
+        for (Trip ct : Shared.DbContext.Trips) {
+            if ((ct.Customer.ID.equals(customer.ID)) && (!ct.TripComplete)) matching_trips.add(ct);
+        }
+        return matching_trips;
+    }
+
+
     /**
      * Assigns first availble driver to a trip. Drivers are required to have no active trips
      * @param t Trip to be assigned

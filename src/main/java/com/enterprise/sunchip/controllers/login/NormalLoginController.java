@@ -72,7 +72,7 @@ public class NormalLoginController {
                     return new ModelAndView("redirect:/Driver/Dashboard");
                 case 3:
                     localSession.storeTokenInLocalCashe(request, currentUser.HashPassword);
-                      return new ModelAndView("redirect:/Customer/RequestRide");
+                    return new ModelAndView("redirect:/Customer/RequestRide");
             }
         }
         return mv;

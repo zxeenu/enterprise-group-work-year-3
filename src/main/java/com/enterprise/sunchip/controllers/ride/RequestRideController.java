@@ -28,10 +28,10 @@ public class RequestRideController {
             tokenId = localSession.getTokenStoredInLocalCashe(request);
             if (!tokenId.isEmpty()) {
                 var customer = Shared.BeContext.User.GetByPasswordHash(tokenId);
-
                 // Ziaan, if trip exists for user, dont let them create another one, redirect to confirmed page
-                var tripExists = Shared.BeContext.Trip.GetActiveTripsByCustomer(customer);
+                var tripExists = Shared.BeContext.Trip.GetNotCompleteTripsByCustomer(customer);
                 if (!tripExists.isEmpty()) {
+                    System.out.println("------- " + tripExists.size());
                     return new ModelAndView("redirect:/Customer/ComfirmedRide");
                 }
             }
@@ -58,7 +58,7 @@ public class RequestRideController {
                     newtrip.setStartName(newRequest.getLocation());
                     newtrip.setEndName(newRequest.getDestination());
                     newtrip.setPaidAmount(100*2);
-                    Shared.BeContext.Trip.AssignTripToAvailableDriver(newtrip);
+//                    Shared.BeContext.Trip.AssignTripToAvailableDriver(newtrip);
                     Shared.DbContext.Trips.update(newtrip);
                 }
 
@@ -72,6 +72,7 @@ public class RequestRideController {
             return mv;
 //            return new ModelAndView("redirect:/Customer/RequestRide");
         }
+
         return new ModelAndView("redirect:/Customer/ComfirmedRide");
     }
 }
