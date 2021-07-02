@@ -2,6 +2,7 @@ package main.java.com.enterprise.sunchip.controllers.ride;
 
 import Common.Shared;
 import Database.Entities.Trip;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import main.java.com.enterprise.sunchip.models.RequestModel;
 import main.java.com.enterprise.sunchip.services.LocalSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,7 @@ public class RequestRideController {
     @PostMapping(path = "/RequestRide")
     public ModelAndView RequestAction(@ModelAttribute("requestForm") RequestModel newRequest, BindingResult result, HttpServletRequest request)
     {
+
         try {
             String tokenId = "";
 
@@ -53,10 +55,17 @@ public class RequestRideController {
             if (!tokenId.isEmpty()) {
                 var customer = Shared.BeContext.User.GetByPasswordHash(tokenId);
                 if (customer != null){
+
+
+
                     Trip newtrip = Shared.BeContext.Trip.RequestNewTrip(customer);
                     newtrip.setCreationTime(newRequest.getDateAndTime());
-                    newtrip.setStartName(newRequest.getLocation());
-                    newtrip.setEndName(newRequest.getDestination());
+                    newtrip.setStartName(newRequest.locationNameFromWebservice());
+                    newtrip.setEndName(newRequest.DestinationNameFromWebservice());
+                    newtrip.setEndLattitude(newRequest.getDestinationCoordinatesFromWebservice()[0]);
+                    newtrip.setEndLongtitude(newRequest.getDestinationCoordinatesFromWebservice()[1]);
+                    newtrip.setStartLattitude(newRequest.getDestinationCoordinatesFromWebservice()[0]);
+                    newtrip.setStartLongtitude(newRequest.getDestinationCoordinatesFromWebservice()[1]);
                     newtrip.setPaidAmount(100*2);
 //                    Shared.BeContext.Trip.AssignTripToAvailableDriver(newtrip);
                     Shared.DbContext.Trips.update(newtrip);
@@ -71,6 +80,8 @@ public class RequestRideController {
             mv.addObject("errorMessage", "Sorry, you're request could not be processed!");
             return mv;
 //            return new ModelAndView("redirect:/Customer/RequestRide");
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
         }
 
         return new ModelAndView("redirect:/Customer/ComfirmedRide");
