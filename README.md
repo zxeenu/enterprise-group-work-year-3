@@ -170,11 +170,5 @@ The Sunchip Team
 </table>
 
 <div>
-  <h6>University of West of England [Villa College] | BSc (HONS) Computer Science - Jan 2019 | Enterprise Systems Development (UFCF85-30-3) | GA</h6>
+  <h6 style="color: #58a6ff;">University of West of England [Villa College] | BSc (HONS) Computer Science - Jan 2019 | Enterprise Systems Development (UFCF85-30-3) | GA</h6>
 </div>
-
-<style>
-h1, h3, h4, h6 {
-  color: #58a6ff;
-  }
-</style>
