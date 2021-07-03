@@ -12,9 +12,17 @@ public class SunchipApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 
-//		Shared.BeContext = new BackendContext("jdbc:sqlserver://localhost:1433;databaseName=BLANKDB;user=sa;password=QuidEst");
-//		Shared.BeContext = new BackendContext("jdbc:sqlserver://27.114.145.29:1433;databaseName=JUNITDB;user=dbacc;password=OraS1m$1");
-		Shared.BeContext = new BackendContext("jdbc:sqlserver://SILVER-NOTE:1433;databaseName=enterprisejuly1;user=zeenu;password=2OTF5FkZudUGv");
+	/** Please enter the following information into your MMSQL DB connection string:
+	 *	Location of your MMSQL Database goes after sqlserver:// (replace localhost:1433 if required)
+	 *	Replace enterDB with your database name
+	 *	Replace enterUser with your server admin username
+	 *	Replace enterPass with the server admin password
+	 **/
+	Shared.BeContext = new BackendContext("jdbc:sqlserver://localhost:1433;databaseName=enterDB;user=enterUser;password=enterPass");
+
+	/** If you were unable to create and use your own database please uncomment line 24 and comment out line 21 to use the application
+	 Shared.BeContext = new BackendContext("jdbc:sqlserver://27.114.157.158:1433;databaseName=JUNITDB;user=dbacc;password=OraS1m$1");**/
+
 		SpringApplication.run(SunchipApplication.class, args
 		);
 	}
