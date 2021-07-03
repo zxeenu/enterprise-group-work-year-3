@@ -55,8 +55,9 @@
 <%--    </div>--%>
 
     <div class="filter">
-        <form action="Filter" method="Post">
-            <div class="dropdown">
+
+        <form action="Filter" method="Post" class="admin-dash">
+
 
                 <select name="driver" id="drivers">
                     <option value="all_drivers">All Drivers</option>
@@ -72,6 +73,7 @@
                     <option value="completed">Completed</option>
                 </select>
 
+
                 <input
                         type="date"
                         id="history-start"
@@ -81,8 +83,9 @@
                 <input type="date" id="history-end" name="history-end" />
 
                 <button formaction="Filter" formmethod="post">Filter</button>
-            </div>
+
         </form>
+
     </div>
 
     <table>

@@ -296,6 +296,10 @@ form {
   display: flex;
   justify-content: center;
 }
+form.admin-dash {
+  width: 100%;
+  justify-content: left;
+}
 
 form.admin-login{
   background-color: var(--bg);
@@ -532,9 +536,18 @@ input[type="date"]#history-end {
   padding-bottom: 20px;
 }
 
+.filter button {
+  width: 170px;
+  margin-left: 5px;
+}
+
+.filter #status{
+  margin-left: 5px;
+}
+
 select {
   padding: 13px 20px;
-  width: 100%;
+
   border: 1px solid var(--dark);
   border-radius: 5px;
   background-color: var(--accent-pink);
@@ -548,7 +561,7 @@ select {
   outline: none;
   width: 170px;
 
-  background: url(http://127.0.0.1:5500/html/assets/images/chevron.png)
+  background: url(../assets/images/chevron.png)
   no-repeat right var(--accent-pink);
   -webkit-appearance: none;
   background-position-x: 134px;
