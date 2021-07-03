@@ -1,5 +1,6 @@
 package main.java.com.enterprise.sunchip.controllers.admin;
 
+import Common.Logger;
 import Common.Shared;
 import Database.Entities.Trip;
 import Database.Entities.User;
@@ -239,20 +240,15 @@ public class AdminDashboardController {
                             end = sdformat.parse(historyEnd);
                         }
 
-//                        var tripListDate = Shared.BeContext.Trip.GetTripWithinDateRange(start, end);
                         var driverList = Shared.BeContext.User.GetAllDrivers();
-//                        ArrayList<Trip> tripListDateDriverFiltered = new ArrayList<>();
                         var tripListDateDriverFiltered = new ArrayList<Trip>();
                         String driverSelected = "";
-                        Integer driverSelectedInt = -1;
 
                         // get the driver object for filering
                         if (!driverId.contentEquals("all_drivers")) {
                             for (var driver : driverList) {
                                 if (driverId.contentEquals(driver.ID.toString())) {
-//                                    tripListDateDriverFiltered = Shared.BeContext.Trip.FilterByDriver(tripListDate, driver);
                                     driverSelected = driver.ID.toString();
-                                    driverSelectedInt = driver.getID();
                                     driverName = driver.FirstName + " " + driver.LastName;
                                 }
                             }
@@ -260,18 +256,19 @@ public class AdminDashboardController {
 
 
                         var tripListDateTemp = Shared.BeContext.Trip.GetTripWithinDateRange(start, end);
-
                         if (!driverSelected.isEmpty()) {
-
-                        for (var t : tripListDateTemp) {
-//                            if (driverSelected.contentEquals(Integer.toString(t.Driver.ID))) {
-//                                tripListDateDriverFiltered.add(t);
-//                            }
-                            tripListDateDriverFiltered.add(t);
-                        }
-                        } else {
-                            tripListDateDriverFiltered.addAll(tripListDateTemp);
-                        }
+                            for (var t : tripListDateTemp) {
+                                    if (t.getDriver() != null) {
+                                        if (driverSelected.contentEquals(Integer.toString(t.Driver.ID))) {
+                                            String msg = t.ID.toString();
+                                            Logger.Instance.Add(msg, Logger.LogLevels.INFO);
+                                            tripListDateDriverFiltered.add(t);
+                                        }
+                                    }
+                            }
+                            } else {
+                                tripListDateDriverFiltered.addAll(tripListDateTemp);
+                            }
 
                         var preparedTripListOngoing = new ArrayList<Trip>();
                         var preparedTripListRejected = new ArrayList<Trip>();
