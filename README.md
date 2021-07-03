@@ -1,13 +1,7 @@
-<div>
-  <h6>University of West of England [Villa College]<br>
-      BSc (HONS) Computer Science - Jan 2019<br>
-      Enterprise Systems Development (UFCF85-30-3)<br>
-      Group Assignment</h6>
+<div style="text-align: center;">
+  <p><img src="doc-images/EeZee Ride.png"></p>
+  <p><i><b>The Taxi App You <strike>Need</strike> Deserve</b></i></p>
 </div>
-<p align="center">
-<img src="doc-images/EeZee Ride.png">
-</p>
-<p align="center"><i><b>The Taxi App You <strike>Need</strike> Deserve</b></i></p>
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -28,22 +22,22 @@
 <!-- ABOUT THE PROJECT -->
 <hr>
 <h1 id="about">About The Project</h1>
-<hr>
 <p>Eezee Ride is a taxi app that can help customers and taxi drivers easily find each other.</p>
 <p>Customer can book a ride and a driver is automatically assigned. The app calculates the fare based on the distance travelled.</p>
 <p>Admins will be able to view sales reports with the ability to filter drivers, dates and trip status to view statistics.</p>
 
-<h1 id="built">Built With</h1>
-* Java 
-* Dependency management: Maven 
-* Database: JDBC with Microsoft SQL Server
-* Spring Boot MVC
-* Frontend: JavaServer Pages (JSP)
+<h3 id="built">Built With</h3>
+<ul>
+  <li>Java</li>
+  <li>Dependency management: Maven</li>
+  <li>Database: JDBC with Microsoft SQL Server</li>
+  <li>Spring Boot MVC</li>
+  <li>Frontend: JavaServer Pages (JSP)</li>
+</ul>
 
 <!-- BUILD INSTRUCTIONS -->
 <hr>
-<h1 id="usage">Building The Application</h1>
-<hr>
+<h1 id="instructions">Building The Application</h1>
 <h3>Build your database</h3>
 To use the application, you need to create a new MMSQL Database. You can use an MMSQL database tool, such as <a href="https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15" target="_blank">SSMS</a> if you have Windows or <a href="https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15" target="_blank">Azure Data Studio</a> if you have a Mac to create and manage your MMSQL database. If you're using Azure Data Studio, you would also need to setup Docker by following this <a href="https://www.freecodecamp.org/news/cjn-how-to-connect-your-microsoft-sql-server-docker-container-with-azure-data-studio/" target="_blank">tutorial</a>.
 <ol>
@@ -85,7 +79,6 @@ Navigate to src > main > com.enterprise.sunchip > SunchipApplication and click r
 <!-- USAGE EXAMPLES -->
 <hr>
 <h1 id="usage">Using The Application</h1>
-<hr>
 <h3>Customers</h3>
 <h4>Sign Up as a new user</h4>
 <p>You can sign up by clicking the "Sign Up" button on the navigation or the "Don't have an account?" link below the login form.</p>
@@ -143,7 +136,6 @@ Navigate to src > main > com.enterprise.sunchip > SunchipApplication and click r
 <!-- Team -->
 <hr>
 <h1 id="team">Team</h1>
-<hr>
 The Sunchip Team
 
 <table>
@@ -177,3 +169,12 @@ The Sunchip Team
     </tr>
 </table>
 
+<div>
+  <h6>University of West of England [Villa College] | BSc (HONS) Computer Science - Jan 2019 | Enterprise Systems Development (UFCF85-30-3) | GA</h6>
+</div>
+
+<style>
+h1, h3, h4, h6 {
+  color: #58a6ff;
+  }
+</style
