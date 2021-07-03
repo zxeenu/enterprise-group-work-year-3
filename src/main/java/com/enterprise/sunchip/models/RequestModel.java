@@ -71,22 +71,22 @@ public class RequestModel {
         LocationModel thisLocationModel = getLocationFromWebservice(location);
         return thisLocationModel.getName();
     }
-    public float[] getStartLocationCoordinatesFromWebservice() throws JsonProcessingException {
+    public Double[] getStartLocationCoordinatesFromWebservice() throws JsonProcessingException {
         return convertStringCoordinates(getLocationFromWebservice(location).getCoordinates());
     }
     public String getDestinationNameFromWebservice() throws JsonProcessingException {
         LocationModel thisLocationModel = getLocationFromWebservice(destination);
         return thisLocationModel.getName();
     }
-    public float[] getDestinationCoordinatesFromWebservice() throws JsonProcessingException {
+    public Double[] getDestinationCoordinatesFromWebservice() throws JsonProcessingException {
         return convertStringCoordinates(getLocationFromWebservice(destination).getCoordinates());
     }
 
-    public float[] convertStringCoordinates(String coordinates){
+    public Double[] convertStringCoordinates(String coordinates){
         coordinates = coordinates.substring(1, coordinates.length() - 1);
         String[] longitudeAndLatitude = coordinates.split("[,]", 0);
-        float[] seperatedCoordinates = {Float.parseFloat(longitudeAndLatitude[0]),
-                                        Float.parseFloat(longitudeAndLatitude[1])};
+        Double[] seperatedCoordinates = {Double.parseDouble(longitudeAndLatitude[0]),
+                                         Double.parseDouble(longitudeAndLatitude[1])};
         return seperatedCoordinates;
 
 

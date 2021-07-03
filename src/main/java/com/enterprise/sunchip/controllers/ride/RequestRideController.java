@@ -63,7 +63,16 @@ public class RequestRideController {
                     newtrip.setEndLongtitude(newRequest.getDestinationCoordinatesFromWebservice()[1]);
                     newtrip.setStartLattitude(newRequest.getStartLocationCoordinatesFromWebservice()[0]);
                     newtrip.setStartLongtitude(newRequest.getStartLocationCoordinatesFromWebservice()[1]);
-                    newtrip.setPaidAmount(100*2);
+
+                    var handler = new Backend.Maps.OpenRouteService.ORSHandler("5b3ce3597851110001cf624856dfbc93ad4f41428588775eb447549b");
+                    var location1= handler.Search(newRequest.getDestinationNameFromWebservice()).get(0);
+                    var location2 = handler.Search(newRequest.getStartLocationNameFromWebservice()).get(0);
+                    var route = handler.GetRoutes(location1, location2).get(0);
+                    double rate = 0.1;
+                    double actualAmount = route.Distance*rate;
+                    double amountOwed = (double)Math.round(actualAmount * 100.0) / 100.0;
+                    newtrip.setDistance(route.Distance);
+                    newtrip.setPaidAmount((float)amountOwed);
 //                    Shared.BeContext.Trip.AssignTripToAvailableDriver(newtrip);
                     Shared.DbContext.Trips.update(newtrip);
                 }
