@@ -2,10 +2,10 @@ package main.java.com.enterprise.sunchip.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Location {
+public class LocationModel {
     private String name;
     private String coordinates;
-    public Location(){
+    public LocationModel(){
     }
 
     public String getName() {
