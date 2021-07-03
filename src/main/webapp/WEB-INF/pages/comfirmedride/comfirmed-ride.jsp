@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,9 +46,9 @@
             <tr>
                 <td>${trip.startName}</td>
                 <td>${trip.endName}</td>
-                <td>${trip.paidAmount}</td>
-                <td>${trip.paidAmount*0.06}</td>
-                <td>${trip.paidAmount*1.06}</td>
+                <td><fmt:formatNumber value = "${trip.paidAmount}" type = "currency" currencySymbol="RF "/></td>
+                <td><fmt:formatNumber value = "${trip.paidAmount*0.06}" type = "currency" currencySymbol="RF "/></td>
+                <td><fmt:formatNumber value = "${trip.paidAmount*1.06}" type = "currency" currencySymbol="RF "/></td>
             </tr>
         </table>
     </div>

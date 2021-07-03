@@ -32,8 +32,19 @@ public class ComfirmedRideController {
                 var customer = Shared.BeContext.User.GetByPasswordHash(tokenId);
                 if (customer != null) {
                     if (customer.UserClassCode == 3) {
-                        var activeTrip = Shared.BeContext.Trip.GetNotCompleteTripsByCustomer(customer);
-                        Trip trip = activeTrip.get(0);
+
+                        Trip trip = new Trip();
+                        var tripExists_ = Shared.BeContext.Trip.GetAllTrips();
+                        for (Trip t: tripExists_) {
+                            if (t.Customer != null) {
+                                if (t.Customer.ID.equals(customer.ID)) {
+                                    trip = t;
+                                }
+                            }
+                        }
+
+//                        var activeTrip = Shared.BeContext.Trip.GetNotCompleteTripsByCustomer(customer);
+//                        Trip trip = activeTrip.get(0);
                         User driver = trip.getDriver();
                         mv.setViewName("pages/comfirmedride/comfirmed-ride");
                         mv.addObject("trip", trip);

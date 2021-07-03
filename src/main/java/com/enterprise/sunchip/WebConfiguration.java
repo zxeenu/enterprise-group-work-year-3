@@ -12,8 +12,8 @@ public class WebConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new AdminFilter()).addPathPatterns("/Admin/**");
-        registry.addInterceptor(new DriverFilter()).addPathPatterns("/Customer/**");
-        registry.addInterceptor(new CustomerFilter()).addPathPatterns("/Driver/**");
+        registry.addInterceptor(new AdminFilter()).addPathPatterns("/Admin/**").excludePathPatterns("/Customer/**").excludePathPatterns("/Driver/**");
+        registry.addInterceptor(new DriverFilter()).addPathPatterns("/Customer/**").excludePathPatterns("/Admin/**").excludePathPatterns("/Driver/**");
+        registry.addInterceptor(new CustomerFilter()).addPathPatterns("/Driver/**").excludePathPatterns("/Admin/**").excludePathPatterns("/Customer/**");
     }
 }

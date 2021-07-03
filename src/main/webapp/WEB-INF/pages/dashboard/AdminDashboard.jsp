@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <head>
     <meta charset="UTF-8" />
@@ -25,34 +26,6 @@
 
 <div class="nfcontainer">
     <h1 class="title-dark">Dashboard</h1>
-
-<%--    <div class="filter">--%>
-<%--        <div class="dropdown">--%>
-<%--            <select name="drivers" id="drivers">--%>
-<%--                <option selected value="All">All Drivers</option>--%>
-<%--                <option value="sam">Sam</option>--%>
-<%--                <option value="nahy">Nahy</option>--%>
-<%--                <option value="bob">Bob</option>--%>
-<%--                <option value="fff">Fff</option>--%>
-<%--            </select>--%>
-
-<%--            <select name="status" id="status">--%>
-<%--                <option selected value="All">All Jobs</option>--%>
-<%--                <option value="sam">Ongoing</option>--%>
-<%--                <option value="nahy">Rejected</option>--%>
-<%--                <option value="bob">Completed</option>--%>
-<%--            </select>--%>
-<%--        </div>--%>
-<%--        <input--%>
-<%--                type="date"--%>
-<%--                value="TODO"--%>
-<%--                id="history-start"--%>
-<%--                name="history-start"--%>
-<%--        />--%>
-
-<%--        <input type="date" value="TODO" id="history-end" name="history-end" />--%>
-<%--        <a href="Filter?drivers=${trip.ID}&status=${driver.ID}"><button>Select</button></a>--%>
-<%--    </div>--%>
 
     <div class="filter">
 
@@ -101,7 +74,7 @@
             <td>${inProgessJobs}</td>
             <td>${rejectedJobs}</td>
             <td>${completedJobs}</td>
-            <td>${dailyTurnOver} MVR</td>
+            <td><fmt:formatNumber value = "${dailyTurnOver}" type = "currency" currencySymbol="MVR "/></td>
         </tr>
     </table>
     <h1 class="title-dark">Job History</h1>
@@ -120,7 +93,7 @@
                 <td>${trip.customer.firstName} ${trip.customer.lastName}</td>
                 <td>${trip.startName}</td>
                 <td>${trip.endName}</td>
-                <td>${trip.distance}</td>
+                <td><fmt:formatNumber value = "${trip.distance}" type = "currency" currencySymbol="KM "/></td>
                 <td>
                     <c:choose>
                         <c:when test="${trip.state == -2}">

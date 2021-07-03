@@ -23,11 +23,13 @@ public class CustomerFilter implements HandlerInterceptor {
         HttpSession session = request.getSession();
         String tokenId = (String) session.getAttribute("usertoken");
 
-        if (tokenId.isEmpty()) {
-            var user = Shared.BeContext.User.GetByPasswordHash(tokenId);
+        if (tokenId != null) {
+            if (tokenId.isEmpty()) {
+                var user = Shared.BeContext.User.GetByPasswordHash(tokenId);
 
-            if (user == null) {
-                response.sendRedirect(request.getContextPath() + "/Logout");
+                if (user == null) {
+                    response.sendRedirect(request.getContextPath() + "/Logout");
+                }
             }
         }
         return true;
