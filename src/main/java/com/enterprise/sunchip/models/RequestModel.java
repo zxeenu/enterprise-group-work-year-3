@@ -56,27 +56,27 @@ public class RequestModel {
         this.destination = destination;
     }
 
-    public Location getLocationFromWebservice(String name) throws JsonProcessingException {
+    public LocationModel getLocationFromWebservice(String name) throws JsonProcessingException {
         RestTemplate rt = new RestTemplate();
         ObjectMapper objectMapper = new ObjectMapper();
         //change to weservice uri
         String LocationString = rt.getForObject("http://localhost:8081/v1/location-services-sunchip?location="+name, String.class);
-        List<Location> locationList = objectMapper.readValue(LocationString, new TypeReference<List<Location>>(){});
+        List<LocationModel> locationModelList = objectMapper.readValue(LocationString, new TypeReference<List<LocationModel>>(){});
 
-        return locationList.get(0);
+        return locationModelList.get(0);
 
     }
 
-    public String locationNameFromWebservice() throws JsonProcessingException {
-        Location thisLocation = getLocationFromWebservice(location);
-        return thisLocation.getName();
+    public String getStartLocationNameFromWebservice() throws JsonProcessingException {
+        LocationModel thisLocationModel = getLocationFromWebservice(location);
+        return thisLocationModel.getName();
     }
-    public float[] getLocationCoordinatesFromWebservice() throws JsonProcessingException {
+    public float[] getStartLocationCoordinatesFromWebservice() throws JsonProcessingException {
         return convertStringCoordinates(getLocationFromWebservice(location).getCoordinates());
     }
-    public String DestinationNameFromWebservice() throws JsonProcessingException {
-        Location thisLocation = getLocationFromWebservice(destination);
-        return thisLocation.getName();
+    public String getDestinationNameFromWebservice() throws JsonProcessingException {
+        LocationModel thisLocationModel = getLocationFromWebservice(destination);
+        return thisLocationModel.getName();
     }
     public float[] getDestinationCoordinatesFromWebservice() throws JsonProcessingException {
         return convertStringCoordinates(getLocationFromWebservice(destination).getCoordinates());

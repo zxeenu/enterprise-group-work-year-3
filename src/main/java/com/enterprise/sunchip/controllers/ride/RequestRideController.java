@@ -55,17 +55,14 @@ public class RequestRideController {
             if (!tokenId.isEmpty()) {
                 var customer = Shared.BeContext.User.GetByPasswordHash(tokenId);
                 if (customer != null){
-
-
-
                     Trip newtrip = Shared.BeContext.Trip.RequestNewTrip(customer);
                     newtrip.setCreationTime(newRequest.getDateAndTime());
-                    newtrip.setStartName(newRequest.locationNameFromWebservice());
-                    newtrip.setEndName(newRequest.DestinationNameFromWebservice());
+                    newtrip.setStartName(newRequest.getStartLocationNameFromWebservice());
+                    newtrip.setEndName(newRequest.getDestinationNameFromWebservice());
                     newtrip.setEndLattitude(newRequest.getDestinationCoordinatesFromWebservice()[0]);
                     newtrip.setEndLongtitude(newRequest.getDestinationCoordinatesFromWebservice()[1]);
-                    newtrip.setStartLattitude(newRequest.getDestinationCoordinatesFromWebservice()[0]);
-                    newtrip.setStartLongtitude(newRequest.getDestinationCoordinatesFromWebservice()[1]);
+                    newtrip.setStartLattitude(newRequest.getStartLocationCoordinatesFromWebservice()[0]);
+                    newtrip.setStartLongtitude(newRequest.getStartLocationCoordinatesFromWebservice()[1]);
                     newtrip.setPaidAmount(100*2);
 //                    Shared.BeContext.Trip.AssignTripToAvailableDriver(newtrip);
                     Shared.DbContext.Trips.update(newtrip);
