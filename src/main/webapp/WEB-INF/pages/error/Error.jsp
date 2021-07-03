@@ -22,7 +22,7 @@
     <a href="Home" class="logo">
         <h1 class="logo">EeZee Ride</h1>
         <ul class="nav-links">
-            <li class="nav-item"><a href="Logout">Log Out</a></li>
+            <li class="nav-item"><a href="/Logout">Log Out</a></li>
         </ul>
     </a>
 </nav>
@@ -35,7 +35,7 @@
     <h1 class="sub-title">${errorMessage}</h1>
     <br>
     <div style="width: 200px; margin-top: 10px">
-        <a href="Home"><button>GO BACK HOME</button></a>
+        <a href="/Logout"><button>GO BACK HOME</button></a>
     </div>
 </div>
 </body>

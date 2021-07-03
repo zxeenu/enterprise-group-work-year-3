@@ -58,7 +58,7 @@ public class NormalLoginController {
 
         User currentUser = Shared.BeContext.User.GetByUsernameAndPassword(username, password);
 
-        localSession.clearTokenStoredInLocalCashe(request);
+//        localSession.clearTokenStoredInLocalCashe(request);
         mv.setViewName("pages/error/Error");
         mv.addObject("errorMessage", "sorry, you did not input correct credentials!");
 
