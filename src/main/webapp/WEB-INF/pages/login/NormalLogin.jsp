@@ -14,6 +14,9 @@
   <a href="Login" class="logo">
     <h1 class="logo">EeZee Ride</h1>
   </a>
+  <a href="SignUp">
+    <button>Sign Up</button>
+  </a>
 </nav>
 
 <div class="container center">
