@@ -1,6 +1,6 @@
-<div style="text-align: center;">
-  <p><img src="doc-images/EeZee Ride.png"></p>
-  <p><i><b>The Taxi App You <strike>Need</strike> Deserve</b></i></p>
+<div>
+  <p align="center"><img src="doc-images/EeZee Ride.png"></p>
+  <p align="center"><i><b>The Taxi App You <strike>Need</strike> Deserve</b></i></p>
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -177,4 +177,4 @@ The Sunchip Team
 h1, h3, h4, h6 {
   color: #58a6ff;
   }
-</style
+</style>
