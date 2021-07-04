@@ -23,7 +23,8 @@
 
 <div class="nfcontainer">
     <div class="ride">
-        <h1 class="title">Your driver is on the way!</h1>
+        <div><h1 class="title">Your driver is on the way!</h1></div>
+
         <div>
             <a href="ComfirmedRide"  style="margin-right: 10px">
                 <button class="login-submit" type="submit">Refresh</button>
@@ -35,6 +36,7 @@
     </div>
 
     <div>
+        <h3>Please refresh the page to update your driver</h3>
         <table class="t-details">
             <tr>
                 <th>Pick-up Location</th>
@@ -66,14 +68,7 @@
                 <td>${driver.primaryVehicle.licensePlateNo}</td>
             </tr>
         </table>
-        <table class="t-eta">
-            <tr>
-                <th>ETA</th>
-            </tr>
-            <tr>
-                <td>2 Minutes</td>
-            </tr>
-        </table>
+
     </div>
 </div>
 </body>
