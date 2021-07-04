@@ -107,7 +107,7 @@ public class RequestRideController {
                     var partTwo = Math.pow((location2.Coordinates.Longtitude - location1.Coordinates.Longtitude), 2);
                     var distance = Math.sqrt(partOne+ partTwo);
 //                    var route = handler.GetRoutes(location1, location2).get(0);
-                    double rate = 0.1;
+                    double rate = 1000;
 //                    double actualAmount = route.Distance*rate;
                     double actualAmount = distance*rate;
                     double amountOwed = (double)Math.round(actualAmount * 100.0) / 100.0;
