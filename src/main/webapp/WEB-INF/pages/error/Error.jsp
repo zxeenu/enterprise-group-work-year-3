@@ -35,7 +35,7 @@
     <h1 class="sub-title">${errorMessage}</h1>
     <br>
     <div style="width: 200px; margin-top: 10px">
-        <a href="/Logout"><button>GO BACK HOME</button></a>
+        <a href="/Login"><button>GO BACK HOME</button></a>
     </div>
 </div>
 </body>

@@ -37,7 +37,11 @@ public class SunchipApplication extends SpringBootServletInitializer {
 		switch (hostname) {
 			case "Ark":
 				Shared.BeContext = new BackendContext("jdbc:sqlserver://localhost:1433;databaseName=BLANKDB;user=dbacc;password=OraS1m$1"); // Sams database
+			case "silver-note":
+				Shared.BeContext = new BackendContext("jdbc:sqlserver://SILVER-NOTE:1433;databaseName=devilsdatabase;user=zeenu;password=2OTF5FkZudUGv"); // Ziaans database
 		}
+
+//		Shared.BeContext = new BackendContext("jdbc:sqlserver://SILVER-NOTE:1433;databaseName=enterprisejuly1;user=zeenu;password=2OTF5FkZudUGv"); // Ziaans database
 
 //	 	Shared.BeContext = new BackendContext("jdbc:sqlserver://localhost:1433;databaseName=enterDB;user=enterUser;password=enterPass"); // Template
 //

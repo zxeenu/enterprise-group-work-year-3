@@ -40,7 +40,9 @@ public class ComfirmedRideController {
                             if (t.Customer != null) {
                                 if (t.Customer.ID.equals(customer.ID)) {
                                     if (!t.TripComplete) {
-                                        trip = t;
+                                        if (t.State != Trip.TripState.CANCELLED) {
+                                            trip = t;
+                                        }
                                     }
                                 }
                             }
@@ -84,7 +86,9 @@ public class ComfirmedRideController {
                             if (t.Customer != null) {
                                 if (t.Customer.ID.equals(customer.ID)) {
                                     if (!t.TripComplete) {
-                                        Shared.DbContext.Trips.delete(t);
+//                                        Shared.DbContext.Trips.delete(t);
+                                        t.State = Trip.TripState.CANCELLED;
+                                        Shared.DbContext.Trips.update(t);
                                     }
                                 }
                             }

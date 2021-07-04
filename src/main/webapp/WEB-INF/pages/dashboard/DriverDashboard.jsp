@@ -32,6 +32,7 @@
             <th>Coordinates</th>
             <th>Distance</th>
             <th>Status</th>
+            <th>Rejection Reason</th>
         </tr>
         </thead>
         <tbody>
@@ -72,6 +73,7 @@
                     </c:when>
                 </c:choose>
             </td>
+            <td>${trip.getRejectionReasons}</td>
         </tr>
         </c:forEach>
         </tbody>

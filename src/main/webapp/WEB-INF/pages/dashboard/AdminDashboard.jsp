@@ -56,6 +56,7 @@
                 <input type="date" id="history-end" name="history-end" />
 
                 <button formaction="Filter" formmethod="post">Filter</button>
+                <a href="#"><button>Clear</button></a>
 
         </form>
 
@@ -86,6 +87,7 @@
             <th>Destination</th>
             <th>Distance</th>
             <th>Status</th>
+            <th>Rejection Reason</th>
         </tr>
         <c:forEach items="${tripList}" var="trip">
             <tr>
@@ -110,6 +112,7 @@
                         </c:when>
                     </c:choose>
                 </td>
+                <td>${trip.getRejectionReasons}</td>
             </tr>
         </c:forEach>
     </table>

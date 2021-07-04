@@ -39,7 +39,9 @@ public class RequestRideController {
                     if (t.Customer != null) {
                         if (t.Customer.ID.equals(customer.ID)) {
                             if (!t.TripComplete) {
-                                foundTrue = true;
+                                if (t.State != Trip.TripState.CANCELLED) {
+                                    foundTrue = true;
+                                }
                             }
                         }
                     }
@@ -73,7 +75,7 @@ public class RequestRideController {
                     var newtrip = new Trip();
                     newtrip.TripComplete = false;
                     newtrip.Customer = customer;
-                    Shared.DbContext.Trips.create(newtrip);
+
 
                     newtrip.setCreationTime(newRequest.getDateAndTime());
                     newtrip.setStartName(newRequest.getStartLocationNameFromWebservice());
@@ -110,10 +112,18 @@ public class RequestRideController {
 
 
                     double rate = 1000;
-//                    double actualAmount = route.Distance*rate;
-                    double actualAmount = r.Distance * rate;
-                    double amountOwed = (double)Math.round(actualAmount * 100.0) / 100.0;
+                    double actualAmount = 0.0;
+                    if (r != null) {
+                        actualAmount = r.Distance * rate;
+                    } else {
+                        ModelAndView mv = new ModelAndView();
+                        mv.setViewName("pages/error/Error");
+                        mv.addObject("errorMessage", "Sorry, you didnt give us a legal address!");
+                        return mv;
+                    }
 
+
+                    double amountOwed = (double)Math.round(actualAmount * 100.0) / 100.0;
                     if (amountOwed > 10) {
                         amountOwed = 10;
                     }
@@ -122,7 +132,8 @@ public class RequestRideController {
 //                    newtrip.setDistance(route.Distance);
                     newtrip.setDistance(r.Distance);
                     newtrip.setPaidAmount((float)amountOwed);
-                    Shared.DbContext.Trips.update(newtrip);
+                    Shared.DbContext.Trips.create(newtrip);
+                    Shared.BeContext.Trip.AddTripToPool(newtrip);
                 }
 
             }
