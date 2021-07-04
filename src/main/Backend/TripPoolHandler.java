@@ -19,9 +19,11 @@ public class TripPoolHandler extends Thread {
         while (true) {
 
             List<Trip> processed = new ArrayList<>();
+            List<Trip> cancelled = new ArrayList<>();
             try {
                 for (var p : tripModule.TripPool) {
-                    if (p.State == Trip.TripState.IN_PROGRESS) continue;;
+                    if (p.State == Trip.TripState.IN_PROGRESS) continue;
+                    if (p.State == Trip.TripState.CANCELLED) cancelled.add(p);
                     var driver = tripModule.AssignTripToAvailableDriver(p);
                     if (driver != null) {
                         processed.add(p);
@@ -32,6 +34,11 @@ public class TripPoolHandler extends Thread {
                     tripModule.TripPool.remove(t);
                     tripModule.NotifyTripStateChange(t);
                 }
+                for (var t : cancelled) {
+                    tripModule.TripPool.remove(t);
+                    tripModule.NotifyTripStateChange(t);
+                }
+
                 Thread.sleep(1000);
             } catch (Exception e) {
                 Logger.Instance.Add("TripPoolHandler Exception!", Logger.LogLevels.CRITICAL);
