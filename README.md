@@ -117,14 +117,17 @@ Due to the nature of drivers, you will need to create them through the GUI. Plea
 <h1 id="usage">Using The Application</h1>
 <h3>Customers</h3>
 <h4>Sign Up as a new user</h4>
+<p align="center"><img src="doc-images/EezeeRide-SignUp.png"></p>
 <p>You can sign up by clicking the "Sign Up" button on the navigation or the "Don't have an account?" link below the login form.</p>
 <p>Once registered as a new user, you will be automatically redirected to the log in page where you can use your new account.</p>
 
 <h4>Log in</h4>
+<p align="center"><img src="doc-images/EezeeRide-Login.png"></p>
 <p>To log in you will need your username and password.</p>
 <p>Once logged in you will be taken to the Request A Ride page.</p>
 
 <h4>Request a ride</h4>
+<p align="center"><img src="doc-images/EezeeRide-Customer-RequestRide.png.png"></p>
 <p>To request a ride, enter the location and destination, and the day and time of when you want the ride.</p>
 <p>Enter the date and time easily by clicking the icons at the end of their fields.</p>
 <p>After entering the information, click the Request button.</p>
@@ -139,6 +142,7 @@ Due to the nature of drivers, you will need to create them through the GUI. Plea
 <p>You will be redirected to the Assigned Jobs page.</p>
 
 <h4>Assigned jobs</h4>
+<p align="center"><img src="doc-images/EezeeRide-Driver-JobList.png.png"></p>
 <p>From this page you will see the jobs that have been automatically assigned to you.</p>
 <p>You have the option to accept or reject these jobs with a given reason.</p>
 <p>Once a job is accepted and paid for please mark it as completed.<p>
@@ -148,21 +152,25 @@ Due to the nature of drivers, you will need to create them through the GUI. Plea
 <hr>
 <h3>Admins</h3>
 <h4>Log in as an admin</h4>
+<p align="center"><img src="doc-images/EezeeRide-LoginAdmin.png"></p>
 <p>To log in as an admin go to `/LoginAdmin`.</p>
 <p>You will be redirected to the admin dashboard.</p>
 
 <h4>Admin Dashboard</h4>
+<p align="center"><img src="doc-images/EezeeRide-Admin-Dashboard.png.png"></p>
 <p>The dashboard allows admins to view reports. You can use the following filters to generate the specific data you need:</p>
 <p>Driver: Select all or a specific driver</p>
 <p>Start / End Date: To filter the data within a range select a start and end date.</p>
 <p>Status: Select all jobs or a status from in progress, rejected and completed</p>
 
 <h4>Drivers list</h4>
+<p align="center"><img src="doc-images/EezeeRide-Admin-Drivers.png.png"></p>
 <p>Navigate to the drivers page via the link in the header.</p>
 <p>Here, you can view a list of all drivers along with their information.</p>
 <p>You can add new drivers by clicking "Add New" or delete a driver from the current drivers.</p>
 
 <h4>Customers list</h4>
+<p align="center"><img src="doc-images/EezeeRide-Admin-Customer.png.png"></p>
 <p>Navigate to the customers page via the link in the header.</p>
 <p>This page displays a list of all customers with their account ID, and first and last names. It also gives you the ability to delete a user.</p>
 
