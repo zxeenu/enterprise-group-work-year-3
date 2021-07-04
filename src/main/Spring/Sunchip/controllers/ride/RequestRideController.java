@@ -129,7 +129,9 @@ public class RequestRideController {
                     }
 
 
-                    double amountOwed = (double)Math.round(actualAmount * 100.0) / 100.0;
+//                    double amountOwed = (double)Math.round(actualAmount * 100.0) / 100.0;
+
+                    double amountOwed = rate * distance;
                     if (amountOwed > 10) {
                         amountOwed = 10;
                     }
