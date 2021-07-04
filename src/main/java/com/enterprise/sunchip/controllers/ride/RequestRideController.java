@@ -37,7 +37,9 @@ public class RequestRideController {
                 for (Trip t: tripExists_) {
                     if (t.Customer != null) {
                         if (t.Customer.ID.equals(customer.ID)) {
-                            foundTrue = true;
+                            if (!t.TripComplete) {
+                                foundTrue = true;
+                            }
                         }
                     }
                 }
@@ -92,6 +94,12 @@ public class RequestRideController {
 //                    double actualAmount = route.Distance*rate;
                     double actualAmount = distance*rate;
                     double amountOwed = (double)Math.round(actualAmount * 100.0) / 100.0;
+
+                    if (amountOwed > 10) {
+                        amountOwed = 10;
+                    }
+
+
 //                    newtrip.setDistance(route.Distance);
                     newtrip.setDistance(distance);
                     newtrip.setPaidAmount((float)amountOwed);

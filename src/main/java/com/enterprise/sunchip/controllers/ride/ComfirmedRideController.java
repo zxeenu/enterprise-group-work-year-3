@@ -3,6 +3,7 @@ package main.java.com.enterprise.sunchip.controllers.ride;
 import Common.Shared;
 import Database.Entities.Trip;
 import Database.Entities.User;
+import main.java.com.enterprise.sunchip.models.RequestModel;
 import main.java.com.enterprise.sunchip.services.LocalSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,7 +39,9 @@ public class ComfirmedRideController {
                         for (Trip t: tripExists_) {
                             if (t.Customer != null) {
                                 if (t.Customer.ID.equals(customer.ID)) {
-                                    trip = t;
+                                    if (!t.TripComplete) {
+                                        trip = t;
+                                    }
                                 }
                             }
                         }
@@ -73,10 +76,22 @@ public class ComfirmedRideController {
                 var customer = Shared.BeContext.User.GetByPasswordHash(tokenId);
                 if (customer != null) {
                     if (customer.UserClassCode == 3) {
-                        var activeTrip = Shared.BeContext.Trip.GetNotCompleteTripsByCustomer(customer);
-                        Trip trip = activeTrip.get(0);
-                        Shared.DbContext.Trips.delete(trip);
-                        mv.setViewName("pages/comfirmedride/comfirmed-ride");
+//                        var activeTrip = Shared.BeContext.Trip.GetNotCompleteTripsByCustomer(customer);
+//                        Trip trip = activeTrip.get(0);
+
+                        var tripExists_ = Shared.BeContext.Trip.GetAllTrips();
+                        for (Trip t: tripExists_) {
+                            if (t.Customer != null) {
+                                if (t.Customer.ID.equals(customer.ID)) {
+                                    if (!t.TripComplete) {
+                                        Shared.DbContext.Trips.delete(t);
+                                    }
+                                }
+                            }
+                        }
+
+                        RequestModel form = new RequestModel();
+                        return new ModelAndView("pages/requestride/request-ride", "requestForm", form);
                     }
                 }
 
