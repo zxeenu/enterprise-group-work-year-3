@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html lang="en">
 <head>
@@ -44,7 +45,7 @@
             <td>(${trip.startLattitude}, ${trip.startLongtitude})</td>
             <td>${trip.endName}</td>
             <td>(${trip.endLattitude}, ${trip.endLongtitude})</td>
-            <td>${trip.distance}</td>
+            <td><fmt:formatNumber value = "${trip.distance}" type = "currency" currencySymbol="KM "/></td>
             <td>
                 <c:choose>
                     <%-- trip in state -2, rejected --%>
