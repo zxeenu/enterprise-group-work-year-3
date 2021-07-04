@@ -30,7 +30,7 @@
 <ul>
   <li>Java</li>
   <li>Dependency management: Maven</li>
-  <li>Database: JDBC with Microsoft SQL Server</li>
+  <li>main.Database: JDBC with Microsoft SQL Server</li>
   <li>Spring Boot MVC</li>
   <li>Frontend: JavaServer Pages (JSP)</li>
 </ul>
@@ -39,7 +39,7 @@
 <hr>
 <h1 id="instructions">Building The Application</h1>
 <h3>Build your database</h3>
-To use the application, you need to create a new MMSQL Database. You can use an MMSQL database tool, such as <a href="https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15" target="_blank">SSMS</a> if you have Windows or <a href="https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15" target="_blank">Azure Data Studio</a> if you have a Mac to create and manage your MMSQL database. If you're using Azure Data Studio, you would also need to setup Docker by following this <a href="https://www.freecodecamp.org/news/cjn-how-to-connect-your-microsoft-sql-server-docker-container-with-azure-data-studio/" target="_blank">tutorial</a>.
+To use the application, you need to create a new MMSQL main.Database. You can use an MMSQL database tool, such as <a href="https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15" target="_blank">SSMS</a> if you have Windows or <a href="https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15" target="_blank">Azure Data Studio</a> if you have a Mac to create and manage your MMSQL database. If you're using Azure Data Studio, you would also need to setup Docker by following this <a href="https://www.freecodecamp.org/news/cjn-how-to-connect-your-microsoft-sql-server-docker-container-with-azure-data-studio/" target="_blank">tutorial</a>.
 <ol>
   <li>Setup your MMSQL server</li>
   <li>Create a new database on your server. (SQL command to create database: CREATE DATABASE databasename;)</li>
@@ -145,15 +145,15 @@ The Sunchip Team
     </tr>
     <tr>
         <td><a href="https://github.com/zxeenu">Ziaan</a></td>
-        <td>Backend development, Backend project management</td>
+        <td>main.Backend development, main.Backend project management</td>
     </tr>
     <tr>
         <td><a href="https://github.com/arkangel-dev">Isaam</a></td>
-        <td>Backend development, Develop architecture & diagrams</td>
+        <td>main.Backend development, Develop architecture & diagrams</td>
     </tr>
     <tr>
         <td><a href="https://github.com/nah-y">Nahidha</a></td>
-        <td>Backend development, Documentation</td>
+        <td>main.Backend development, Documentation</td>
     </tr>
     <tr>
         <td><a href="https://github.com/Jaaaxe">Yasmeen</a></td>

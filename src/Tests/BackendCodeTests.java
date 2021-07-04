@@ -1,9 +1,9 @@
 package Tests;
 
-import Backend.BackendContext;
-import Common.Security;
-import Common.Shared;
-import Database.Entities.*;
+import main.Backend.BackendContext;
+import main.Common.Security;
+import main.Common.Shared;
+import main.Database.Entities.*;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 import static org.junit.Assert.*;
 
-@DisplayName("Database Core Tests")
+@DisplayName("main.Database Core Tests")
 public class BackendCodeTests {
 
     BackendContext BEContext;

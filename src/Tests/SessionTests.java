@@ -1,7 +1,7 @@
 package Tests;
 
-import WebUI.Session;
-import WebUI.SessionMonitor;
+import main.WebUI.Session;
+import main.WebUI.SessionMonitor;
 import org.junit.Assert;
 import org.junit.Test;
 
