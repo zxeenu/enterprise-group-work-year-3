@@ -29,7 +29,7 @@ public class TripModule {
 
     /**
      * Create a new trip. Requires a customer. The customer will be required to have no active trips in their record.
-     * @param customer Customer to use
+     * @param customer Customer to usew
      * @return Created trip object
      */
     public Trip RequestNewTrip(User customer) throws SQLException {
@@ -195,10 +195,24 @@ public class TripModule {
      * @param t Trip
      * @return Driver that was assigned. Null if wasn't assigned
      */
-    public User AssignTripToAvailableDriver(Trip t) {
+    public User AssignTripToAvailableDriver(Trip t) throws SQLException {
         var availableDrivers = GetUserTripCount();
         for (var d : availableDrivers) {
             if (GetActiveTripsByDriver(d.Driver).isEmpty()) {
+
+
+                var previously_rejected = false;
+                Shared.DbContext.Trips.refresh(t);
+
+                for (var rr : t.RejectionReasons) {
+                    if (rr.Driver.ID.equals(d.Driver.ID)) {
+                        previously_rejected = true;
+                        break;
+                    }
+                }
+
+                if (previously_rejected) continue;
+
                 AssignTripDriver(t, d.Driver);
                 return d.Driver;
             }
@@ -293,6 +307,8 @@ public class TripModule {
         r.Driver = d;
         r.RejectionReason = reason;
         t.RejectionReasons.add(r);
+        t.State = Trip.TripState.AWAITING_PICKUP;
+        t.Driver = null;
         Shared.DbContext.Trips.update(t);
     }
 

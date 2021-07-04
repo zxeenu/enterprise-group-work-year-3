@@ -121,6 +121,22 @@ public class TripHandlerTests {
         BeContext.Trip.RejectByDriver(CustomerBTrip, DriverB, "Driver A Rejection Reason For Trip B");
     }
 
+    @Test
+    public void RejectedHistoryTest() throws SQLException, InterruptedException {
+        AddDummyUsers();
+
+        var CustomerATrip = BeContext.Trip.RequestNewTrip(CustomerA);
+
+        BeContext.Trip.AddTripToPool(CustomerATrip);
+
+        BeContext.Trip.RejectByDriver(CustomerATrip, DriverA, "Driver A Rejected");
+        BeContext.Trip.RejectByDriver(CustomerATrip, DriverB, "Driver B Rejected");
+
+        Thread.sleep(2500);
+
+        if (CustomerATrip.State != Trip.TripState.AWAITING_PICKUP) Assert.fail("Rejection history was ignored!");
+    }
+
     public class DummyListener implements main.Backend.Interfaces.TripStateChange {
         public boolean TripCompleted = false;
         public Trip trip = null;
@@ -132,6 +148,8 @@ public class TripHandlerTests {
             trip = t;
         }
     }
+
+
 
 
 }
