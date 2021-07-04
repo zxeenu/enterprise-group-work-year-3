@@ -244,7 +244,7 @@ table.t-ride {
   background-color: var(--accent-blue);
   border: none;
   color: rgb(112, 103, 103);
-  width: 80%;
+  width: 100%;
 }
 
 table.t-details {
