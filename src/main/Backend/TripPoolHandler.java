@@ -23,9 +23,13 @@ public class TripPoolHandler extends Thread {
             List<Trip> cancelled = new ArrayList<>();
             try {
                 for (var p : tripModule.TripPool) {
-                    if (p.State == Trip.TripState.IN_PROGRESS) continue;
+                    if (p.State == Trip.TripState.IN_PROGRESS) {
+                        processed.add(p);
+                        continue;
+                    }
                     if (p.State == Trip.TripState.CANCELLED) cancelled.add(p);
                     var driver = tripModule.AssignTripToAvailableDriverForPickup(p);
+
                     if (driver != null) {
                         processed.add(p);
                     }
