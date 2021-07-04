@@ -332,6 +332,7 @@ public class TripModule {
 
         t.State = Trip.TripState.AWAITING_PICKUP;
         t.Driver = null;
+        this.AddTripToPool(t);
         Shared.DbContext.Trips.update(t);
     }
 
