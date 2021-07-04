@@ -1,8 +1,7 @@
 package Tests;
 
-import Common.Security;
-import Database.DatabaseContext;
-import Database.Entities.*;
+import main.Database.DatabaseContext;
+import main.Database.Entities.*;
 import com.j256.ormlite.table.TableUtils;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -28,7 +27,7 @@ public class DatabaseTests {
     }
 
     @Test
-    @DisplayName("Login Test Database Level")
+    @DisplayName("Login Test main.Database Level")
     public void LoginTestDatabaseLevel() throws SQLException {
         AddDummyUser();
         assertTrue(User.ValidateLogin("johnnys", "johnsm123", context.Users.iterator()) != null);

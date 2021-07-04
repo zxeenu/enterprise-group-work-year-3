@@ -1,12 +1,11 @@
 package Tests;
 
-import Backend.BackendContext;
-import Database.Entities.Trip;
-import Database.Entities.User;
+import main.Backend.BackendContext;
+import main.Database.Entities.Trip;
+import main.Database.Entities.User;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.sql.Driver;
 import java.sql.SQLException;
 
 public class TripHandlerTests {
@@ -122,7 +121,7 @@ public class TripHandlerTests {
         BeContext.Trip.RejectByDriver(CustomerBTrip, DriverB, "Driver A Rejection Reason For Trip B");
     }
 
-    public class DummyListener implements Backend.Interfaces.TripStateChange {
+    public class DummyListener implements main.Backend.Interfaces.TripStateChange {
         public boolean TripCompleted = false;
         public Trip trip = null;
 
