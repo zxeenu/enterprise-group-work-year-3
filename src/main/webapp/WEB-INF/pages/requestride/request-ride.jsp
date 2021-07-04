@@ -40,8 +40,8 @@
                     required = "required"
             />
 
-            <form:input path="date" type="date" id="pickup" name="pickup" />
-            <form:input path="time" type="time" id="pickup" name="pickup" />
+            <form:input path="date" type="date" id="pickup" name="pickup" required = "required"/>
+            <form:input path="time" type="time" id="pickup" name="pickup" required = "required"/>
             <button
                     class="pickup-submit"
                     type="submit"
