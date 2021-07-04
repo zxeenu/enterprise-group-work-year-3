@@ -149,6 +149,15 @@ public class TripModule {
         return false;
     }
 
+    public boolean AssignTripDriverForSelection(Trip t, User d) {
+        if (this.GetActiveTripsByDriver(d).isEmpty()) {
+            t.Driver = d;
+            t.State = Trip.TripState.AWAITING_PICKUP;
+            return true;
+        }
+        return false;
+    }
+
 
 
     /**
@@ -205,6 +214,19 @@ public class TripModule {
         }
         return null;
     }
+
+
+    public User AssignTripToAvailableDriverForSelection(Trip t) {
+        var availableDrivers = GetUserTripCount();
+        for (var d : availableDrivers) {
+            if (GetActiveTripsByDriver(d.Driver).isEmpty()) {
+                AssignTripDriverForSelection(t, d.Driver);
+                return d.Driver;
+            }
+        }
+        return null;
+    }
+
 
     protected List<Trip> TripPool = new ArrayList<Trip>();
     protected List<Backend.Interfaces.TripStateChange> TripStateChangeListeners = new ArrayList<TripStateChange>();

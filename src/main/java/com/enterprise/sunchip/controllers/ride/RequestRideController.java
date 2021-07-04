@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/Customer")
@@ -69,6 +70,22 @@ public class RequestRideController {
                 var customer = Shared.BeContext.User.GetByPasswordHash(tokenId);
                 if (customer != null){
 //                    Trip newtrip = Shared.BeContext.Trip.RequestNewTrip(customer);
+
+
+//                    var matching_trips = new ArrayList<Trip>();
+//                    for (Trip ct : Shared.DbContext.Trips) {
+//                        if (ct.Driver != null) {
+//                            if ((ct.Customer.ID.equals(customer.ID)) && (!ct.TripComplete)) matching_trips.add(ct);
+//                        }
+//                    }
+//
+//                    if (matching_trips.size() > 0) {
+//                        ModelAndView mv = new ModelAndView();
+//                        mv.setViewName("pages/error/Error");
+//                        mv.addObject("errorMessage", "You already have a request!");
+//                        return mv;
+//                    }
+
                     var newtrip = new Trip();
                     newtrip.TripComplete = false;
                     newtrip.Customer = customer;
@@ -99,11 +116,17 @@ public class RequestRideController {
                         amountOwed = 10;
                     }
 
-
 //                    newtrip.setDistance(route.Distance);
                     newtrip.setDistance(distance);
                     newtrip.setPaidAmount((float)amountOwed);
+
+                    var driverAssigned = Shared.BeContext.Trip.AssignTripToAvailableDriverForSelection(newtrip);
+                    Logger.Instance.Add(driverAssigned.ID.toString() + "<<<", Logger.LogLevels.INFO);
+                    if (driverAssigned == null) {
+                        Shared.BeContext.Trip.AddTripToPool(newtrip);
+                    }
                     Shared.DbContext.Trips.update(newtrip);
+
                 }
 
             }
@@ -114,9 +137,10 @@ public class RequestRideController {
             mv.setViewName("pages/error/Error");
             mv.addObject("errorMessage", "Sorry, you're request could not be processed!");
             return mv;
-//            return new ModelAndView("redirect:/Customer/RequestRide");
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            ModelAndView mv = new ModelAndView();
+            mv.setViewName("pages/error/Error");
+            mv.addObject("errorMessage", "Sorry, you're request could not be processed!");
         }
 
         return new ModelAndView("redirect:/Customer/ComfirmedRide");

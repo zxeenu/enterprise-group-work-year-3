@@ -18,8 +18,8 @@ public class SunchipApplication extends SpringBootServletInitializer {
 	 *	Replace enterUser with your server admin username
 	 *	Replace enterPass with the server admin password
 	 **/
-//	 	Shared.BeContext = new BackendContext("jdbc:sqlserver://localhost:1433;databaseName=enterDB;user=enterUser;password=enterPass");
-		Shared.BeContext = new BackendContext("jdbc:sqlserver://SILVER-NOTE:1433;databaseName=enterprisejuly1;user=zeenu;password=2OTF5FkZudUGv");
+	 	Shared.BeContext = new BackendContext("jdbc:sqlserver://localhost:1433;databaseName=enterDB;user=enterUser;password=enterPass");
+//		Shared.BeContext = new BackendContext("jdbc:sqlserver://SILVER-NOTE:1433;databaseName=enterprisejuly1;user=zeenu;password=2OTF5FkZudUGv");
 
 	/** If you were unable to create and use your own database please uncomment line 24 and comment out line 21 to use the application
 	 Shared.BeContext = new BackendContext("jdbc:sqlserver://27.114.157.158:1433;databaseName=JUNITDB;user=dbacc;password=OraS1m$1");**/
