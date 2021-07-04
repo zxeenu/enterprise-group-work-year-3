@@ -100,7 +100,6 @@ public class NormalLoginController {
     public ModelAndView makeStuffUp() throws SQLException {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("pages/login/NormalLogin");
-
         var admin = Shared.BeContext.User.RegisterNewUser("Admin", "One", "Admin1", "Admin1", User.UserType.ADMIN);
         var user = Shared.BeContext.User.RegisterNewUser("User", "One", "User1", "User1", User.UserType.CUSTOMER);
         var user2 = Shared.BeContext.User.RegisterNewUser("User", "Two", "User2", "User2", User.UserType.CUSTOMER);

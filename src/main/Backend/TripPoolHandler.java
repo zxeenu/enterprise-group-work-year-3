@@ -1,6 +1,7 @@
 package main.Backend;
 
 import main.Common.Logger;
+import main.Common.Shared;
 import main.Database.Entities.Trip;
 import org.junit.platform.commons.util.ExceptionUtils;
 
@@ -24,7 +25,7 @@ public class TripPoolHandler extends Thread {
                 for (var p : tripModule.TripPool) {
                     if (p.State == Trip.TripState.IN_PROGRESS) continue;
                     if (p.State == Trip.TripState.CANCELLED) cancelled.add(p);
-                    var driver = tripModule.AssignTripToAvailableDriver(p);
+                    var driver = tripModule.AssignTripToAvailableDriverForPickup(p);
                     if (driver != null) {
                         processed.add(p);
                     }

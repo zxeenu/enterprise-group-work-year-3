@@ -138,7 +138,18 @@ public class Trip {
         return CreationTime;
     }
 
+    public String getGetRejectionReasons() {
+        String reason = "";
+        try {
+            Shared.DbContext.Trips.refresh(this);
+            for (var d : RejectionReasons) {
+                reason += d.RejectionReason ;
+            }
+        } catch (Exception e) {
 
+        }
+        return reason;
+    }
 
     public main.Database.Entities.Vehicle getVehicle() {
         return Vehicle;
@@ -228,10 +239,6 @@ public class Trip {
 
     public void setPaidAmount(float paidAmount) {
         PaidAmount = paidAmount;
-    }
-
-    public ForeignCollection<TripRejectionReason> getRejectionReasons() {
-        return RejectionReasons;
     }
 
     public void setRejectionReasons(ForeignCollection<TripRejectionReason> rejectionReasons) {

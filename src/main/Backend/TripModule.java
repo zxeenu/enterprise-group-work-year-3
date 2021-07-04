@@ -140,10 +140,21 @@ public class TripModule {
      * @param d Driver to assign
      * @return Boolean : Indicates if the trip go assigned
      */
-    public boolean AssignTripDriver(Trip t, User d) {
+    public boolean AssignTripDriver(Trip t, User d) throws SQLException {
         if (this.GetActiveTripsByDriver(d).isEmpty()) {
             t.Driver = d;
             t.State = Trip.TripState.IN_PROGRESS;
+            Shared.DbContext.Trips.update(t);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean AssignTripDriverAwaitingPickup(Trip t, User d) throws SQLException {
+        if (this.GetActiveTripsByDriver(d).isEmpty()) {
+            t.Driver = d;
+            t.State = Trip.TripState.AWAITING_PICKUP;
+            Shared.DbContext.Trips.update(t);
             return true;
         }
         return false;
@@ -195,11 +206,22 @@ public class TripModule {
      * @param t Trip
      * @return Driver that was assigned. Null if wasn't assigned
      */
-    public User AssignTripToAvailableDriver(Trip t) {
+    public User AssignTripToAvailableDriver(Trip t) throws SQLException {
         var availableDrivers = GetUserTripCount();
         for (var d : availableDrivers) {
             if (GetActiveTripsByDriver(d.Driver).isEmpty()) {
                 AssignTripDriver(t, d.Driver);
+                return d.Driver;
+            }
+        }
+        return null;
+    }
+
+    public User AssignTripToAvailableDriverForPickup(Trip t) throws SQLException {
+        var availableDrivers = GetUserTripCount();
+        for (var d : availableDrivers) {
+            if (GetActiveTripsByDriver(d.Driver).isEmpty()) {
+                AssignTripDriverAwaitingPickup(t, d.Driver);
                 return d.Driver;
             }
         }
@@ -293,6 +315,7 @@ public class TripModule {
         r.Driver = d;
         r.RejectionReason = reason;
         t.RejectionReasons.add(r);
+        t.State = Trip.TripState.REJECTED;
         Shared.DbContext.Trips.update(t);
     }
 

@@ -2,6 +2,7 @@ package main.Spring.Sunchip.controllers.driver;
 
 import main.Common.Shared;
 import main.Database.Entities.Trip;
+import main.Database.Entities.TripRejectionReason;
 import main.Database.Entities.User;
 //import main.java.com.enterprise.sunchip.services.LocalSession;
 import main.Spring.Sunchip.services.LocalSession;
@@ -106,7 +107,11 @@ public class DriverDashboardController {
                         var tripList = Shared.BeContext.Trip.GetAllTripsByDriver(driver);
                         for (var trip : tripList) {
                             if (trip.ID.toString().equals(tripId)) {
-                                Shared.BeContext.Trip.AssignTripDriver(trip, driver);
+//                                Shared.BeContext.Trip.AssignTripDriver(trip, driver);
+                                trip.Driver = driver;
+                                trip.State = Trip.TripState.IN_PROGRESS;
+                                Shared.DbContext.Trips.update(trip);
+
                             }
                         }
                     }
@@ -143,7 +148,11 @@ public class DriverDashboardController {
 //                                trip.TripComplete = true;
 //                                trip.setState(2); // completion code
 //                                Shared.DbContext.Trips.update(trip);
-                                Shared.BeContext.Trip.MarkTripAsComplete(trip);
+//                                Shared.BeContext.Trip.MarkTripAsComplete(trip);
+
+                                trip.State = Trip.TripState.COMPLETE;
+                                trip.TripComplete = true;
+                                Shared.DbContext.Trips.update(trip);
                             }
                         }
                     }
@@ -203,6 +212,7 @@ public class DriverDashboardController {
 
             var trip = (Trip) session.getAttribute("tripToCancell");
             var driver = (User) session.getAttribute("driverAssosicatedToCancelledJob");
+
             Shared.BeContext.Trip.RejectByDriver(trip, driver, rejectionReason);
 
             mv.setViewName("pages/dashboard/DriverDashboard");
@@ -210,13 +220,14 @@ public class DriverDashboardController {
         } catch (Exception e) {
             mv.setViewName("pages/error/Error");
             mv.addObject("errorMessage", "sorry, the job could not be completed! Something went wrong");
+            return mv;
         }
 
         // remove the meta data
         session.setAttribute("tripToCancell", null);
         session.setAttribute("driverAssosicatedToCancelledJob", null);
 
-        return mv;
+        return new ModelAndView("redirect:/Driver/Dashboard");
     }
 
 }
