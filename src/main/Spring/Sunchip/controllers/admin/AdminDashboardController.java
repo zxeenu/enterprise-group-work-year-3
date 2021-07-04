@@ -306,9 +306,9 @@ public class AdminDashboardController {
                                     break;
                                 case 2:
                                     completedJobs++;
+                                    dailyTurnOver += t.PaidAmount;
                                     break;
                             }
-                            dailyTurnOver += t.PaidAmount;
                         }
                         switch (statusCode) {
                             case "ongoing":
@@ -464,6 +464,7 @@ public class AdminDashboardController {
             return mv;
         }
         return new ModelAndView("redirect:/Admin/Customers");
+//        return new ModelAndView("redirect:/Admin/Dashboard");
     }
 
 

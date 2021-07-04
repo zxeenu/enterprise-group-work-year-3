@@ -227,7 +227,7 @@ public class DriverDashboardController {
         session.setAttribute("tripToCancell", null);
         session.setAttribute("driverAssosicatedToCancelledJob", null);
 
-        return new ModelAndView("redirect:/Driver/Dashboard");
+        return new ModelAndView("redirect:/Driver/Login");
     }
 
 }
