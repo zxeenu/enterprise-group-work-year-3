@@ -102,9 +102,6 @@ public class NormalLoginController {
         mv.setViewName("pages/login/NormalLogin");
 
         var admin = Shared.BeContext.User.RegisterNewUser("Admin", "One", "Admin1", "Admin1", User.UserType.ADMIN);
-        var driver = Shared.BeContext.User.RegisterNewUser("Driver", "One", "Driver1", "Driver1", User.UserType.DRIVER);
-        var driver2 = Shared.BeContext.User.RegisterNewUser("Driver", "Two", "Driver2", "Driver2", User.UserType.DRIVER);
-        var driver3 = Shared.BeContext.User.RegisterNewUser("Driver", "Three", "Driver3", "Driver3", User.UserType.DRIVER);
         var user = Shared.BeContext.User.RegisterNewUser("User", "One", "User1", "User1", User.UserType.CUSTOMER);
         var user2 = Shared.BeContext.User.RegisterNewUser("User", "Two", "User2", "User2", User.UserType.CUSTOMER);
         var user3 = Shared.BeContext.User.RegisterNewUser("User", "Three", "User3", "User3", User.UserType.CUSTOMER);
