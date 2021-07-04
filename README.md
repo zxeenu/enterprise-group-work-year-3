@@ -44,9 +44,9 @@ To use the application, you need to create a new MMSQL Database. You can use an 
   <li>Setup your MMSQL server</li>
   <li>Create a new database on your server. (SQL command to create database: CREATE DATABASE databasename;)</li>
 </ol>
-We will then connect this empty database to the application to create the required tables (you will find the instructions on how to make the connection string on line 16 of src > Spring > SunchipApplication).
+We will then connect this empty database to the application to create the required tables (you will find the instructions on how to make the connection string on line 16 of src > main > Spring > Sunchip > SunchipApplication).
 
-If you are unable to create and connect to a database please go to src > Spring > SunchipApplication, comment out line 22 and uncomment line 25 to use our development database. If you are unable to form a connection please let us know so that we can confirm the details have not changed. 
+If you are unable to create and connect to a database please go to src > main > Spring > Sunchip > SunchipApplication, comment out line 22 and uncomment line 25 to use our development database. If you are unable to form a connection please let us know so that we can confirm the details have not changed. 
 
 <hr>
 <h3>Clone the project</h3>
@@ -78,7 +78,7 @@ To ensure correct source is chosen:
 
 <hr>
 <h3>Run the application</h3>
-Navigate to src > Spring > SunchipApplication and click run at the top right. You must do this on both branches by opening an instance of the main project and the web-service project, going through the intelliJ IDEA setup steps on both and running the SunchipApplication on both. Open a browser (the app is best viewed on Chrome) and go to http://localhost:8080/ and http://localhost:8081/ to check if both are running. If the main app is running, then on 8080 you should see the login page and if the web-service is running then on 8081 you should see a blank page with some text (since it's waiting on a request). 
+Navigate to src > main > Spring > Sunchip > SunchipApplication and click run at the top right. You must do this on both branches by opening an instance of the main project and the web-service project, going through the intelliJ IDEA setup steps on both and running the SunchipApplication on both. Open a browser (the app is best viewed on Chrome) and go to http://localhost:8080/ and http://localhost:8081/ to check if both are running. If the main app is running, then on 8080 you should see the login page and if the web-service is running then on 8081 you should see a blank page with some text (since it's waiting on a request). 
 
 <h3>Dummy Users</h3>
 In order to quickly make users for the system as well as the admin login, you can head to the following <a href="http://localhost:8080/MakeStuffUp" target="_blank">link</a> after you're sure you are connected to a database. It will automaticallu generate the following users for you:
