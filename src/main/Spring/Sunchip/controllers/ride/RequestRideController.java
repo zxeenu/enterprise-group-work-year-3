@@ -97,7 +97,7 @@ public class RequestRideController {
 
 //                    var route = handler.GetRoutes(location1, location2).get(0);
                     main.Backend.Maps.MapStructs.Route r = null;
-
+                    var Distance = 0.0;
 
                     for (int i = 0; i < (Math.max(dest.size(), ori.size())); i++) {
                         try {
@@ -111,10 +111,16 @@ public class RequestRideController {
                     }
 
 
+                    var p1 = Math.pow((r.StartWaypoint.Point.Lattitude - r.Waypoints.get(0).Point.Lattitude), 2);
+                    var p2 = Math.pow((r.StartWaypoint.Point.Longtitude - r.Waypoints.get(0).Point.Lattitude), 2);
+
+                    var distance = Math.sqrt(p1 + p2);
+
+
                     double rate = 1000;
                     double actualAmount = 0.0;
                     if (r != null) {
-                        actualAmount = r.Distance * rate;
+                        actualAmount = distance * rate;
                     } else {
                         ModelAndView mv = new ModelAndView();
                         mv.setViewName("pages/error/Error");
@@ -130,7 +136,7 @@ public class RequestRideController {
 
 
 //                    newtrip.setDistance(route.Distance);
-                    newtrip.setDistance(r.Distance);
+                    newtrip.setDistance(distance);
                     newtrip.setPaidAmount((float)amountOwed);
                     Shared.DbContext.Trips.create(newtrip);
                     Shared.BeContext.Trip.AddTripToPool(newtrip);
