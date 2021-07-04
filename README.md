@@ -39,12 +39,15 @@
 <hr>
 <h1 id="instructions">Building The Application</h1>
 <h3>Build your database</h3>
-To use the application, you need to create a new MMSQL main.Database. You can use an MMSQL database tool, such as <a href="https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15" target="_blank">SSMS</a> if you have Windows or <a href="https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15" target="_blank">Azure Data Studio</a> if you have a Mac to create and manage your MMSQL database. If you're using Azure Data Studio, you would also need to setup Docker by following this <a href="https://www.freecodecamp.org/news/cjn-how-to-connect-your-microsoft-sql-server-docker-container-with-azure-data-studio/" target="_blank">tutorial</a>.
+To use the application, you need to create a new MMSQL Database. You can use an MMSQL database tool, such as <a href="https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15" target="_blank">SSMS</a> if you have Windows or <a href="https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15" target="_blank">Azure Data Studio</a> if you have a Mac to create and manage your MMSQL database. If you're using Azure Data Studio, you would also need to setup Docker by following this <a href="https://www.freecodecamp.org/news/cjn-how-to-connect-your-microsoft-sql-server-docker-container-with-azure-data-studio/" target="_blank">tutorial</a>.
 <ol>
   <li>Setup your MMSQL server</li>
   <li>Create a new database on your server. (SQL command to create database: CREATE DATABASE databasename;)</li>
 </ol>
-We will then connect this empty database to the application to create the required tables.
+We will then connect this empty database to the application to create the required tables (you will find the instructions on how to make the connection string on line 16 of src > Spring > SunchipApplication).
+
+If you are unable to create and connect to a database please go to src > Spring > SunchipApplication, comment out line 22 and uncomment line 25 to use our development database. If you are unable to form a connection please let us know so that we can confirm the details have not changed. 
+
 <hr>
 <h3>Clone the project</h3>
 You must clone the main branch and the webservice branch to make the application work. The main branch is the web application and the webservice is needed to process the ride request.
@@ -75,7 +78,40 @@ To ensure correct source is chosen:
 
 <hr>
 <h3>Run the application</h3>
-Navigate to src > main > com.enterprise.sunchip > SunchipApplication and click run at the top right. You must do this on both branches by opening an instance of the main project and the web-service project, going through the intelliJ IDEA setup steps on both and running the SunchipApplication on both. Open a browser (the app is best viewed on Chrome) and go to http://localhost:8080/ and http://localhost:8081/ to check if both are running. If the main app is running, then on 8080 you should see the login page and if the web-service is running then on 8081 you should see a blank page with some text (since it's waiting on a request). 
+Navigate to src > Spring > SunchipApplication and click run at the top right. You must do this on both branches by opening an instance of the main project and the web-service project, going through the intelliJ IDEA setup steps on both and running the SunchipApplication on both. Open a browser (the app is best viewed on Chrome) and go to http://localhost:8080/ and http://localhost:8081/ to check if both are running. If the main app is running, then on 8080 you should see the login page and if the web-service is running then on 8081 you should see a blank page with some text (since it's waiting on a request). 
+
+<h3>Dummy Users</h3>
+In order to quickly make users for the system as well as the admin login, you can head to the following <a href="http://localhost:8080/MakeStuffUp" target="_blank">link</a> after you're sure you are connected to a database. It will automaticallu generate the following users for you:
+
+<table>
+  <tr>
+    <th>Type</th>
+    <th>Username</th>
+    <th>Password</th>
+  </tr>
+  <tr>
+    <td>Admin</td>
+    <td>Admin1</td>
+    <td>Admin1</td>
+  </tr>
+  <tr>
+    <td>Customer</td>
+    <td>User1</td>
+    <td>User1</td>
+  </tr>
+    <tr>
+    <td>Customer</td>
+    <td>User2</td>
+    <td>User2</td>
+  </tr>
+    <tr>
+    <td>Customer</td>
+    <td>User2</td>
+    <td>User2</td>
+  </tr>
+  </table>
+
+Due to the nature of drivers, you will need to create them through the GUI. Please head to <a href="http://localhost:8080/LoginAdmin" target="_blank">Admin Login</a> and log in using the username Admin1 and password Admin1 and navigate to drivers <a href="http://localhost:8080/Admin/Drivers" target="_blank">Driver's page</a>. You may then click "Add Driver" and add one or more drivers to make the system work. Please note that a driver is required before you can use the system to book a ride. 
 <!-- USAGE EXAMPLES -->
 <hr>
 <h1 id="usage">Using The Application</h1>
