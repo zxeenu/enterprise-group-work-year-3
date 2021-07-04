@@ -71,7 +71,7 @@ public class RequestRideController {
             if (!tokenId.isEmpty()) {
                 var customer = Shared.BeContext.User.GetByPasswordHash(tokenId);
                 if (customer != null){
-//                    Trip newtrip = Shared.BeContext.Trip.RequestNewTrip(customer);
+
                     var newtrip = new Trip();
                     newtrip.TripComplete = false;
                     newtrip.Customer = customer;
@@ -89,13 +89,6 @@ public class RequestRideController {
                     var dest= handler.Search(newRequest.getDestinationNameFromWebservice());
                     var ori = handler.Search(newRequest.getStartLocationNameFromWebservice());
 
-//                    var partOne = Math.pow((location2.Coordinates.Lattitude - location1.Coordinates.Lattitude), 2);
-//                    var partTwo = Math.pow((location2.Coordinates.Longtitude - location1.Coordinates.Longtitude), 2);
-//                    var distance = Math.sqrt(partOne+ partTwo);
-
-
-
-//                    var route = handler.GetRoutes(location1, location2).get(0);
                     main.Backend.Maps.MapStructs.Route r = null;
                     var Distance = 0.0;
 
@@ -124,20 +117,16 @@ public class RequestRideController {
                     } else {
                         ModelAndView mv = new ModelAndView();
                         mv.setViewName("pages/error/Error");
-                        mv.addObject("errorMessage", "Sorry, you didnt give us a legal address!");
+                        mv.addObject("errorMessage", "Sorry, we can't seem to locate the address!");
                         return mv;
                     }
 
-
-//                    double amountOwed = (double)Math.round(actualAmount * 100.0) / 100.0;
 
                     double amountOwed = rate * distance;
                     if (amountOwed < 10) {
                         amountOwed = 10;
                     }
 
-
-//                    newtrip.setDistance(route.Distance);
                     newtrip.setDistance(distance);
                     newtrip.setPaidAmount((float)amountOwed);
                     Shared.DbContext.Trips.create(newtrip);
@@ -150,9 +139,9 @@ public class RequestRideController {
             // Ziaan, added this to redirect to an error page.
             ModelAndView mv = new ModelAndView();
             mv.setViewName("pages/error/Error");
-            mv.addObject("errorMessage", "Sorry, you're request could not be processed!");
+            mv.addObject("errorMessage", "Sorry, your request could not be processed!");
             return mv;
-//            return new ModelAndView("redirect:/Customer/RequestRide");
+
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
