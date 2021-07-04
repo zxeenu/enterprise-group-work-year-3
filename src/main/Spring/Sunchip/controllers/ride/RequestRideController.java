@@ -111,8 +111,8 @@ public class RequestRideController {
                     }
 
 
-                    var p1 = Math.pow((r.StartWaypoint.Point.Lattitude - r.Waypoints.get(0).Point.Lattitude), 2);
-                    var p2 = Math.pow((r.StartWaypoint.Point.Longtitude - r.Waypoints.get(0).Point.Lattitude), 2);
+                    var p1 = Math.pow((r.Waypoints.get(0).Point.Lattitude - r.StartWaypoint.Point.Lattitude), 2);
+                    var p2 = Math.pow((r.Waypoints.get(0).Point.Lattitude - r.StartWaypoint.Point.Longtitude), 2);
 
                     var distance = Math.sqrt(p1 + p2);
 
