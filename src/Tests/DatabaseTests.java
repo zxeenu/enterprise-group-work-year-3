@@ -33,6 +33,10 @@ public class DatabaseTests {
         assertTrue(User.ValidateLogin("johnnys", "johnsm123", context.Users.iterator()) != null);
     }
 
+    /**
+     * This function will create dummy users
+     * @throws SQLException
+     */
     public void AddDummyUser() throws SQLException {
         var NewUser = new User();
         NewUser.FirstName = "John";
@@ -42,6 +46,10 @@ public class DatabaseTests {
         context.Users.create(NewUser);
     }
 
+    /**
+     * This function will make sure that the data persists int eh database
+     * @throws Exception
+     */
     @Test
     public void PersistenceTest() throws Exception {
         AddDummyUser();
@@ -50,7 +58,11 @@ public class DatabaseTests {
         assertTrue((context.Users.countOf() > 0));
     }
 
-
+    /**
+     * This function will make sure that ManyToOneWrite operations works
+     * properly
+     * @throws SQLException
+     */
     @Test
     public void ManyToOneWriteTest() throws SQLException {
         var dummydriver = new User();
@@ -63,19 +75,29 @@ public class DatabaseTests {
         context.Trips.create(dummy3);
     }
 
+    /**
+     * This function will make sure that OneToOne read and write operations
+     * work properly
+     * @throws SQLException
+     */
+    @Test
     public void OneToOneReadAndWriteTest() throws SQLException {
         var user = new User();
         var role = new Role();
         role.RoleName = "Test Role";
         user.Role = role;
-
         context.Roles.create(role);
         context.Users.create(user);
-
         var read_data = context.Users.iterator().first().Role.RoleName;
         assertEquals("Test Role", read_data);
     }
 
+    /**
+     * This function will make sure that ManyToOne read and write operations
+     * works properly
+     * @throws SQLException
+     * @throws InterruptedException
+     */
     @Test
     public void ManyToOneReadTest() throws SQLException, InterruptedException {
         var dummydriver = new User();

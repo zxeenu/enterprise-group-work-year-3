@@ -24,6 +24,10 @@ public class TripHandlerTests {
     User CustomerB;
     User CustomerC;
 
+    /**
+     * This will generate dummy users
+     * @throws SQLException
+     */
     public void AddDummyUsers() throws SQLException {
         DriverA = new User() {{
            FirstName = "DriverA";
@@ -57,6 +61,11 @@ public class TripHandlerTests {
         BeContext.DbContext.Users.create(CustomerC);
     }
 
+    /**
+     * This function will make sure that the auto assignment works properly
+     * @throws SQLException
+     * @throws InterruptedException
+     */
     @Test
     public void AutoAssignmentTest() throws SQLException, InterruptedException {
         AddDummyUsers();
@@ -71,6 +80,11 @@ public class TripHandlerTests {
                 ));
     }
 
+    /**
+     * This function makes sure that auto assignment and queueing works
+     * @throws SQLException
+     * @throws InterruptedException
+     */
     @Test
     public void AutoAssignmentQueueTest() throws SQLException, InterruptedException {
         AddDummyUsers();
@@ -96,6 +110,11 @@ public class TripHandlerTests {
         if (CustomerCTrip.State != Trip.TripState.IN_PROGRESS) Assert.fail("Customer C Trip was not processed");
     }
 
+    /**
+     * This function will make sure that trip state change events work properly
+     * @throws SQLException
+     * @throws InterruptedException
+     */
     @Test
     public void ListenerSubscriptionTest() throws SQLException, InterruptedException {
         AddDummyUsers();
@@ -110,6 +129,10 @@ public class TripHandlerTests {
         }
     }
 
+    /**
+     * This function will make sure that the rejection reason sticks in the database
+     * @throws SQLException
+     */
     @Test
     public void RejectionReasonsPersistenceTest() throws SQLException {
         AddDummyUsers();
@@ -121,6 +144,11 @@ public class TripHandlerTests {
         BeContext.Trip.RejectByDriver(CustomerBTrip, DriverB, "Driver A Rejection Reason For Trip B");
     }
 
+    /**
+     * This function makes sure that rejection properly works
+     * @throws SQLException
+     * @throws InterruptedException
+     */
     @Test
     public void RejectedHistoryTest() throws SQLException, InterruptedException {
         AddDummyUsers();
@@ -132,7 +160,7 @@ public class TripHandlerTests {
         BeContext.Trip.RejectByDriver(CustomerATrip, DriverA, "Driver A Rejected");
         BeContext.Trip.RejectByDriver(CustomerATrip, DriverB, "Driver B Rejected");
 
-        Thread.sleep(2500);
+        Thread.sleep(3000);
 
         if (CustomerATrip.State != Trip.TripState.AWAITING_PICKUP) Assert.fail("Rejection history was ignored!");
     }

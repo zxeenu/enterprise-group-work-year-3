@@ -8,6 +8,10 @@ public class OpenRouteServiceTests {
 
     public String TestingToken = Const.ORSToken;
 
+    /**
+     * This function will make sure that open route service returns an accurate
+     * distance from two distances
+     */
     @Test
     public void DistanceAccuracyTest() {
         var startpoint = new Point(73.50527286529542, 4.175673819830992);

@@ -10,12 +10,16 @@ public class SessionTests {
     Session UserSession;
     WebUIManager WebsiteUIManager;
 
-    // Constrcutor
+    // Constructor
     public SessionTests() {
         this.UserSession = new Session();
         this.WebsiteUIManager = new WebUIManager();
     }
 
+    /**
+     * This function will make sure that the web session unsubscribe
+     * function works
+     */
     @Test
     public void UnsubscribeTest() {
         UserSession.Subscribe(WebsiteUIManager);
@@ -24,6 +28,10 @@ public class SessionTests {
         Assert.assertFalse(WebsiteUIManager.HasSessionTerminated);
     }
 
+    /**
+     * This function will make sure that the session terminated
+     * event gets observed
+     */
     @Test
     public void SessionTerminatedTest() {
         UserSession.Subscribe(WebsiteUIManager);
@@ -32,6 +40,11 @@ public class SessionTests {
         Assert.assertFalse(WebsiteUIManager.HasSessionExpired);
     }
 
+    /**
+     * This function will make sure that the session expired after
+     * a specified time period
+     * @throws InterruptedException
+     */
     @Test
     public void SessionExpiredTest() throws InterruptedException {
         UserSession.Subscribe(WebsiteUIManager);
@@ -42,6 +55,11 @@ public class SessionTests {
         Assert.assertTrue(WebsiteUIManager.HasSessionTerminated);
     }
 
+    /**
+     * This function will make sure that the session extension works
+     * properly
+     * @throws InterruptedException
+     */
     @Test
     public void SessionExtendTest() throws InterruptedException {
         UserSession.Subscribe(WebsiteUIManager);
