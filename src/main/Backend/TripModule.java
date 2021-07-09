@@ -235,6 +235,19 @@ public class TripModule {
         var availableDrivers = GetUserTripCount();
         for (var d : availableDrivers) {
             if (GetActiveTripsByDriver(d.Driver).isEmpty()) {
+
+                var previously_rejected = false;
+                Shared.DbContext.Trips.refresh(t);
+
+                for (var rr : t.RejectionReasons) {
+                    if (rr.Driver.ID.equals(d.Driver.ID)) {
+                        previously_rejected = true;
+                        break;
+                    }
+                }
+
+                if (previously_rejected) continue;
+
                 AssignTripDriverAwaitingPickup(t, d.Driver);
                 return d.Driver;
             }

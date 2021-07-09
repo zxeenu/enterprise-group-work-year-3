@@ -68,16 +68,17 @@ public class TripHandlerTests {
      */
     @Test
     public void AutoAssignmentTest() throws SQLException, InterruptedException {
+        BeContext.DropAllTables();
         AddDummyUsers();
         var CustomerATrip = BeContext.Trip.RequestNewTrip(CustomerA);
         var CustomerBTrip = BeContext.Trip.RequestNewTrip(CustomerB);
 
         BeContext.Trip.AddTripToPool(CustomerATrip);
         BeContext.Trip.AddTripToPool(CustomerBTrip);
-        Thread.sleep(1500);
-        Assert.assertTrue((
-                CustomerATrip.State == Trip.TripState.IN_PROGRESS && CustomerBTrip.State == Trip.TripState.IN_PROGRESS
-                ));
+
+        Thread.sleep(1000);
+        Assert.assertEquals(Trip.TripState.IN_PROGRESS, CustomerBTrip.State);
+        Assert.assertEquals(Trip.TripState.IN_PROGRESS, CustomerATrip.State);
     }
 
     /**
