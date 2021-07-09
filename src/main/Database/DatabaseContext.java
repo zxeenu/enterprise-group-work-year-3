@@ -49,6 +49,7 @@ public class DatabaseContext {
             add(Roles);
             add(Waypoints);
             add(Trips);
+            add(RejectionReasons);
         }};
     }
 }
