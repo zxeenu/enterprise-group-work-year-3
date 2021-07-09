@@ -33,7 +33,7 @@
             <th>Coordinates</th>
             <th>Distance</th>
             <th>Status</th>
-            <th>Rejection Reason</th>
+            <th>Rejected Reason</th>
         </tr>
         </thead>
         <tbody>

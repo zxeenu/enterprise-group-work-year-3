@@ -87,7 +87,7 @@
             <th>Destination</th>
             <th>Distance</th>
             <th>Status</th>
-            <th>Rejection Reason</th>
+            <th>Rejected Reason</th>
         </tr>
         <c:forEach items="${tripList}" var="trip">
             <tr>

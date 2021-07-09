@@ -37,14 +37,9 @@
                   style="resize: vertical; margin-top: 20px"
                   required
           ></textarea>
-<%--            <a href="TODO" target="_blank"--%>
-<%--            ><button type="submit" style="margin-top: 20px; width: 100px">--%>
-<%--                Save--%>
-<%--            </button></a--%>
-<%--            >--%>
             <button type="submit" style="margin-top: 20px; width: 100px">
                 Save
-            </button><
+            </button>
         </div>
     </form>
 </div>
